@@ -1,3 +1,0 @@
-/home/ser/_1_treasure_island_game/srcClient/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/ser/_1_treasure_island_game/srcClient/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/ser/_1_treasure_island_game/srcClient/cmake-build-debug/CMakeFiles/IslandGame.dir
