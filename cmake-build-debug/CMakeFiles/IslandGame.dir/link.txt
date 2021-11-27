@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/IslandGame.dir/Client/srcClient/main.cpp.o -o IslandGame 
