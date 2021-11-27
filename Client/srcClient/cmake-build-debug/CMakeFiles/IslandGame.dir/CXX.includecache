@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ser/_1_treasure_island_game/srcClient/main.cpp
+/home/ser/_1_treasure_island_game/Client/srcClient/main.cpp
 iostream
 -
 SFML/Graphics.hpp
