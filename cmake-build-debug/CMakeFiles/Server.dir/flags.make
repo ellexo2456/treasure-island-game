@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ser/_1_treasure_island_game/Client/includeClient
+CXX_INCLUDES = -I/home/ser/_1_treasure_island_game/Client/includeClient -I/home/ser/_1_treasure_island_game/EventBus/Include
 
 CXX_FLAGS = -g -std=gnu++14
 

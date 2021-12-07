@@ -166,6 +166,33 @@ Client/srcClient/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/Client/srcClient/main.cpp.s
 .PHONY : Client/srcClient/main.cpp.s
 
+EventBus/EventBus.o: EventBus/EventBus.cpp.o
+.PHONY : EventBus/EventBus.o
+
+# target to build an object file
+EventBus/EventBus.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/EventBus/EventBus.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/EventBus/EventBus.cpp.o
+.PHONY : EventBus/EventBus.cpp.o
+
+EventBus/EventBus.i: EventBus/EventBus.cpp.i
+.PHONY : EventBus/EventBus.i
+
+# target to preprocess a source file
+EventBus/EventBus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/EventBus/EventBus.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/EventBus/EventBus.cpp.i
+.PHONY : EventBus/EventBus.cpp.i
+
+EventBus/EventBus.s: EventBus/EventBus.cpp.s
+.PHONY : EventBus/EventBus.s
+
+# target to generate assembly for a file
+EventBus/EventBus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/EventBus/EventBus.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/EventBus/EventBus.cpp.s
+.PHONY : EventBus/EventBus.cpp.s
+
 Server/srcServer/main.o: Server/srcServer/main.cpp.o
 .PHONY : Server/srcServer/main.o
 
@@ -203,6 +230,9 @@ help:
 	@echo "... Client/srcClient/main.o"
 	@echo "... Client/srcClient/main.i"
 	@echo "... Client/srcClient/main.s"
+	@echo "... EventBus/EventBus.o"
+	@echo "... EventBus/EventBus.i"
+	@echo "... EventBus/EventBus.s"
 	@echo "... Server/srcServer/main.o"
 	@echo "... Server/srcServer/main.i"
 	@echo "... Server/srcServer/main.s"

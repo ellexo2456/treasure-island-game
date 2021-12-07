@@ -45,6 +45,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/ser/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/ser/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -68,6 +69,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/ser/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/ser/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -91,6 +93,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/ser/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/ser/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -114,6 +117,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/ser/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/ser/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -130,10 +134,11 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/menu.h">
+		<Unit filename="/home/ser/_1_treasure_island_game/Client/srcClient/main.cpp">
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/home/ser/_1_treasure_island_game/Client/srcClient/main.cpp">
+		<Unit filename="/home/ser/_1_treasure_island_game/EventBus/EventBus.cpp">
+			<Option target="Server"/>
 			<Option target="Client"/>
 		</Unit>
 		<Unit filename="/home/ser/_1_treasure_island_game/Server/srcServer/main.cpp">
