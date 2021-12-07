@@ -4,7 +4,7 @@
 #include "clientPlayer.h"
 
 int main() {
-    //Клиентская часть сети
+
     sf::TcpSocket socket;
     socket.connect("127.0.0.1", 3000);
 
@@ -54,7 +54,6 @@ int main() {
         }
 
         move.coord = 0;
-        //Добавили управление на клавиши W,S,A,D
         if (window.hasFocus()) {
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::A)))) { move.coord = 1; };

@@ -19,7 +19,7 @@ int main() {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 
-    sf::TcpSocket clients[2];  // жерло трубки, в которую мы кидем данные
+    sf::TcpSocket clients[2];
     packet.clear();
 
     if (listener.accept(clients[0]) != sf::Socket::Done) {

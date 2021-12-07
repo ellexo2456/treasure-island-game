@@ -7,9 +7,10 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeFiles")
 find_package(SFML REQUIRED system window graphics network audio)
 include_directories(${SFML_INCLUDE_DIR})
 include_directories(Client/includeClient)
+include_directories(EventBus/Include)
 
-add_executable(Client Client/srcClient/main.cpp)
-add_executable(Server  Server/srcServer/main.cpp)
+add_executable(Client Client/srcClient/main.cpp EventBus/EventBus.cpp )
+add_executable(Server Server/srcServer/main.cpp EventBus/EventBus.cpp )
 
 
 target_link_libraries(Client ${SFML_LIBRARIES})
