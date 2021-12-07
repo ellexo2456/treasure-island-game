@@ -46,6 +46,7 @@ int main() {
     clients[1].send(packet);
 
     while (true) {
+
         for (int i = 0; i < 2; ++i) {
             int dir = 0;
             packet.clear();

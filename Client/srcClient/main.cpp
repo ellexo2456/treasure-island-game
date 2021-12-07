@@ -4,6 +4,10 @@
 #include "clientPlayer.h"
 
 int main() {
+
+    sf::RenderWindow window(sf::VideoMode(700, 600), "SFML works!");
+
+
     //Клиентская часть сети
     sf::TcpSocket socket;
     socket.connect("127.0.0.1", 3000);
@@ -34,8 +38,6 @@ int main() {
         shapeB.setFillColor(sf::Color::Green);
     }
 
-    sf::RenderWindow window(sf::VideoMode(700, 600), "SFML works!");
-
 
     // 0 - нет действий
     // 1 - left
@@ -47,6 +49,7 @@ int main() {
 
     while (window.isOpen()) {
         sf::Event event;
+
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 window.close();
@@ -78,7 +81,7 @@ int main() {
 
         packet >> A.x >> A.y >> color;
 
-        shapeA.setPosition(A);
+        shapeA.setPosition(A); // Говорит, где отрисовывать объект
         if (color == "Red") {
             shapeA.setFillColor(sf::Color::Red);
         } else {
@@ -86,7 +89,7 @@ int main() {
         }
 
         packet >> A.x >> A.y >> color;
-        shapeB.setPosition(A);
+        shapeB.setPosition(A); // Говорит, где отрисовывать объект
         if (color == "Red") {
             shapeB.setFillColor(sf::Color::Red);
         } else {

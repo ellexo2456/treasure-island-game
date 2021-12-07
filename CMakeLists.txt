@@ -8,7 +8,7 @@ find_package(SFML REQUIRED system window graphics network audio)
 include_directories(${SFML_INCLUDE_DIR})
 include_directories(Client/includeClient)
 
-add_executable(Client Client/srcClient/main.cpp)
+add_executable(Client Client/srcClient/main.cpp Client/includeClient/menu.h)
 add_executable(Server  Server/srcServer/main.cpp)
 
 
