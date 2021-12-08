@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
 #include "clientPlayer.h"
+#include "Event.h"
 
 int main() {
     sf::TcpSocket socket;
@@ -41,8 +42,8 @@ int main() {
     // 2 - right
     // 3 - up
     // 4 - down
-    State move;
-    move.coord = 0;
+    Event custom_event;
+    custom_event.type = user_init;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -53,23 +54,23 @@ int main() {
             }
         }
 
-        move.coord = 0;
+        custom_event.type = user_init;
         if (window.hasFocus()) {
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||
-                 (sf::Keyboard::isKeyPressed(sf::Keyboard::A)))) { move.coord = 1; };
+                 (sf::Keyboard::isKeyPressed(sf::Keyboard::A)))) { custom_event.type = dir_left; };
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
-                 (sf::Keyboard::isKeyPressed(sf::Keyboard::D)))) { move.coord = 2; };
+                 (sf::Keyboard::isKeyPressed(sf::Keyboard::D)))) { custom_event.type = dir_right; };
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
-                 (sf::Keyboard::isKeyPressed(sf::Keyboard::W)))) { move.coord = 3; };
+                 (sf::Keyboard::isKeyPressed(sf::Keyboard::W)))) { custom_event.type = dir_straight; };
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Down) ||
-                 (sf::Keyboard::isKeyPressed(sf::Keyboard::S)))) { move.coord = 4; };
+                 (sf::Keyboard::isKeyPressed(sf::Keyboard::S)))) { custom_event.type = dir_back; };
         }
         /*if (argc > 1) {
             move.coord = 2;
             std::cout << move.coord << std::endl;
         }*/
         packet.clear();
-        packet << move.coord ;
+        packet << custom_event.type;
         socket.send(packet);
 
         packet.clear();

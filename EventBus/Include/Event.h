@@ -9,7 +9,11 @@
 #include <string>
 
 enum Types {
-    user_moved,
+    user_init,
+    dir_left,
+    dir_right,
+    dir_straight,
+    dir_back
 };
 
 struct UserMovedEventData {
