@@ -97,16 +97,48 @@ CMakeFiles/Server.dir/EventBus/EventBus.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/EventBus/EventBus.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexey/_1_treasure_island_game/EventBus/EventBus.cpp -o CMakeFiles/Server.dir/EventBus/EventBus.cpp.s
 
+CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o: CMakeFiles/Server.dir/flags.make
+CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o: ../Server/srcServer/Player.cpp
+CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o: CMakeFiles/Server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexey/_1_treasure_island_game/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o -MF CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o.d -o CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o -c /home/alexey/_1_treasure_island_game/Server/srcServer/Player.cpp
+
+CMakeFiles/Server.dir/Server/srcServer/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/Server/srcServer/Player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexey/_1_treasure_island_game/Server/srcServer/Player.cpp > CMakeFiles/Server.dir/Server/srcServer/Player.cpp.i
+
+CMakeFiles/Server.dir/Server/srcServer/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/Server/srcServer/Player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexey/_1_treasure_island_game/Server/srcServer/Player.cpp -o CMakeFiles/Server.dir/Server/srcServer/Player.cpp.s
+
+CMakeFiles/Server.dir/Server/Model.cpp.o: CMakeFiles/Server.dir/flags.make
+CMakeFiles/Server.dir/Server/Model.cpp.o: ../Server/Model.cpp
+CMakeFiles/Server.dir/Server/Model.cpp.o: CMakeFiles/Server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexey/_1_treasure_island_game/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Server.dir/Server/Model.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.dir/Server/Model.cpp.o -MF CMakeFiles/Server.dir/Server/Model.cpp.o.d -o CMakeFiles/Server.dir/Server/Model.cpp.o -c /home/alexey/_1_treasure_island_game/Server/Model.cpp
+
+CMakeFiles/Server.dir/Server/Model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/Server/Model.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexey/_1_treasure_island_game/Server/Model.cpp > CMakeFiles/Server.dir/Server/Model.cpp.i
+
+CMakeFiles/Server.dir/Server/Model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/Server/Model.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexey/_1_treasure_island_game/Server/Model.cpp -o CMakeFiles/Server.dir/Server/Model.cpp.s
+
 # Object files for target Server
 Server_OBJECTS = \
 "CMakeFiles/Server.dir/Server/srcServer/main.cpp.o" \
-"CMakeFiles/Server.dir/EventBus/EventBus.cpp.o"
+"CMakeFiles/Server.dir/EventBus/EventBus.cpp.o" \
+"CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o" \
+"CMakeFiles/Server.dir/Server/Model.cpp.o"
 
 # External object files for target Server
 Server_EXTERNAL_OBJECTS =
 
 Server: CMakeFiles/Server.dir/Server/srcServer/main.cpp.o
 Server: CMakeFiles/Server.dir/EventBus/EventBus.cpp.o
+Server: CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o
+Server: CMakeFiles/Server.dir/Server/Model.cpp.o
 Server: CMakeFiles/Server.dir/build.make
 Server: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 Server: /usr/lib/x86_64-linux-gnu/libsfml-window.so
@@ -114,7 +146,7 @@ Server: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 Server: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 Server: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
 Server: CMakeFiles/Server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alexey/_1_treasure_island_game/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alexey/_1_treasure_island_game/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

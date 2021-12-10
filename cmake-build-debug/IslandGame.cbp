@@ -45,6 +45,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/alexey/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/Server/includeServer"/>
 					<Add directory="/home/alexey/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
@@ -69,6 +70,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/alexey/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/Server/includeServer"/>
 					<Add directory="/home/alexey/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
@@ -93,6 +95,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/alexey/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/Server/includeServer"/>
 					<Add directory="/home/alexey/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
@@ -117,6 +120,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/alexey/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/Server/includeServer"/>
 					<Add directory="/home/alexey/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
@@ -140,6 +144,15 @@
 		<Unit filename="/home/alexey/_1_treasure_island_game/EventBus/EventBus.cpp">
 			<Option target="Server"/>
 			<Option target="Client"/>
+		</Unit>
+		<Unit filename="/home/alexey/_1_treasure_island_game/Server/Model.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/home/alexey/_1_treasure_island_game/Server/Model.h">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/home/alexey/_1_treasure_island_game/Server/srcServer/Player.cpp">
+			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/home/alexey/_1_treasure_island_game/Server/srcServer/main.cpp">
 			<Option target="Server"/>

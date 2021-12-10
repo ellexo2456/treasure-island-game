@@ -1,13 +1,20 @@
 #include <iostream>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
+
+#include "Model.h"
+#include "Player.h"
 #include "clientPlayer.h"
+#include "Event.h"
+#include "EventBus.h"
 
 typedef struct {
     float x = -1;
     float y = -1;
     std::string color = "Green";
 } data;
+
 
 int main() {
 

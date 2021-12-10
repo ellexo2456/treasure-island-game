@@ -12,6 +12,11 @@ enum Types {
     user_moved,
 };
 
+enum Team {
+    first,
+    second,
+};
+
 struct UserMovedEventData {
     int x;
     int y;

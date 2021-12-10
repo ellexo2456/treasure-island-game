@@ -193,6 +193,54 @@ EventBus/EventBus.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/EventBus/EventBus.cpp.s
 .PHONY : EventBus/EventBus.cpp.s
 
+Server/Model.o: Server/Model.cpp.o
+.PHONY : Server/Model.o
+
+# target to build an object file
+Server/Model.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/Model.cpp.o
+.PHONY : Server/Model.cpp.o
+
+Server/Model.i: Server/Model.cpp.i
+.PHONY : Server/Model.i
+
+# target to preprocess a source file
+Server/Model.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/Model.cpp.i
+.PHONY : Server/Model.cpp.i
+
+Server/Model.s: Server/Model.cpp.s
+.PHONY : Server/Model.s
+
+# target to generate assembly for a file
+Server/Model.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/Model.cpp.s
+.PHONY : Server/Model.cpp.s
+
+Server/srcServer/Player.o: Server/srcServer/Player.cpp.o
+.PHONY : Server/srcServer/Player.o
+
+# target to build an object file
+Server/srcServer/Player.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o
+.PHONY : Server/srcServer/Player.cpp.o
+
+Server/srcServer/Player.i: Server/srcServer/Player.cpp.i
+.PHONY : Server/srcServer/Player.i
+
+# target to preprocess a source file
+Server/srcServer/Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Player.cpp.i
+.PHONY : Server/srcServer/Player.cpp.i
+
+Server/srcServer/Player.s: Server/srcServer/Player.cpp.s
+.PHONY : Server/srcServer/Player.s
+
+# target to generate assembly for a file
+Server/srcServer/Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Player.cpp.s
+.PHONY : Server/srcServer/Player.cpp.s
+
 Server/srcServer/main.o: Server/srcServer/main.cpp.o
 .PHONY : Server/srcServer/main.o
 
@@ -233,6 +281,12 @@ help:
 	@echo "... EventBus/EventBus.o"
 	@echo "... EventBus/EventBus.i"
 	@echo "... EventBus/EventBus.s"
+	@echo "... Server/Model.o"
+	@echo "... Server/Model.i"
+	@echo "... Server/Model.s"
+	@echo "... Server/srcServer/Player.o"
+	@echo "... Server/srcServer/Player.i"
+	@echo "... Server/srcServer/Player.s"
 	@echo "... Server/srcServer/main.o"
 	@echo "... Server/srcServer/main.i"
 	@echo "... Server/srcServer/main.s"
