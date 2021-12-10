@@ -21,6 +21,7 @@ public:
 private:
     sf::Vector2f coordinates = {0, 0};
     float speed = 0;
+    float player_number = 0;
     Team team;
 };
 

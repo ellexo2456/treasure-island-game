@@ -53,14 +53,16 @@ int main() {
     clients[1].send(packet);
 
     while (true) {
-        for (int i = 0; i < 2; ++i) {
+        packet.clear();
+        clients[i].receive(packet);
+        /*for (int i = 0; i < 2; ++i) {
             int dir = 0;
             packet.clear();
             clients[i].receive(packet);
             packet >> dir;
-            /*if (clients_data.dir > 0) {
-                std::cout << clients_data.dir << std::endl;
-            }*/
+            //if (clients_data.dir > 0) {
+                //std::cout << clients_data.dir << std::endl;
+            //}
             switch (dir) {
                 case 0: {
                     break;
@@ -87,7 +89,7 @@ int main() {
         packet << clients_data[0].x << clients_data[0].y << clients_data[0].color\
         << clients_data[1].x << clients_data[1].y << clients_data[1].color;
         clients[0].send(packet);
-        clients[1].send(packet);
+        clients[1].send(packet);*/
     }
     return 0;
 }
