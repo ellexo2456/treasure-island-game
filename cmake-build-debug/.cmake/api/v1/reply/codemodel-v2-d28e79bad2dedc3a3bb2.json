@@ -6,10 +6,9 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.20"
+						"string" : "3.19"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -41,14 +40,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Client::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Client-Debug-07d24f431d0c8eb3887d.json",
+					"jsonFile" : "target-Client-Debug-37b3f620fa8138800b6d.json",
 					"name" : "Client",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "Server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Server-Debug-1d77314e7648f0d96919.json",
+					"jsonFile" : "target-Server-Debug-e8c356b4688d7a6e3ece.json",
 					"name" : "Server",
 					"projectIndex" : 0
 				}
@@ -58,12 +57,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/parallels/_1_treasure_island_game/cmake-build-debug",
-		"source" : "/home/parallels/_1_treasure_island_game"
+		"build" : "/Users/Guest/Documents/_1_treasure_island_game/cmake-build-debug",
+		"source" : "/Users/Guest/Documents/_1_treasure_island_game"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 2
 	}
 }

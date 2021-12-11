@@ -45,6 +45,11 @@ int main() {
     if (listener.accept(clients[0]) != sf::Socket::Done) {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
+
+    players[0].set_coordinates({100, 100});
+    event_to_send.coordinates[0] = players[0].get_coordinates();
+    packet << event_to_send;
+
     /*clients_data[0].x = 100;
     clients_data[0].y = 100;
     clients_data[0].color = "Green";
@@ -78,7 +83,7 @@ int main() {
                 break;
             }
             packet >> received_event;
-            received_event.player_number= i;
+            received_event.player_number = i;
             event_bus.dispatch(received_event.type, received_event);
 
             /*switch (dir) {
@@ -109,5 +114,7 @@ int main() {
         clients[0].send(packet);
         clients[1].send(packet);
     }*/
+        }
+    }
     return 0;
 }
