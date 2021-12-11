@@ -11,7 +11,7 @@ include_directories(Server/includeServer)
 include_directories(EventBus/Include)
 
 add_executable(Client Client/srcClient/main.cpp EventBus/EventBus.cpp )
-add_executable(Server Server/srcServer/main.cpp EventBus/EventBus.cpp Server/srcServer/Player.cpp Server/Model.cpp Server/Model.h)
+add_executable(Server Server/srcServer/main.cpp EventBus/EventBus.cpp Server/srcServer/Player.cpp Server/srcServer/Model.cpp)
 
 
 target_link_libraries(Client ${SFML_LIBRARIES})

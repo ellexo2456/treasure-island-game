@@ -41,14 +41,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Client::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Client-Debug-d9d00e36abfe145f2ffd.json",
+					"jsonFile" : "target-Client-Debug-07d24f431d0c8eb3887d.json",
 					"name" : "Client",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "Server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Server-Debug-d6bb9c43ba6b0101efa5.json",
+					"jsonFile" : "target-Server-Debug-1d77314e7648f0d96919.json",
 					"name" : "Server",
 					"projectIndex" : 0
 				}
@@ -58,8 +58,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/alexey/_1_treasure_island_game/cmake-build-debug",
-		"source" : "/home/alexey/_1_treasure_island_game"
+		"build" : "/home/parallels/_1_treasure_island_game/cmake-build-debug",
+		"source" : "/home/parallels/_1_treasure_island_game"
 	},
 	"version" : 
 	{
