@@ -15,7 +15,7 @@ int main() {
     sf::TcpListener listener;
     data clients_data[2];
 
-    if (listener.listen(3000) != sf::Socket::Done) {
+    if (listener.listen(3001) != sf::Socket::Done) {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 

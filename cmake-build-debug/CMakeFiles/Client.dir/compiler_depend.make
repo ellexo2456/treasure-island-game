@@ -297,7 +297,9 @@ CMakeFiles/Client.dir/Client/srcClient/main.cpp.o: ../Client/srcClient/main.cpp 
   /usr/include/SFML/Network/UdpSocket.hpp \
   ../Client/includeClient/clientPlayer.h \
   ../EventBus/Include/Event.h \
-  ../Client/includeClient/view.h
+  ../Client/includeClient/view.h \
+  ../Client/includeClient/map.h \
+  ../Client/includeClient/camera.h
 
 CMakeFiles/Client.dir/EventBus/EventBus.cpp.o: ../EventBus/EventBus.cpp \
   /usr/include/stdc-predef.h \
@@ -458,6 +460,10 @@ CMakeFiles/Client.dir/EventBus/EventBus.cpp.o: ../EventBus/EventBus.cpp \
 
 
 ../EventBus/Include/EventBus.h:
+
+../Client/includeClient/camera.h:
+
+../Client/includeClient/map.h:
 
 ../Client/includeClient/view.h:
 

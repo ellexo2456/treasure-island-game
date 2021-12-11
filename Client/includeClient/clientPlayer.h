@@ -4,10 +4,13 @@
 
 #ifndef ISLANDGAME_CLIENTPLAYER_H
 #define ISLANDGAME_CLIENTPLAYER_H
-class Player  {
-    public:
-        sf::Vector2f coordinate;
-        std::string color;
+#include <view.h>
+class Player : View {
+
+public:
+    void render() {
+
+    };
 };
 
 class State {

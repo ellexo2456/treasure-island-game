@@ -232,4 +232,6 @@ CMakeFiles/Client.dir/Client/srcClient/main.cpp.o: \
  /usr/include/SFML/Network/UdpSocket.hpp \
  /home/ser/_1_treasure_island_game/Client/includeClient/clientPlayer.h \
  /home/ser/_1_treasure_island_game/EventBus/Include/Event.h \
- /home/ser/_1_treasure_island_game/Client/includeClient/view.h
+ /home/ser/_1_treasure_island_game/Client/includeClient/view.h \
+ /home/ser/_1_treasure_island_game/Client/includeClient/map.h \
+ /home/ser/_1_treasure_island_game/Client/includeClient/camera.h

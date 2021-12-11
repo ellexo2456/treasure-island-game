@@ -15,30 +15,23 @@ struct SpriteCoord {
     int y;
 };*/
 class View {
-public:
-    static sf::Sprite draw_and_update(const std::string& path_to_file, struct SpriteCoord coord, sf::Vector2f pos) { // static - позволяет вызывать методы без объектов
 
-        // Создание изображения
-        sf::Image hero_image;
-        hero_image.loadFromFile(path_to_file);
-        if (!hero_image.loadFromFile(path_to_file)) {
-            std::cout << "ERROR OF PATH FILE" << std::endl;
-        }
+public:
+    sf::Texture hero_texture;
+    sf::Sprite hero_sprite;
+    View (const std::string& path_to_file, struct SpriteCoord coord, sf::Vector2f pos) { // static - позволяет вызывать методы без объектов
 
         //Создание текстуры
-        sf::Texture hero_texture;
-        hero_texture.loadFromImage(hero_image);
+        hero_texture.loadFromFile(path_to_file);
 
         //Создание спрайта игрока
         sf::Sprite hero_sprite;
         hero_sprite.setTexture(hero_texture);
-        hero_sprite.setTextureRect(sf::IntRect(coord.begin_x, coord.begin_y,
-                                                                        coord.width, coord.height));
+        hero_sprite.setColor(sf::Color(0, 0, 255));
+        //hero_sprite.setTextureRect(sf::IntRect(coord.begin_x, coord.begin_y, coord.width, coord.height));
 
         hero_sprite.setPosition(pos);
-        return hero_sprite;
     }
-
+/*Создаём*/
 };
-
 #endif //ISLANDGAME_VIEW_H
