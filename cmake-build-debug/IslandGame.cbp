@@ -134,6 +134,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/view.h">
+			<Option target="Client"/>
+		</Unit>
 		<Unit filename="/home/ser/_1_treasure_island_game/Client/srcClient/main.cpp">
 			<Option target="Client"/>
 		</Unit>

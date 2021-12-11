@@ -9,7 +9,7 @@ include_directories(${SFML_INCLUDE_DIR})
 include_directories(Client/includeClient)
 include_directories(EventBus/Include)
 
-add_executable(Client Client/srcClient/main.cpp EventBus/EventBus.cpp )
+add_executable(Client Client/srcClient/main.cpp EventBus/EventBus.cpp Client/includeClient/view.h)
 add_executable(Server Server/srcServer/main.cpp EventBus/EventBus.cpp )
 
 
