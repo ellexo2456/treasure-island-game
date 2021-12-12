@@ -166,6 +166,30 @@ Client/srcClient/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/Client/srcClient/main.cpp.s
 .PHONY : Client/srcClient/main.cpp.s
 
+EventBus/Event.o: EventBus/Event.cpp.o
+.PHONY : EventBus/Event.o
+
+# target to build an object file
+EventBus/Event.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/EventBus/Event.cpp.o
+.PHONY : EventBus/Event.cpp.o
+
+EventBus/Event.i: EventBus/Event.cpp.i
+.PHONY : EventBus/Event.i
+
+# target to preprocess a source file
+EventBus/Event.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/EventBus/Event.cpp.i
+.PHONY : EventBus/Event.cpp.i
+
+EventBus/Event.s: EventBus/Event.cpp.s
+.PHONY : EventBus/Event.s
+
+# target to generate assembly for a file
+EventBus/Event.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/EventBus/Event.cpp.s
+.PHONY : EventBus/Event.cpp.s
+
 EventBus/EventBus.o: EventBus/EventBus.cpp.o
 .PHONY : EventBus/EventBus.o
 
@@ -278,6 +302,9 @@ help:
 	@echo "... Client/srcClient/main.o"
 	@echo "... Client/srcClient/main.i"
 	@echo "... Client/srcClient/main.s"
+	@echo "... EventBus/Event.o"
+	@echo "... EventBus/Event.i"
+	@echo "... EventBus/Event.s"
 	@echo "... EventBus/EventBus.o"
 	@echo "... EventBus/EventBus.i"
 	@echo "... EventBus/EventBus.s"

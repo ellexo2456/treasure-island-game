@@ -7,11 +7,23 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "IObservable.h"
-#include "Event.h"
 
-class Player {
+
+enum Team {
+    first,
+    second,
+};
+
+class Player :  {
 public:
+    Player() {
+        coordinates = {0,0};
+        speed = 50;
+        player_number = 0;
+    }
+
+    int color;
+
     sf::Vector2f get_coordinates() {
         return coordinates;
     }
@@ -20,21 +32,15 @@ public:
         coordinates = new_coordinates;
     }
 
-    Player() {
-        coordinates = {0,0};
-        speed = 0;
-        player_number = 0;
-    }
-
-    int get_player_number() {
+    int get_player_number() const {
         return player_number;
     }
 
     void set_player_number(int number) {
-        number = player_number;
+        player_number = number;
     }
 
-    float get_speed() {
+    float get_speed() const {
         return speed;
     }
 private:

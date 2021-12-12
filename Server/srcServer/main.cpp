@@ -1,13 +1,9 @@
 #include <iostream>
-
-#include <SFML/Graphics.hpp>
-#include <SFML/Network.hpp>
+#include <SFML/Network/TcpSocket.hpp>
+#include <SFML/Network/TcpListener.hpp>
+#include <SFML/Network/Packet.hpp>
 
 #include "Model.h"
-#include "Player.h"
-#include "clientPlayer.h"
-#include "Event.h"
-#include "EventBus.h"
 
 /*typedef struct {
     float x = -1;
@@ -15,6 +11,67 @@
     std::string color = "Green";
 } data;*/
 
+sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
+    int type_number;
+    packet >> type_number;
+    switch(type_number) {
+        case 0: {
+            received_event.type = user_init;
+            break;
+        }
+        case 1: {
+            received_event.type = dir_left;
+            break;
+        }
+        case 2: {
+            received_event.type = dir_right;
+            break;
+        }
+        case 3: {
+            received_event.type = dir_straight;
+            break;
+        }
+        case 4: {
+            received_event.type = dir_back;
+            break;
+        }
+        default: {
+            received_event.type = error;
+            break;
+        }
+    }
+    for (int i = 0; i < 2; ++i) {
+        packet >> received_event.coordinates[i].x >> received_event.coordinates[i].y >> received_event.colors[i];
+    }
+    return packet;
+}
+
+sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
+    int type_number = received_event.type;
+    packet << type_number;
+    /*switch(received_event.type) {
+        case user_init: {
+            packet << 0;
+        }
+        case dir_left: {
+            packet << 1;
+        }
+        case dir_right: {
+            packet << 2;
+        }
+        case dir_straight: {
+            packet << 3;
+        }
+        case dir_back: {
+            packet << 4;
+        }
+    }*/
+
+    for (int i = 0; i < 2; ++i) {
+        packet << received_event.coordinates[i].x << received_event.coordinates[i].y << received_event.colors[i];
+    }
+    return packet;
+}
 
 int main() {
     EventBus event_bus;
@@ -26,9 +83,9 @@ int main() {
 
     Player players[2];
     players[0].set_player_number(0);
-    players[0].set_player_number(1);
+    players[1].set_player_number(1);
 
-    Event event_to_send = {.moved_player = players[0]};
+    Event event_to_send(players[0]);
 
     sf::Packet packet;
     sf::TcpListener listener;
@@ -46,10 +103,11 @@ int main() {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 
+    event_to_send.type = user_init;
     players[0].set_coordinates({100, 100});
+    players[0].color = 0;
     event_to_send.coordinates[0] = players[0].get_coordinates();
-    packet << event_to_send;
-
+    event_to_send.colors[0] = 0;
     /*clients_data[0].x = 100;
     clients_data[0].y = 100;
     clients_data[0].color = "Green";
@@ -60,6 +118,16 @@ int main() {
     if (listener.accept(clients[1]) != sf::Socket::Done) {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
+
+    players[1].set_coordinates({300, 300});
+    players[1].color = 1;
+    event_to_send.coordinates[1] = players[1].get_coordinates();
+    event_to_send.colors[1] = 1;
+    packet << event_to_send;
+
+    clients[0].send(packet);
+    clients[1].send(packet);
+
     /*clients_data[1].x = 400;
     clients_data[1].y = 100;
     clients_data[1].color = "Red";
@@ -74,46 +142,30 @@ int main() {
         clients[i].setBlocking(false);
     }
 
-    Event received_event = {.moved_player = players[0]};
+    Event received_event(players[0]);
 
     while (true) {
         for (int i = 0; i < 2; ++i) {
             packet.clear();
             if (clients[i].receive(packet) == sf::Socket::NotReady) {
-                break;
+                continue;
             }
             packet >> received_event;
+            if (received_event.type != user_init) {
+                std::cout << received_event.type << std::endl;
+            }
+            received_event.moved_player = players[i];
             received_event.player_number = i;
             event_bus.dispatch(received_event.type, received_event);
 
-            /*switch (dir) {
-                case 0: {
-                    break;
-                }
-                case 1: {
-                    --clients_data[i].x;
-                    break;
-                }
-                case 2: {
-                    ++clients_data[i].x;
-                    break;
-                }
-                case 3: {
-                    --clients_data[i].y;
-                    break;
-                }
-                case 4: {
-                    ++clients_data[i].y;
-                    break;
-                }
+            for (int j = 0; j < 2; ++j) {
+                event_to_send.coordinates[j] = players[j].get_coordinates();
+                event_to_send.colors[j] = players[j].color;
             }
-        }
-        packet.clear();
-        packet << clients_data[0].x << clients_data[0].y << clients_data[0].color\
-        << clients_data[1].x << clients_data[1].y << clients_data[1].color;
-        clients[0].send(packet);
-        clients[1].send(packet);
-    }*/
+            packet.clear();
+            packet << event_to_send;
+            clients[0].send(packet);
+            clients[1].send(packet);
         }
     }
     return 0;

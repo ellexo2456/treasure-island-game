@@ -141,6 +141,9 @@
 		<Unit filename="/home/alexey/_1_treasure_island_game/Client/srcClient/main.cpp">
 			<Option target="Client"/>
 		</Unit>
+		<Unit filename="/home/alexey/_1_treasure_island_game/EventBus/Event.cpp">
+			<Option target="Server"/>
+		</Unit>
 		<Unit filename="/home/alexey/_1_treasure_island_game/EventBus/EventBus.cpp">
 			<Option target="Server"/>
 			<Option target="Client"/>

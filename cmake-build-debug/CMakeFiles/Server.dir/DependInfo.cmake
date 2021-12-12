@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/alexey/_1_treasure_island_game/EventBus/Event.cpp" "CMakeFiles/Server.dir/EventBus/Event.cpp.o" "gcc" "CMakeFiles/Server.dir/EventBus/Event.cpp.o.d"
   "/home/alexey/_1_treasure_island_game/EventBus/EventBus.cpp" "CMakeFiles/Server.dir/EventBus/EventBus.cpp.o" "gcc" "CMakeFiles/Server.dir/EventBus/EventBus.cpp.o.d"
   "/home/alexey/_1_treasure_island_game/Server/srcServer/Model.cpp" "CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o" "gcc" "CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o.d"
   "/home/alexey/_1_treasure_island_game/Server/srcServer/Player.cpp" "CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o" "gcc" "CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o.d"
