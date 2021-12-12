@@ -5,10 +5,9 @@
 #ifndef ISLANDGAME_EVENT_H
 #define ISLANDGAME_EVENT_H
 
-#include "Player.h"
-
 #include <vector>
 #include <string>
+#include <SFML/System/Vector2.hpp>
 
 
 enum Types {
@@ -26,10 +25,8 @@ enum Types {
 };*/
 
 struct Event {
-    Event(Player &movedPlayer) : moved_player(movedPlayer) {};
     Types type;
     sf::Vector2f coordinates[2];
-    Player &moved_player;
     int player_number;
     int colors[2];
     //UserMovedEventData user_moved;

@@ -75,24 +75,26 @@ sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
 
 int main() {
     EventBus event_bus;
-    Model model;
-    event_bus.subscribe(&model, dir_back);
-    event_bus.subscribe(&model, dir_straight);
-    event_bus.subscribe(&model, dir_right);
-    event_bus.subscribe(&model, dir_left);
 
     Player players[2];
     players[0].set_player_number(0);
     players[1].set_player_number(1);
 
-    Event event_to_send(players[0]);
+    for (int i = 0; i < 2; ++i) {
+        event_bus.subscribe(&players[i], dir_back);
+        event_bus.subscribe(&players[i], dir_straight);
+        event_bus.subscribe(&players[i], dir_right);
+        event_bus.subscribe(&players[i], dir_left);
+    }
+
+    Event event_to_send;
 
     sf::Packet packet;
     sf::TcpListener listener;
     //data clients_data[2];
 
 
-    if (listener.listen(3000) != sf::Socket::Done) {
+    if (listener.listen(3001) != sf::Socket::Done) {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 
@@ -142,7 +144,7 @@ int main() {
         clients[i].setBlocking(false);
     }
 
-    Event received_event(players[0]);
+    Event received_event;
 
     while (true) {
         for (int i = 0; i < 2; ++i) {
@@ -154,7 +156,6 @@ int main() {
             if (received_event.type != user_init) {
                 std::cout << received_event.type << std::endl;
             }
-            received_event.moved_player = players[i];
             received_event.player_number = i;
             event_bus.dispatch(received_event.type, received_event);
 

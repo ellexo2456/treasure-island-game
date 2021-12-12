@@ -59,11 +59,10 @@ sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
 }
 
 int main() {
-    Player a;
-    Event received_event(a);
+    Event received_event;
 
     sf::TcpSocket socket;
-    socket.connect("127.0.0.1", 3000);
+    socket.connect("127.0.0.1", 3001);
 
     sf::Packet packet;
     packet.clear();
@@ -90,7 +89,7 @@ int main() {
 
     sf::RenderWindow window(sf::VideoMode(700, 600), "Treasure Island");
 
-    Event custom_event(a);
+    Event custom_event;
 
     socket.setBlocking(false);
 

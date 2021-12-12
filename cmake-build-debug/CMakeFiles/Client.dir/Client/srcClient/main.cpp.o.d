@@ -232,5 +232,4 @@ CMakeFiles/Client.dir/Client/srcClient/main.cpp.o: \
  /usr/include/SFML/Network/UdpSocket.hpp \
  /home/alexey/_1_treasure_island_game/EventBus/Include/EventBus.h \
  /home/alexey/_1_treasure_island_game/EventBus/Include/IObservable.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h \
- /home/alexey/_1_treasure_island_game/Server/includeServer/Player.h
+ /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h
