@@ -19,7 +19,7 @@ class View {
 public:
     sf::Texture hero_texture;
     sf::Sprite hero_sprite;
-    View (const std::string& path_to_file, struct SpriteCoord coord, sf::Vector2f pos) { // static - позволяет вызывать методы без объектов
+    View (const std::string& path_to_file, struct SpriteCoord coord, sf::Vector2f pos)  { // static - позволяет вызывать методы без объектов
 
         //Создание текстуры
         hero_texture.loadFromFile(path_to_file);
