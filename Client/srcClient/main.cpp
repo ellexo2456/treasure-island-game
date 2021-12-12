@@ -66,9 +66,8 @@ int main() {
     hero_sprite.setPosition(50, 25);*/
 
     std::string path_to_file = "../Client/srcClient/images/one.png";
-    struct SpriteCoord coord = {0, 0, 50,  50 };
-    sf::Sprite Player1 = View::draw_and_update(path_to_file, coord, A);
-    sf::Sprite Player2 = View::draw_and_update(path_to_file, coord, A);
+    struct SpriteCoord coord = {0, 0, 32,  32 };
+    Player Player1(path_to_file, coord, A);
    /* sf::Sprite hero_sprite;
     hero_sprite.setTexture(hero_texture);
     hero_sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
@@ -96,18 +95,18 @@ int main() {
         if (window.hasFocus()) {
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Left) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::A)))) { custom_event.type = dir_left;
-                /*hero_sprite.setTextureRect(sf::IntRect (32,32,32,32));*/};
+                coord.begin_y = 96; coord.begin_x = 32;};
 
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::D)))) { custom_event.type = dir_right;
-                /*hero_sprite.setTextureRect(sf::IntRect (32,64,32,32));*/};
+                coord.begin_y = 64; coord.begin_x = 32;};
 
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::W)))) { custom_event.type = dir_straight;
-                /*hero_sprite.setTextureRect(sf::IntRect (32,96,32,32));*/};
+                 coord.begin_y = 96; coord.begin_x = 32;};
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Down) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::S)))) { custom_event.type = dir_back;
-                /*hero_sprite.setTextureRect(sf::IntRect (32,0,32,32));*/};
+                 coord.begin_y = 96; coord.begin_x = 32;};
         }
         /*if (argc > 1) {
             move.coord = 2;
@@ -139,8 +138,7 @@ int main() {
             shapeB.setFillColor(sf::Color::Green);
         }
         //hero_sprite.setPosition(A);*/
-        Player1 = View::draw_and_update(path_to_file, coord, A);
-        Player2 = View::draw_and_update(path_to_file, coord, A);
+        Player1.render(coord, A);
 
         window.clear();
 
@@ -148,8 +146,7 @@ int main() {
 
        /* window.draw(shapeA);
         window.draw(shapeB);*/
-        window.draw(Player1);
-        window.draw(Player2);
+        window.draw(Player1.hero_sprite);
         window.setView(view);
         window.display();
     }

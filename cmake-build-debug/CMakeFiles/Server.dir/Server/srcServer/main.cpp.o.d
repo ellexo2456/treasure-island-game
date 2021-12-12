@@ -230,4 +230,5 @@ CMakeFiles/Server.dir/Server/srcServer/main.cpp.o: \
  /usr/include/SFML/Network/SocketSelector.hpp \
  /usr/include/SFML/Network/TcpListener.hpp \
  /usr/include/SFML/Network/UdpSocket.hpp \
- /home/ser/_1_treasure_island_game/Client/includeClient/clientPlayer.h
+ /home/ser/_1_treasure_island_game/Client/includeClient/clientPlayer.h \
+ /home/ser/_1_treasure_island_game/Client/includeClient/view.h

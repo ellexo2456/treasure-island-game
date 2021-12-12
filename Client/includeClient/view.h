@@ -25,9 +25,8 @@ public:
         hero_texture.loadFromFile(path_to_file);
 
         //Создание спрайта игрока
-        sf::Sprite hero_sprite;
+        hero_sprite;
         hero_sprite.setTexture(hero_texture);
-        hero_sprite.setColor(sf::Color(0, 0, 255));
         //hero_sprite.setTextureRect(sf::IntRect(coord.begin_x, coord.begin_y, coord.width, coord.height));
 
         hero_sprite.setPosition(pos);

@@ -296,8 +296,8 @@ CMakeFiles/Client.dir/Client/srcClient/main.cpp.o: ../Client/srcClient/main.cpp 
   /usr/include/SFML/Network/TcpListener.hpp \
   /usr/include/SFML/Network/UdpSocket.hpp \
   ../Client/includeClient/clientPlayer.h \
-  ../EventBus/Include/Event.h \
   ../Client/includeClient/view.h \
+  ../EventBus/Include/Event.h \
   ../Client/includeClient/map.h \
   ../Client/includeClient/camera.h
 

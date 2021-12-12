@@ -452,8 +452,11 @@ CMakeFiles/Server.dir/Server/srcServer/main.cpp.o: ../Server/srcServer/main.cpp 
   /usr/include/SFML/Network/SocketSelector.hpp \
   /usr/include/SFML/Network/TcpListener.hpp \
   /usr/include/SFML/Network/UdpSocket.hpp \
-  ../Client/includeClient/clientPlayer.h
+  ../Client/includeClient/clientPlayer.h \
+  ../Client/includeClient/view.h
 
+
+../Client/includeClient/view.h:
 
 ../Client/includeClient/clientPlayer.h:
 
