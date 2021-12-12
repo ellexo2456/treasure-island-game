@@ -193,29 +193,29 @@ EventBus/EventBus.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/EventBus/EventBus.cpp.s
 .PHONY : EventBus/EventBus.cpp.s
 
-Server/Model.o: Server/Model.cpp.o
-.PHONY : Server/Model.o
+Server/srcServer/Model.o: Server/srcServer/Model.cpp.o
+.PHONY : Server/srcServer/Model.o
 
 # target to build an object file
-Server/Model.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/Model.cpp.o
-.PHONY : Server/Model.cpp.o
+Server/srcServer/Model.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o
+.PHONY : Server/srcServer/Model.cpp.o
 
-Server/Model.i: Server/Model.cpp.i
-.PHONY : Server/Model.i
+Server/srcServer/Model.i: Server/srcServer/Model.cpp.i
+.PHONY : Server/srcServer/Model.i
 
 # target to preprocess a source file
-Server/Model.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/Model.cpp.i
-.PHONY : Server/Model.cpp.i
+Server/srcServer/Model.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Model.cpp.i
+.PHONY : Server/srcServer/Model.cpp.i
 
-Server/Model.s: Server/Model.cpp.s
-.PHONY : Server/Model.s
+Server/srcServer/Model.s: Server/srcServer/Model.cpp.s
+.PHONY : Server/srcServer/Model.s
 
 # target to generate assembly for a file
-Server/Model.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/Model.cpp.s
-.PHONY : Server/Model.cpp.s
+Server/srcServer/Model.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Model.cpp.s
+.PHONY : Server/srcServer/Model.cpp.s
 
 Server/srcServer/Player.o: Server/srcServer/Player.cpp.o
 .PHONY : Server/srcServer/Player.o
@@ -281,9 +281,9 @@ help:
 	@echo "... EventBus/EventBus.o"
 	@echo "... EventBus/EventBus.i"
 	@echo "... EventBus/EventBus.s"
-	@echo "... Server/Model.o"
-	@echo "... Server/Model.i"
-	@echo "... Server/Model.s"
+	@echo "... Server/srcServer/Model.o"
+	@echo "... Server/srcServer/Model.i"
+	@echo "... Server/srcServer/Model.s"
 	@echo "... Server/srcServer/Player.o"
 	@echo "... Server/srcServer/Player.i"
 	@echo "... Server/srcServer/Player.s"

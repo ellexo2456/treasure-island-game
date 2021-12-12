@@ -145,10 +145,7 @@
 			<Option target="Server"/>
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/home/alexey/_1_treasure_island_game/Server/Model.cpp">
-			<Option target="Server"/>
-		</Unit>
-		<Unit filename="/home/alexey/_1_treasure_island_game/Server/Model.h">
+		<Unit filename="/home/alexey/_1_treasure_island_game/Server/srcServer/Model.cpp">
 			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/home/alexey/_1_treasure_island_game/Server/srcServer/Player.cpp">

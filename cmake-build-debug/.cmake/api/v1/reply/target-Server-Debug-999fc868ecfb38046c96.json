@@ -159,13 +159,6 @@
 				2,
 				3
 			]
-		},
-		{
-			"name" : "Header Files",
-			"sourceIndexes" : 
-			[
-				4
-			]
 		}
 	],
 	"sources" : 
@@ -191,13 +184,8 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Server/Model.cpp",
+			"path" : "Server/srcServer/Model.cpp",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "Server/Model.h",
-			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
