@@ -1,10 +1,10 @@
 CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o: \
- /home/alexey/_1_treasure_island_game/Server/srcServer/Player.cpp \
+ /home/ser/_1_treasure_island_game/Server/srcServer/Player.cpp \
  /usr/include/stdc-predef.h \
- /home/alexey/_1_treasure_island_game/Server/includeServer/Model.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/EventBus.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/IObservable.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h \
+ /home/ser/_1_treasure_island_game/Server/includeServer/Model.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/EventBus.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/IObservable.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/Event.h \
  /usr/include/c++/9/vector /usr/include/c++/9/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \

@@ -1,5 +1,5 @@
 CMakeFiles/Server.dir/Server/srcServer/main.cpp.o: \
- /home/alexey/_1_treasure_island_game/Server/srcServer/main.cpp \
+ /home/ser/_1_treasure_island_game/Server/srcServer/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/9/iostream \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
@@ -150,9 +150,9 @@ CMakeFiles/Server.dir/Server/srcServer/main.cpp.o: \
  /usr/include/SFML/Network/TcpListener.hpp \
  /usr/include/SFML/Network/IpAddress.hpp \
  /usr/include/SFML/Network/Packet.hpp \
- /home/alexey/_1_treasure_island_game/Server/includeServer/Model.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/EventBus.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/IObservable.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h \
+ /home/ser/_1_treasure_island_game/Server/includeServer/Model.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/EventBus.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/IObservable.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/Event.h \
  /usr/include/SFML/System/Vector2.hpp \
  /usr/include/SFML/System/Vector2.inl

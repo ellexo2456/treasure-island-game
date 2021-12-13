@@ -59,7 +59,7 @@ int main() {
     packet.clear();
     socket.receive(packet);
 
-    sf::RenderWindow window(sf::VideoMode(700, 700), "Treasure island");
+    sf::RenderWindow window(sf::VideoMode(640, 640), "Treasure island");
     //view.reset(sf::FloatRect(0, 0, 700, 700)); // инициализировали объект камеры
 
     // Игроки
