@@ -22,10 +22,6 @@ public:
                                                         update_coord.width, update_coord.height));
         hero_sprite.setPosition(position);
     };
-    sf::View get_camera (sf::Vector2f hero_coordinate) {
-        camera.setCenter(hero_coordinate.x, hero_coordinate.y); // установить центр камеры
-        return camera;
-    };
 
 };
 

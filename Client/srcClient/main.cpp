@@ -33,6 +33,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
             break;
         }
     }
+    packet >> received_event.player_number;
     for (int i = 0; i < 2; ++i) {
         packet >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -43,6 +44,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
+    packet << received_event.player_number;
     for (int i = 0; i < 2; ++i) {
         packet << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -62,7 +64,7 @@ int main() {
     sf::Vector2f size_of_screen = {640, 640};
 
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
-    //view.reset(sf::FloatRect(0, 0, 700, 700)); // инициализировали объект камеры
+    camera.reset(sf::FloatRect(0, 0, 700, 700)); // инициализировали объект камеры
 
     // Игроки
     std::string path_to_file = "../Client/srcClient/images/one.png";
@@ -137,8 +139,8 @@ int main() {
         Player1.render(received_event.user_moved.sprite_coordinates[0], received_event.user_moved.coordinates[0]);
         Player2.render(received_event.user_moved.sprite_coordinates[1], received_event.user_moved.coordinates[1]);
 
-        //window.setView(Player1.get_camera(received_event.user_moved.coordinates[0]));
-        //window.setView(Player2.get_camera(received_event.user_moved.coordinates[1]));
+        give_player_coord_to_camera(received_event.user_moved.coordinates[received_event.player_number]);
+        window.setView(camera);
 
         window.clear();
         MyMap.render(window);

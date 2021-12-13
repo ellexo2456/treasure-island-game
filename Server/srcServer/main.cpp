@@ -36,6 +36,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
             break;
         }
     }
+    packet >> received_event.player_number;
     for (int i = 0; i < 2; ++i) {
         packet >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -46,6 +47,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
+    packet << received_event.player_number;
     for (int i = 0; i < 2; ++i) {
         packet << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
