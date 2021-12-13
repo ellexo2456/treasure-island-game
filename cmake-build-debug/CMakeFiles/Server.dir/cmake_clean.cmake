@@ -1,5 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Server.dir/EventBus/EventBus.cpp.o"
+  "CMakeFiles/Server.dir/EventBus/EventBus.cpp.o.d"
   "CMakeFiles/Server.dir/Server/srcServer/main.cpp.o"
+  "CMakeFiles/Server.dir/Server/srcServer/main.cpp.o.d"
   "Server"
   "Server.pdb"
 )

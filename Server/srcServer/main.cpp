@@ -15,11 +15,11 @@ int main() {
     sf::TcpListener listener;
     data clients_data[2];
 
-    if (listener.listen(3000) != sf::Socket::Done) {
+    if (listener.listen(3001) != sf::Socket::Done) {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 
-    sf::TcpSocket clients[2];  // жерло трубки, в которую мы кидем данные
+    sf::TcpSocket clients[2];
     packet.clear();
 
     if (listener.accept(clients[0]) != sf::Socket::Done) {
@@ -46,6 +46,7 @@ int main() {
     clients[1].send(packet);
 
     while (true) {
+
         for (int i = 0; i < 2; ++i) {
             int dir = 0;
             packet.clear();
