@@ -127,10 +127,6 @@ CMakeFiles/Client.dir/EventBus/EventBus.cpp.o: \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
-<<<<<<< HEAD
- /usr/include/c++/9/bits/basic_string.tcc
-=======
  /usr/include/c++/9/bits/basic_string.tcc \
  /usr/include/SFML/System/Vector2.hpp \
  /usr/include/SFML/System/Vector2.inl
->>>>>>> OOP

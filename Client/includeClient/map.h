@@ -4,8 +4,10 @@
 
 #ifndef ISLANDGAME_MAP_H
 #define ISLANDGAME_MAP_H
+
 #include <SFML/Graphics.hpp>
 #include <view.h>
+
 class Map:View {
 public:
     static const int HEIGHT_MAP = 20; // Высота карты

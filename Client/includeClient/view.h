@@ -5,16 +5,8 @@
 #ifndef ISLANDGAME_VIEW_H
 #define ISLANDGAME_VIEW_H
 
-struct SpriteCoord {
-    int begin_x;
-    int begin_y;
-    int height;
-    int width;
-};
-/*struct SpritePosition {
-    int x;
-    int y;
-};*/
+#include "EventBus.h"
+
 class View {
 
 public:

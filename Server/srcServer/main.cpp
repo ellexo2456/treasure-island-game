@@ -5,11 +5,7 @@
 
 #include "Model.h"
 
-/*typedef struct {
-    float x = -1;
-    float y = -1;
-    std::string color = "Green";
-} data;*/
+#define PORT 3000
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -41,7 +37,9 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         }
     }
     for (int i = 0; i < 2; ++i) {
-        packet >> received_event.coordinates[i].x >> received_event.coordinates[i].y >> received_event.colors[i];
+        packet >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
+        >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
+        >> received_event.user_moved.sprite_coordinates[i].height >> received_event.user_moved.sprite_coordinates[i].width;
     }
     return packet;
 }
@@ -49,7 +47,9 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
     for (int i = 0; i < 2; ++i) {
-        packet << received_event.coordinates[i].x << received_event.coordinates[i].y << received_event.colors[i];
+        packet << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
+        << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
+        << received_event.user_moved.sprite_coordinates[i].height << received_event.user_moved.sprite_coordinates[i].width;
     }
     return packet;
 }
@@ -61,11 +61,11 @@ int main() {
     players[0].set_player_number(0);
     players[1].set_player_number(1);
 
-    for (int i = 0; i < 2; ++i) {
-        event_bus.subscribe(&players[i], dir_back);
-        event_bus.subscribe(&players[i], dir_straight);
-        event_bus.subscribe(&players[i], dir_right);
-        event_bus.subscribe(&players[i], dir_left);
+    for (auto & player : players) {
+        event_bus.subscribe(&player, dir_back);
+        event_bus.subscribe(&player, dir_straight);
+        event_bus.subscribe(&player, dir_right);
+        event_bus.subscribe(&player, dir_left);
     }
 
     Event event_to_send;
@@ -75,12 +75,11 @@ int main() {
     //data clients_data[2];
 
 
-    if (listener.listen(3001) != sf::Socket::Done) {
+    if (listener.listen(PORT) != sf::Socket::Done) {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 
     sf::TcpSocket clients[2];
-    packet.clear();
 
     if (listener.accept(clients[0]) != sf::Socket::Done) {
         std::cout << "ERROR OF NETWORK" << std::endl;
@@ -88,26 +87,19 @@ int main() {
 
     event_to_send.type = user_init;
     players[0].set_coordinates({100, 100});
-    players[0].color = 0;
-    event_to_send.coordinates[0] = players[0].get_coordinates();
-    event_to_send.colors[0] = 0;
-    /*clients_data[0].x = 100;
-    clients_data[0].y = 100;
-    clients_data[0].color = "Green";
-    packet << clients_data[0].x << clients_data[0].y << clients_data[0].color;
-
-    std::cout << clients[0].getRemoteAddress() << std::endl;*/
+    event_to_send.user_moved.coordinates[0] = players[0].get_coordinates();
+    event_to_send.user_moved.sprite_coordinates[0] = {0, 0, 32,  32 };
 
     if (listener.accept(clients[1]) != sf::Socket::Done) {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 
     players[1].set_coordinates({300, 300});
-    players[1].color = 1;
-    event_to_send.coordinates[1] = players[1].get_coordinates();
-    event_to_send.colors[1] = 1;
-    packet << event_to_send;
+    event_to_send.user_moved.coordinates[1] = players[1].get_coordinates();
+    event_to_send.user_moved.sprite_coordinates[1] = {0, 0, 32,  32 };
 
+    packet.clear();
+    packet << event_to_send;
     clients[0].send(packet);
     clients[1].send(packet);
 
@@ -121,8 +113,8 @@ int main() {
     clients[0].send(packet);
     clients[1].send(packet);*/
 
-    for (int i = 0; i < 2; ++i) {
-        clients[i].setBlocking(false);
+    for (auto & client : clients) {
+        client.setBlocking(false);
     }
 
     Event received_event;
@@ -142,8 +134,8 @@ int main() {
             event_bus.dispatch(received_event.type, received_event);
 
             for (int j = 0; j < 2; ++j) {
-                event_to_send.coordinates[j] = players[j].get_coordinates();
-                event_to_send.colors[j] = players[j].color;
+                event_to_send.user_moved.coordinates[j] = players[j].get_coordinates();
+                 event_to_send.user_moved.sprite_coordinates[j] = players[j].get_player_sprite_coordinates();
             }
             packet.clear();
             packet << event_to_send;

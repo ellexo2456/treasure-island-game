@@ -10,23 +10,28 @@ void Player::update(Event event) {
         switch (event.type) {
             case 1: {
                 coordinates.x -= speed;
+                player_sprite_coordinates = {.begin_x = 32, .begin_y = 32, .height = 32, .width = 32};
                 break;
             }
             case 2: {
                 coordinates.x += speed;
+                player_sprite_coordinates = {.begin_x = 32, .begin_y = 64, .height = 32, .width = 32};
                 break;
             }
             case 3: {
                 coordinates.y -= speed;
+                player_sprite_coordinates = {.begin_x = 32, .begin_y = 96, .height = 32, .width = 32};
                 break;
             }
             case 4: {
                 coordinates.y += speed;
+                player_sprite_coordinates = {.begin_x = 32, .begin_y = 0, .height = 32, .width = 32};
                 break;
             }
             default: {
                 coordinates.x += speed;
                 coordinates.y += speed;
+                player_sprite_coordinates = {.begin_x = 32, .begin_y = 32, .height = 32, .width = 32};
                 break;
             }
         }

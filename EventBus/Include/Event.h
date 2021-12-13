@@ -20,16 +20,22 @@ enum Types {
     user_moved,
 };
 
-/*struct UserMovedEventData {
-    sf::Vector2f cordinates;
-};*/
+struct SpriteCoord {
+    int begin_x;
+    int begin_y;
+    int height;
+    int width;
+};
+
+struct UserMovedEventData {
+    sf::Vector2f coordinates[2];
+    SpriteCoord sprite_coordinates[2];
+};
 
 struct Event {
     Types type;
-    sf::Vector2f coordinates[2];
     int player_number;
-    int colors[2];
-    //UserMovedEventData user_moved;
+    UserMovedEventData user_moved;
 };
 
 #endif //ISLANDGAME_EVENT_H

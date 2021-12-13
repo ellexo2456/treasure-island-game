@@ -8,7 +8,7 @@ void EventBus::subscribe(IObservable *sub, int type) {
     subscribers.push_back({sub, type});
 }
 
-void EventBus::dispatch(int type, const Event &event) {
+void EventBus::dispatch(int type, const Event& event) {
     for (auto sub: subscribers) {
         if (sub.type == type) {
             sub.sub->update(event);
