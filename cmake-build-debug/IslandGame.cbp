@@ -8,44 +8,44 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/ser/_1_treasure_island_game/cmake-build-debug"/>
+				<Option working_dir="/home/alexey/_1_treasure_island_game/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/ser/_1_treasure_island_game/cmake-build-debug"/>
+				<Option working_dir="/home/alexey/_1_treasure_island_game/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/ser/_1_treasure_island_game/cmake-build-debug"/>
+				<Option working_dir="/home/alexey/_1_treasure_island_game/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Server">
-				<Option output="/home/ser/_1_treasure_island_game/cmake-build-debug/Server" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ser/_1_treasure_island_game/cmake-build-debug"/>
+				<Option output="/home/alexey/_1_treasure_island_game/cmake-build-debug/Server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexey/_1_treasure_island_game/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ser/_1_treasure_island_game/Client/includeClient"/>
-					<Add directory="/home/ser/_1_treasure_island_game/EventBus/Include"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -55,21 +55,21 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 Server"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 Server"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Server/fast">
-				<Option output="/home/ser/_1_treasure_island_game/cmake-build-debug/Server" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ser/_1_treasure_island_game/cmake-build-debug"/>
+				<Option output="/home/alexey/_1_treasure_island_game/cmake-build-debug/Server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexey/_1_treasure_island_game/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ser/_1_treasure_island_game/Client/includeClient"/>
-					<Add directory="/home/ser/_1_treasure_island_game/EventBus/Include"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -79,21 +79,21 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 Server/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 Server/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Client">
-				<Option output="/home/ser/_1_treasure_island_game/cmake-build-debug/Client" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ser/_1_treasure_island_game/cmake-build-debug"/>
+				<Option output="/home/alexey/_1_treasure_island_game/cmake-build-debug/Client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexey/_1_treasure_island_game/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ser/_1_treasure_island_game/Client/includeClient"/>
-					<Add directory="/home/ser/_1_treasure_island_game/EventBus/Include"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -103,21 +103,21 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 Client"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 Client"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Client/fast">
-				<Option output="/home/ser/_1_treasure_island_game/cmake-build-debug/Client" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ser/_1_treasure_island_game/cmake-build-debug"/>
+				<Option output="/home/alexey/_1_treasure_island_game/cmake-build-debug/Client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alexey/_1_treasure_island_game/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/ser/_1_treasure_island_game/Client/includeClient"/>
-					<Add directory="/home/ser/_1_treasure_island_game/EventBus/Include"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/Client/includeClient"/>
+					<Add directory="/home/alexey/_1_treasure_island_game/EventBus/Include"/>
 					<Add directory="/usr/include/c++/9"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
 					<Add directory="/usr/include/c++/9/backward"/>
@@ -127,33 +127,33 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 Client/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/ser/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 Client/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/alexey/_1_treasure_island_game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/camera.h">
+		<Unit filename="/home/alexey/_1_treasure_island_game/Client/includeClient/camera.h">
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/map.h">
+		<Unit filename="/home/alexey/_1_treasure_island_game/Client/includeClient/map.h">
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/view.h">
+		<Unit filename="/home/alexey/_1_treasure_island_game/Client/includeClient/view.h">
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/home/ser/_1_treasure_island_game/Client/srcClient/main.cpp">
+		<Unit filename="/home/alexey/_1_treasure_island_game/Client/srcClient/main.cpp">
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/home/ser/_1_treasure_island_game/EventBus/EventBus.cpp">
+		<Unit filename="/home/alexey/_1_treasure_island_game/EventBus/EventBus.cpp">
 			<Option target="Server"/>
 			<Option target="Client"/>
 		</Unit>
-		<Unit filename="/home/ser/_1_treasure_island_game/Server/srcServer/main.cpp">
+		<Unit filename="/home/alexey/_1_treasure_island_game/Server/srcServer/main.cpp">
 			<Option target="Server"/>
 		</Unit>
-		<Unit filename="/home/ser/_1_treasure_island_game/CMakeLists.txt">
+		<Unit filename="/home/alexey/_1_treasure_island_game/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

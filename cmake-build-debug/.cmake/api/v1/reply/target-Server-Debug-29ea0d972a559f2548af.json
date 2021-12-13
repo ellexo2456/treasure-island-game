@@ -65,11 +65,11 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "/home/ser/_1_treasure_island_game/Client/includeClient"
+					"path" : "/home/alexey/_1_treasure_island_game/Client/includeClient"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/home/ser/_1_treasure_island_game/EventBus/Include"
+					"path" : "/home/alexey/_1_treasure_island_game/EventBus/Include"
 				}
 			],
 			"language" : "CXX",
