@@ -136,9 +136,9 @@ int main() {
         Player1.render(received_event.user_moved.sprite_coordinates[0], received_event.user_moved.coordinates[0]);
         Player2.render(received_event.user_moved.sprite_coordinates[1], received_event.user_moved.coordinates[1]);
 
-        window.setView(Player1.get_camera(received_event.user_moved.coordinates[0]));
-        window.setView(Player2.get_camera(received_event.user_moved.coordinates[1]));
-        
+        //window.setView(Player1.get_camera(received_event.user_moved.coordinates[0]));
+        //window.setView(Player2.get_camera(received_event.user_moved.coordinates[1]));
+
         window.clear();
         MyMap.render(window);
 
