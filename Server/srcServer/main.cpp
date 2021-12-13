@@ -117,15 +117,20 @@ int main() {
         client.setBlocking(false);
     }
 
+    for (auto & player : players) {
+        event_bus.subscribe(&player, is_intersect);
+    }
+
     Event received_event;
 
     while (true) {
-
+        //bool flag = false;
         for (int i = 0; i < 2; ++i) {
             packet.clear();
             if (clients[i].receive(packet) == sf::Socket::NotReady) {
                 continue;
             }
+            //flag = true;
             packet >> received_event;
             if (received_event.type != user_init) {
                 std::cout << received_event.type << std::endl;
@@ -135,13 +140,23 @@ int main() {
 
             for (int j = 0; j < 2; ++j) {
                 event_to_send.user_moved.coordinates[j] = players[j].get_coordinates();
-                 event_to_send.user_moved.sprite_coordinates[j] = players[j].get_player_sprite_coordinates();
+                event_to_send.user_moved.sprite_coordinates[j] = players[j].get_player_sprite_coordinates();
+            }
+            players[i].set_direction(received_event.type);
+            event_to_send.player_number = i;
+            event_to_send.type = is_intersect;
+            event_bus.dispatch(is_intersect, event_to_send);
+            for (int i = 0; i < 2; ++i) {
+                event_to_send.user_moved.coordinates[i] = players[i].get_coordinates();
             }
             packet.clear();
             packet << event_to_send;
             clients[0].send(packet);
             clients[1].send(packet);
         }
+        /*if (!flag) {
+            continue;
+        }*/
     }
     return 0;
 }

@@ -115,6 +115,7 @@ int main() {
         }
 
         if (custom_event.type != user_init) {
+           // std::cout << custom_event.type << std::endl;
             packet.clear();
             packet << custom_event;
             socket.send(packet);

@@ -151,8 +151,14 @@ CMakeFiles/Server.dir/Server/srcServer/main.cpp.o: \
  /usr/include/SFML/Network/IpAddress.hpp \
  /usr/include/SFML/Network/Packet.hpp \
  /home/alexey/_1_treasure_island_game/Server/includeServer/Model.h \
+ /usr/include/SFML/Graphics/Rect.hpp /usr/include/SFML/System/Vector2.hpp \
+ /usr/include/SFML/System/Vector2.inl /usr/include/c++/9/algorithm \
+ /usr/include/c++/9/utility /usr/include/c++/9/bits/stl_relops.h \
+ /usr/include/c++/9/bits/stl_algo.h \
+ /usr/include/c++/9/bits/algorithmfwd.h \
+ /usr/include/c++/9/bits/stl_heap.h /usr/include/c++/9/bits/stl_tempbuf.h \
+ /usr/include/c++/9/bits/uniform_int_dist.h /usr/include/c++/9/limits \
+ /usr/include/SFML/Graphics/Rect.inl \
  /home/alexey/_1_treasure_island_game/EventBus/Include/EventBus.h \
  /home/alexey/_1_treasure_island_game/EventBus/Include/IObservable.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h \
- /usr/include/SFML/System/Vector2.hpp \
- /usr/include/SFML/System/Vector2.inl
+ /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h

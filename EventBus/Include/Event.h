@@ -16,8 +16,8 @@ enum Types {
     dir_right,
     dir_straight,
     dir_back,
+    is_intersect,
     error,
-    user_moved,
 };
 
 struct SpriteCoord {

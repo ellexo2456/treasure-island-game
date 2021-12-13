@@ -5,6 +5,7 @@
 #ifndef ISLANDGAME_MODEL_H
 #define ISLANDGAME_MODEL_H
 
+#include <SFML/Graphics/Rect.hpp>
 #include "EventBus.h"
 
 enum Team {
@@ -52,15 +53,29 @@ public:
         return player_sprite_coordinates;
     }
 
+
+    int get_direction() {
+        return direction;
+    }
+
+    void set_direction(int new_direction) {
+        direction = new_direction;
+    }
+
     void set_player_sprite_coordinates(SpriteCoord &new_player_sprite_coordinates) {
         player_sprite_coordinates.begin_x = new_player_sprite_coordinates.begin_x;
         player_sprite_coordinates.begin_y = new_player_sprite_coordinates.begin_y;
         player_sprite_coordinates.height = new_player_sprite_coordinates.height;
         player_sprite_coordinates.width = new_player_sprite_coordinates.width;
     }
+
+    sf::FloatRect get_sprite_rect() {
+       return sf::FloatRect(coordinates, {static_cast<float>(player_sprite_coordinates.width), static_cast<float>(player_sprite_coordinates.height)});
+    }
 private:
     sf::Vector2f coordinates;
     float speed;
+    int direction;
     int player_number;
     Team team;
     SpriteCoord player_sprite_coordinates;
