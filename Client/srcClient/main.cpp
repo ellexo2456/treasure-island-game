@@ -9,7 +9,7 @@
 
 int main() {
     sf::TcpSocket socket;
-    socket.connect("127.0.0.1", 3001);
+    socket.connect("127.0.0.1", 3000);
 
     sf::Vector2f A, B;
     //std::string color;
@@ -21,7 +21,7 @@ int main() {
     /*sf::CircleShape shapeA(90.f);
     sf::CircleShape shapeB(90.f);
     */
-    packet >> A.x >> A.y /*>> color*/;
+    //packet >> A.x >> A.y >> color;
    /* shapeA.setPosition(A);
     if (color == "Red") {
         shapeA.setFillColor(sf::Color::Red);
@@ -29,7 +29,7 @@ int main() {
         shapeA.setFillColor(sf::Color::Green);
     }*/
 
-    packet >> A.x >> A.y /*>> color*/;
+    //packet >> A.x >> A.y /*>> color*/;
     /*shapeB.setPosition(A);
     if (color == "Red") {
         shapeB.setFillColor(sf::Color::Red);
@@ -47,12 +47,15 @@ int main() {
     std::string path_to_file = "../Client/srcClient/images/one.png";
     struct SpriteCoord coord = {0, 0, 32,  32 };
     struct SpriteCoord coord1 = {0, 128, 32,  32 };
+    std::string color;
+    packet >> A.x >> A.y >> color;
     Player Player1(path_to_file, coord, A);
-    Player Player2(path_to_file, coord1, B);
+    packet >> A.x >> A.y >> color;
+    Player Player2(path_to_file, coord1, A);
 
     // Карта
     std::string path_to_map = "../Client/srcClient/images/map.png";
-    Map MyMap(path_to_map, coord, A);
+    Map MyMap(path_to_map, coord, {0,0});
     // 0 - нет действий
     // 1 - left
     // 2 - right
@@ -95,7 +98,7 @@ int main() {
         packet.clear();
         socket.receive(packet);
 
-        packet >> A.x >> A.y /*>> color*/;
+        packet >> A.x >> A.y >> color;
         Player1.render(coord, A);
        // Задаём цвета, по сути только для мячиков/////////////////////////////////////////////////////////
         /*shapeA.setPosition(A); // Говорит, где отрисовывать объект
@@ -105,8 +108,8 @@ int main() {
             shapeA.setFillColor(sf::Color::Green);
         }*/
 
-        packet >> A.x >> A.y ;/*>> color;
-        shapeB.setPosition(A); // Говорит, где отрисовывать объект
+        packet >> A.x >> A.y >> color;
+        /*shapeB.setPosition(A); // Говорит, где отрисовывать объект
         if (color == "Red") {
             shapeB.setFillColor(sf::Color::Red);
         } else {
@@ -114,7 +117,6 @@ int main() {
         }
         //hero_sprite.setPosition(A);*/
         Player2.render(coord1, A);
-
 
         window.clear();
         MyMap.render(window);
