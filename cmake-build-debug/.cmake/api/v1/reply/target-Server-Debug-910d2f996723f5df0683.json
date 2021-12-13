@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Client"
+			"path" : "Server"
 		}
 	],
 	"backtrace" : 1,
@@ -26,13 +26,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 13,
+				"line" : 14,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 16,
+				"line" : 17,
 				"parent" : 0
 			},
 			{
@@ -71,15 +71,15 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "/home/ser/_1_treasure_island_game/Client/includeClient"
+					"path" : "/home/alexey/_1_treasure_island_game/Client/includeClient"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/home/ser/_1_treasure_island_game/Server/includeServer"
+					"path" : "/home/alexey/_1_treasure_island_game/Server/includeServer"
 				},
 				{
 					"backtrace" : 5,
-					"path" : "/home/ser/_1_treasure_island_game/EventBus/Include"
+					"path" : "/home/alexey/_1_treasure_island_game/EventBus/Include"
 				}
 			],
 			"language" : "CXX",
@@ -94,11 +94,14 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2,
+				3,
+				4
 			]
 		}
 	],
-	"id" : "Client::@6890427a1f51a3e7e1df",
+	"id" : "Server::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -139,8 +142,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "Client",
-	"nameOnDisk" : "Client",
+	"name" : "Server",
+	"nameOnDisk" : "Server",
 	"paths" : 
 	{
 		"build" : ".",
@@ -153,13 +156,7 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
-			]
-		},
-		{
-			"name" : "Header Files",
-			"sourceIndexes" : 
-			[
+				1,
 				2,
 				3,
 				4
@@ -171,7 +168,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Client/srcClient/main.cpp",
+			"path" : "Server/srcServer/main.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -182,18 +179,21 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Client/includeClient/view.h",
-			"sourceGroupIndex" : 1
+			"compileGroupIndex" : 0,
+			"path" : "Server/srcServer/Player.cpp",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Client/includeClient/map.h",
-			"sourceGroupIndex" : 1
+			"compileGroupIndex" : 0,
+			"path" : "Server/srcServer/Model.cpp",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Client/includeClient/camera.h",
-			"sourceGroupIndex" : 1
+			"compileGroupIndex" : 0,
+			"path" : "EventBus/Event.cpp",
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"
