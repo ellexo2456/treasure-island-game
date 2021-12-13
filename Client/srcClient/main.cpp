@@ -59,7 +59,9 @@ int main() {
     packet.clear();
     socket.receive(packet);
 
-    sf::RenderWindow window(sf::VideoMode(700, 700), "Treasure island");
+    sf::Vector2f size_of_screen = {640, 640};
+
+    sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
     //view.reset(sf::FloatRect(0, 0, 700, 700)); // инициализировали объект камеры
 
     // Игроки
@@ -68,8 +70,10 @@ int main() {
     struct SpriteCoord coord1 = {0, 128, 32,  32 };
     Event received_event;
     packet >> received_event;
-    Player Player1(path_to_file, received_event.user_moved.sprite_coordinates[0], received_event.user_moved.coordinates[0]);
-    Player Player2(path_to_file, received_event.user_moved.sprite_coordinates[1], received_event.user_moved.coordinates[1]);
+    Player Player1(path_to_file, received_event.user_moved.sprite_coordinates[0],
+                   received_event.user_moved.coordinates[0], size_of_screen);
+    Player Player2(path_to_file, received_event.user_moved.sprite_coordinates[1],
+                   received_event.user_moved.coordinates[1], size_of_screen);
 
     // Карта
     std::string path_to_map = "../Client/srcClient/images/map.png";
@@ -133,12 +137,14 @@ int main() {
         Player1.render(received_event.user_moved.sprite_coordinates[0], received_event.user_moved.coordinates[0]);
         Player2.render(received_event.user_moved.sprite_coordinates[1], received_event.user_moved.coordinates[1]);
 
+        //window.setView(Player1.get_camera(received_event.user_moved.coordinates[0]));
+        //window.setView(Player2.get_camera(received_event.user_moved.coordinates[1]));
+
         window.clear();
         MyMap.render(window);
 
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
-        //window.setView(view);
         window.display();
     }
     return 0;

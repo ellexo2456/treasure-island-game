@@ -1,5 +1,5 @@
 CMakeFiles/Server.dir/EventBus/Event.cpp.o: \
- /home/alexey/_1_treasure_island_game/EventBus/Event.cpp \
+ /home/ser/_1_treasure_island_game/EventBus/Event.cpp \
  /usr/include/stdc-predef.h /usr/include/SFML/Network/Packet.hpp \
  /usr/include/SFML/Network/Export.hpp /usr/include/SFML/Config.hpp \
  /usr/include/c++/9/string \
@@ -127,6 +127,6 @@ CMakeFiles/Server.dir/EventBus/Event.cpp.o: \
  /usr/include/c++/9/bits/stl_uninitialized.h \
  /usr/include/c++/9/bits/stl_vector.h \
  /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
- /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/Event.h \
  /usr/include/SFML/System/Vector2.hpp \
  /usr/include/SFML/System/Vector2.inl

@@ -1,5 +1,5 @@
 CMakeFiles/Client.dir/Client/srcClient/main.cpp.o: \
- /home/alexey/_1_treasure_island_game/Client/srcClient/main.cpp \
+ /home/ser/_1_treasure_island_game/Client/srcClient/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/9/iostream \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
@@ -230,10 +230,10 @@ CMakeFiles/Client.dir/Client/srcClient/main.cpp.o: \
  /usr/include/SFML/Network/SocketSelector.hpp \
  /usr/include/SFML/Network/TcpListener.hpp \
  /usr/include/SFML/Network/UdpSocket.hpp \
- /home/alexey/_1_treasure_island_game/Client/includeClient/clientPlayer.h \
- /home/alexey/_1_treasure_island_game/Client/includeClient/view.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/EventBus.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/IObservable.h \
- /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h \
- /home/alexey/_1_treasure_island_game/Client/includeClient/map.h \
- /home/alexey/_1_treasure_island_game/Client/includeClient/camera.h
+ /home/ser/_1_treasure_island_game/Client/includeClient/clientPlayer.h \
+ /home/ser/_1_treasure_island_game/Client/includeClient/view.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/EventBus.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/IObservable.h \
+ /home/ser/_1_treasure_island_game/EventBus/Include/Event.h \
+ /home/ser/_1_treasure_island_game/Client/includeClient/map.h \
+ /home/ser/_1_treasure_island_game/Client/includeClient/camera.h

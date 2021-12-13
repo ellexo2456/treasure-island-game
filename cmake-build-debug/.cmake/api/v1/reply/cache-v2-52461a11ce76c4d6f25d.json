@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/alexey/_1_treasure_island_game/cmake-build-debug"
+			"value" : "/home/ser/_1_treasure_island_game/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-j2"
+			"value" : "-j4"
 		},
 		{
 			"name" : "CMAKE_COLOR_MAKEFILE",
@@ -679,7 +679,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/alexey/_1_treasure_island_game"
+			"value" : "/home/ser/_1_treasure_island_game"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1215,7 +1215,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/alexey/_1_treasure_island_game/cmake-build-debug"
+			"value" : "/home/ser/_1_treasure_island_game/cmake-build-debug"
 		},
 		{
 			"name" : "IslandGame_IS_TOP_LEVEL",
@@ -1239,7 +1239,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/alexey/_1_treasure_island_game"
+			"value" : "/home/ser/_1_treasure_island_game"
 		},
 		{
 			"name" : "ProcessorCount_cmd_nproc",
