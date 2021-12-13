@@ -7,7 +7,7 @@
 #include "map.h"
 #include "camera.h"
 
-#define PORT 3000
+#define PORT 3001
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -33,7 +33,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
             break;
         }
     }
-    packet >> received_event.player_number;
+    packet >> received_event.client_number;
     for (int i = 0; i < 2; ++i) {
         packet >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -44,7 +44,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
-    packet << received_event.player_number;
+    packet << received_event.client_number;
     for (int i = 0; i < 2; ++i) {
         packet << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -60,18 +60,18 @@ int main() {
     sf::Packet packet;
     packet.clear();
     socket.receive(packet);
+    Event received_event;
+    packet >> received_event;
 
     sf::Vector2f size_of_screen = {640, 640};
 
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
-    camera.reset(sf::FloatRect(0, 0, 700, 700)); // инициализировали объект камеры
+    camera.reset(sf::FloatRect(0, 0, 600, 600)); // инициализировали объект камеры
 
     // Игроки
     std::string path_to_file = "../Client/srcClient/images/one.png";
     struct SpriteCoord coord = {0, 0, 32,  32 };
     struct SpriteCoord coord1 = {0, 128, 32,  32 };
-    Event received_event;
-    packet >> received_event;
     Player Player1(path_to_file, received_event.user_moved.sprite_coordinates[0],
                    received_event.user_moved.coordinates[0], size_of_screen);
     Player Player2(path_to_file, received_event.user_moved.sprite_coordinates[1],
@@ -139,7 +139,7 @@ int main() {
         Player1.render(received_event.user_moved.sprite_coordinates[0], received_event.user_moved.coordinates[0]);
         Player2.render(received_event.user_moved.sprite_coordinates[1], received_event.user_moved.coordinates[1]);
 
-        give_player_coord_to_camera(received_event.user_moved.coordinates[received_event.player_number]);
+        give_player_coord_to_camera(received_event.user_moved.coordinates[received_event.client_number]);
         window.setView(camera);
 
         window.clear();

@@ -34,7 +34,8 @@ struct UserMovedEventData {
 
 struct Event {
     Types type;
-    int player_number;
+    int moved_player_number;
+    int client_number;
     UserMovedEventData user_moved;
 };
 

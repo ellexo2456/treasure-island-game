@@ -5,7 +5,7 @@
 
 #include "Model.h"
 
-#define PORT 3000
+#define PORT 3001
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -36,7 +36,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
             break;
         }
     }
-    packet >> received_event.player_number;
+    packet >> received_event.client_number;
     for (int i = 0; i < 2; ++i) {
         packet >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -47,7 +47,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
-    packet << received_event.player_number;
+    packet << received_event.client_number;
     for (int i = 0; i < 2; ++i) {
         packet << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -137,7 +137,7 @@ int main() {
             if (received_event.type != user_init) {
                 std::cout << received_event.type << std::endl;
             }
-            received_event.player_number = i;
+            received_event.moved_player_number = i;
             event_bus.dispatch(received_event.type, received_event);
 
             for (int j = 0; j < 2; ++j) {
@@ -145,15 +145,20 @@ int main() {
                 event_to_send.user_moved.sprite_coordinates[j] = players[j].get_player_sprite_coordinates();
             }
             players[i].set_direction(received_event.type);
-            event_to_send.player_number = i;
+            event_to_send.moved_player_number = i;
             event_to_send.type = is_intersect;
             event_bus.dispatch(is_intersect, event_to_send);
             for (int i = 0; i < 2; ++i) {
                 event_to_send.user_moved.coordinates[i] = players[i].get_coordinates();
             }
             packet.clear();
+            event_to_send.client_number = 0;
             packet << event_to_send;
             clients[0].send(packet);
+
+            packet.clear();
+            event_to_send.client_number = 1;
+            packet << event_to_send;
             clients[1].send(packet);
         }
         /*if (!flag) {
