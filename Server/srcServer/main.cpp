@@ -5,7 +5,7 @@
 
 #include "Model.h"
 
-#define PORT 3001
+#define PORT 3000
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;

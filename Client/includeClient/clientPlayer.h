@@ -25,10 +25,4 @@ public:
 
 };
 
-class State {
-public:
-    int coord;
-};
-
-
 #endif //ISLANDGAME_CLIENTPLAYER_H
