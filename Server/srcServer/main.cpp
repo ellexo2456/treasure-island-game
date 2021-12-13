@@ -47,26 +47,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 }
 
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
-    int type_number = received_event.type;
-    packet << type_number;
-    /*switch(received_event.type) {
-        case user_init: {
-            packet << 0;
-        }
-        case dir_left: {
-            packet << 1;
-        }
-        case dir_right: {
-            packet << 2;
-        }
-        case dir_straight: {
-            packet << 3;
-        }
-        case dir_back: {
-            packet << 4;
-        }
-    }*/
-
+    packet << received_event.type;
     for (int i = 0; i < 2; ++i) {
         packet << received_event.coordinates[i].x << received_event.coordinates[i].y << received_event.colors[i];
     }
