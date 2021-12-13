@@ -135,6 +135,7 @@ CMakeFiles/Server.dir/Server/srcServer/main.cpp.o: \
  /usr/include/c++/9/bits/locale_facets.tcc \
  /usr/include/c++/9/bits/basic_ios.tcc \
  /usr/include/c++/9/bits/ostream.tcc /usr/include/c++/9/istream \
+<<<<<<< HEAD
  /usr/include/c++/9/bits/istream.tcc /usr/include/SFML/Graphics.hpp \
  /usr/include/SFML/Window.hpp /usr/include/SFML/System.hpp \
  /usr/include/SFML/Config.hpp /usr/include/SFML/System/Clock.hpp \
@@ -232,3 +233,26 @@ CMakeFiles/Server.dir/Server/srcServer/main.cpp.o: \
  /usr/include/SFML/Network/UdpSocket.hpp \
  /home/alexey/_1_treasure_island_game/Client/includeClient/clientPlayer.h \
  /home/alexey/_1_treasure_island_game/Client/includeClient/view.h
+=======
+ /usr/include/c++/9/bits/istream.tcc \
+ /usr/include/SFML/Network/TcpSocket.hpp \
+ /usr/include/SFML/Network/Export.hpp /usr/include/SFML/Config.hpp \
+ /usr/include/SFML/Network/Socket.hpp \
+ /usr/include/SFML/Network/SocketHandle.hpp \
+ /usr/include/SFML/System/NonCopyable.hpp \
+ /usr/include/SFML/System/Export.hpp /usr/include/c++/9/vector \
+ /usr/include/c++/9/bits/stl_construct.h \
+ /usr/include/c++/9/bits/stl_uninitialized.h \
+ /usr/include/c++/9/bits/stl_vector.h \
+ /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
+ /usr/include/SFML/System/Time.hpp \
+ /usr/include/SFML/Network/TcpListener.hpp \
+ /usr/include/SFML/Network/IpAddress.hpp \
+ /usr/include/SFML/Network/Packet.hpp \
+ /home/alexey/_1_treasure_island_game/Server/includeServer/Model.h \
+ /home/alexey/_1_treasure_island_game/EventBus/Include/EventBus.h \
+ /home/alexey/_1_treasure_island_game/EventBus/Include/IObservable.h \
+ /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h \
+ /usr/include/SFML/System/Vector2.hpp \
+ /usr/include/SFML/System/Vector2.inl
+>>>>>>> OOP

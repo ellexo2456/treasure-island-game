@@ -4,7 +4,9 @@
 
 #ifndef ISLANDGAME_CAMERA_H
 #define ISLANDGAME_CAMERA_H
+
 #include <SFML/Graphics.hpp>
+
 sf::View view; // объект камера
 
 sf::View getPlayercoordcamera(float x, float y) {

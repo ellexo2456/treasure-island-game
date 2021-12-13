@@ -230,8 +230,14 @@ CMakeFiles/Client.dir/Client/srcClient/main.cpp.o: \
  /usr/include/SFML/Network/SocketSelector.hpp \
  /usr/include/SFML/Network/TcpListener.hpp \
  /usr/include/SFML/Network/UdpSocket.hpp \
+<<<<<<< HEAD
  /home/alexey/_1_treasure_island_game/Client/includeClient/clientPlayer.h \
  /home/alexey/_1_treasure_island_game/Client/includeClient/view.h \
  /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h \
  /home/alexey/_1_treasure_island_game/Client/includeClient/map.h \
  /home/alexey/_1_treasure_island_game/Client/includeClient/camera.h
+=======
+ /home/alexey/_1_treasure_island_game/EventBus/Include/EventBus.h \
+ /home/alexey/_1_treasure_island_game/EventBus/Include/IObservable.h \
+ /home/alexey/_1_treasure_island_game/EventBus/Include/Event.h
+>>>>>>> OOP

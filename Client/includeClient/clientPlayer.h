@@ -4,7 +4,9 @@
 
 #ifndef ISLANDGAME_CLIENTPLAYER_H
 #define ISLANDGAME_CLIENTPLAYER_H
+
 #include <view.h>
+
 class Player : public View {
 
 public:

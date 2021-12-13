@@ -7,23 +7,29 @@
 
 #include <vector>
 #include <string>
+#include <SFML/System/Vector2.hpp>
+
 
 enum Types {
     user_init,
     dir_left,
     dir_right,
     dir_straight,
-    dir_back
+    dir_back,
+    error,
+    user_moved,
 };
 
-struct UserMovedEventData {
-    int x;
-    int y;
-};
+/*struct UserMovedEventData {
+    sf::Vector2f cordinates;
+};*/
 
 struct Event {
     Types type;
-    UserMovedEventData user_moved;
+    sf::Vector2f coordinates[2];
+    int player_number;
+    int colors[2];
+    //UserMovedEventData user_moved;
 };
 
 #endif //ISLANDGAME_EVENT_H
