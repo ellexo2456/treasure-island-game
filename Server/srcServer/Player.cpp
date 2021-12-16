@@ -6,7 +6,7 @@
 
 void Player::update(Event event) {
     if ((event.type == dir_left || event.type == dir_right || event.type == dir_straight \
- || event.type == dir_back) && event.player_number == player_number) {
+ || event.type == dir_back) && event.moved_player_number == player_number) {
 
         switch (event.type) {
             case 1: {
@@ -37,7 +37,7 @@ void Player::update(Event event) {
             }
         }
     }
-    if (event.type == is_intersect && event.player_number == player_number) {
+    if (event.type == is_intersect && event.moved_player_number == player_number) {
         for (int i = 0; i < 2; ++i) {
             if (i != player_number) {
                 if(get_sprite_rect().intersects(sf::FloatRect(event.user_moved.coordinates[i], \

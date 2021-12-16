@@ -10,8 +10,11 @@
 class Player : public View {
 
 public:
-    Player (const std::string& path_to_file, struct SpriteCoord coord, sf::Vector2f pos) :
+    sf::View camera;
+
+    Player (const std::string& path_to_file, struct SpriteCoord coord, sf::Vector2f pos, sf::Vector2f size_camera) :
             View (path_to_file, coord, pos) {
+        camera.reset(sf::FloatRect(0, 0, size_camera.x, size_camera.y)); // При создании объекта говорим, где прям сейчас появится камера
     };
     //
     void render(struct SpriteCoord update_coord, sf::Vector2f position) {
@@ -19,13 +22,7 @@ public:
                                                         update_coord.width, update_coord.height));
         hero_sprite.setPosition(position);
     };
+
 };
-
-
-class State {
-public:
-    int coord;
-};
-
 
 #endif //ISLANDGAME_CLIENTPLAYER_H

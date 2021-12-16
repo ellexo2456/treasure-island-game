@@ -7,10 +7,14 @@
 
 #include <SFML/Graphics.hpp>
 
-sf::View view; // объект камера
+sf::View camera; // объект камера
 
-sf::View getPlayercoordcamera(float x, float y) {
-    view.setCenter(x, y); // перерисовывает камеру, в зависимости от положения игрока
-    return view;  // возвращаем камеру, что бы обновлять её
+void give_player_coord_to_camera(sf::Vector2f player_coordinates) {
+    sf::Vector2f temporary_player_coordinates = player_coordinates;
+    if (player_coordinates.y > 340) {temporary_player_coordinates.y = 340;}
+    if (player_coordinates.y < 300) {temporary_player_coordinates.y = 300;}
+    if (player_coordinates.x > 340) {temporary_player_coordinates.x = 340;}
+    if (player_coordinates.x < 300) {temporary_player_coordinates.x = 300;}
+    camera.setCenter(temporary_player_coordinates); // перерисовывает камеру, в зависимости от положения игрока
 }
 #endif //ISLANDGAME_CAMERA_H
