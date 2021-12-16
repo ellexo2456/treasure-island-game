@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/alexey/_1_treasure_island_game/Client/srcClient/main.cpp" "CMakeFiles/Client.dir/Client/srcClient/main.cpp.o" "gcc" "CMakeFiles/Client.dir/Client/srcClient/main.cpp.o.d"
-  "/home/alexey/_1_treasure_island_game/EventBus/EventBus.cpp" "CMakeFiles/Client.dir/EventBus/EventBus.cpp.o" "gcc" "CMakeFiles/Client.dir/EventBus/EventBus.cpp.o.d"
+  "/home/ser/_1_treasure_island_game/Client/srcClient/main.cpp" "CMakeFiles/Client.dir/Client/srcClient/main.cpp.o" "gcc" "CMakeFiles/Client.dir/Client/srcClient/main.cpp.o.d"
+  "/home/ser/_1_treasure_island_game/EventBus/EventBus.cpp" "CMakeFiles/Client.dir/EventBus/EventBus.cpp.o" "gcc" "CMakeFiles/Client.dir/EventBus/EventBus.cpp.o.d"
   )
 
 # Targets to which this target links.
