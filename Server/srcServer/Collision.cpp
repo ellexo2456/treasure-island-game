@@ -71,28 +71,28 @@ void Collision::update(Event event) {
                     if (TileMap[k][l] == 's') {
                         switch (players[i].get_direction()) {
                             case 1: {
-                                players[i].set_coordinates({players[i].get_coordinates().x + \
-                                    players[i].get_player_sprite_coordinates().width, players[i].get_coordinates().y});
+                                players[i].set_coordinates({static_cast<float>(32*l + \
+                                    players[i].get_player_sprite_coordinates().width), players[i].get_coordinates().y});
                                 //event.user_moved.coordinates[j].x + event.user_moved.sprite_coordinates[j].width;
                                 break;
                             }
                             case 2: {
-                                players[i].set_coordinates({players[i].get_coordinates().x -
-                                                            players[i].get_player_sprite_coordinates().width, \
+                                players[i].set_coordinates({static_cast<float>(32*l -
+                                                            players[i].get_player_sprite_coordinates().width), \
                                 players[i].get_coordinates().y});
                                 //coordinates.x = event.user_moved.coordinates[j].x - player_sprite_coordinates.width;
                                 break;
                             }
                             case 3: {
                                 players[i].set_coordinates({players[i].get_coordinates().x, \
-                                players[i].get_coordinates().y + players[i].get_player_sprite_coordinates().height});
+                                static_cast<float>(32*k + players[i].get_player_sprite_coordinates().height)});
                                 //coordinates.y = event.user_moved.coordinates[j].y +
                                 //              event.user_moved.sprite_coordinates[j].height;
                                 break;
                             }
                             case 4: {
                                 players[i].set_coordinates({players[i].get_coordinates().x, \
-                                players[i].get_coordinates().y - players[i].get_player_sprite_coordinates().height});
+                                static_cast<float>(32*k - players[i].get_player_sprite_coordinates().height)});
                                 //coordinates.y = event.user_moved.coordinates[j].y - player_sprite_coordinates.height;
                                 break;
                             }
