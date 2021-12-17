@@ -1,5 +1,5 @@
-CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o: \
- /home/alexey/_1_treasure_island_game/Server/srcServer/Player.cpp \
+CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o: \
+ /home/alexey/_1_treasure_island_game/Server/srcServer/Collision.cpp \
  /usr/include/stdc-predef.h \
  /home/alexey/_1_treasure_island_game/Server/includeServer/Collision.h \
  /usr/include/SFML/Graphics/Rect.hpp /usr/include/SFML/System/Vector2.hpp \

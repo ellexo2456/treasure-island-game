@@ -217,29 +217,29 @@ EventBus/EventBus.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/EventBus/EventBus.cpp.s
 .PHONY : EventBus/EventBus.cpp.s
 
-Server/srcServer/Model.o: Server/srcServer/Model.cpp.o
-.PHONY : Server/srcServer/Model.o
+Server/srcServer/Collision.o: Server/srcServer/Collision.cpp.o
+.PHONY : Server/srcServer/Collision.o
 
 # target to build an object file
-Server/srcServer/Model.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o
-.PHONY : Server/srcServer/Model.cpp.o
+Server/srcServer/Collision.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o
+.PHONY : Server/srcServer/Collision.cpp.o
 
-Server/srcServer/Model.i: Server/srcServer/Model.cpp.i
-.PHONY : Server/srcServer/Model.i
+Server/srcServer/Collision.i: Server/srcServer/Collision.cpp.i
+.PHONY : Server/srcServer/Collision.i
 
 # target to preprocess a source file
-Server/srcServer/Model.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Model.cpp.i
-.PHONY : Server/srcServer/Model.cpp.i
+Server/srcServer/Collision.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.i
+.PHONY : Server/srcServer/Collision.cpp.i
 
-Server/srcServer/Model.s: Server/srcServer/Model.cpp.s
-.PHONY : Server/srcServer/Model.s
+Server/srcServer/Collision.s: Server/srcServer/Collision.cpp.s
+.PHONY : Server/srcServer/Collision.s
 
 # target to generate assembly for a file
-Server/srcServer/Model.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Model.cpp.s
-.PHONY : Server/srcServer/Model.cpp.s
+Server/srcServer/Collision.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.s
+.PHONY : Server/srcServer/Collision.cpp.s
 
 Server/srcServer/Player.o: Server/srcServer/Player.cpp.o
 .PHONY : Server/srcServer/Player.o
@@ -308,9 +308,9 @@ help:
 	@echo "... EventBus/EventBus.o"
 	@echo "... EventBus/EventBus.i"
 	@echo "... EventBus/EventBus.s"
-	@echo "... Server/srcServer/Model.o"
-	@echo "... Server/srcServer/Model.i"
-	@echo "... Server/srcServer/Model.s"
+	@echo "... Server/srcServer/Collision.o"
+	@echo "... Server/srcServer/Collision.i"
+	@echo "... Server/srcServer/Collision.s"
 	@echo "... Server/srcServer/Player.o"
 	@echo "... Server/srcServer/Player.i"
 	@echo "... Server/srcServer/Player.s"

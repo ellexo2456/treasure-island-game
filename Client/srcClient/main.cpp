@@ -7,7 +7,7 @@
 #include "map.h"
 #include "camera.h"
 
-#define PORT 3001
+#define PORT 3002
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;

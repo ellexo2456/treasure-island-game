@@ -111,19 +111,19 @@ CMakeFiles/Server.dir/Server/srcServer/Player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/Server/srcServer/Player.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexey/_1_treasure_island_game/Server/srcServer/Player.cpp -o CMakeFiles/Server.dir/Server/srcServer/Player.cpp.s
 
-CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o: CMakeFiles/Server.dir/flags.make
-CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o: ../Server/srcServer/Model.cpp
-CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o: CMakeFiles/Server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexey/_1_treasure_island_game/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o -MF CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o.d -o CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o -c /home/alexey/_1_treasure_island_game/Server/srcServer/Model.cpp
+CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o: CMakeFiles/Server.dir/flags.make
+CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o: ../Server/srcServer/Collision.cpp
+CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o: CMakeFiles/Server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alexey/_1_treasure_island_game/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o -MF CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o.d -o CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o -c /home/alexey/_1_treasure_island_game/Server/srcServer/Collision.cpp
 
-CMakeFiles/Server.dir/Server/srcServer/Model.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/Server/srcServer/Model.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexey/_1_treasure_island_game/Server/srcServer/Model.cpp > CMakeFiles/Server.dir/Server/srcServer/Model.cpp.i
+CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alexey/_1_treasure_island_game/Server/srcServer/Collision.cpp > CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.i
 
-CMakeFiles/Server.dir/Server/srcServer/Model.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/Server/srcServer/Model.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexey/_1_treasure_island_game/Server/srcServer/Model.cpp -o CMakeFiles/Server.dir/Server/srcServer/Model.cpp.s
+CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alexey/_1_treasure_island_game/Server/srcServer/Collision.cpp -o CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.s
 
 CMakeFiles/Server.dir/EventBus/Event.cpp.o: CMakeFiles/Server.dir/flags.make
 CMakeFiles/Server.dir/EventBus/Event.cpp.o: ../EventBus/Event.cpp
@@ -144,7 +144,7 @@ Server_OBJECTS = \
 "CMakeFiles/Server.dir/Server/srcServer/main.cpp.o" \
 "CMakeFiles/Server.dir/EventBus/EventBus.cpp.o" \
 "CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o" \
-"CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o" \
+"CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o" \
 "CMakeFiles/Server.dir/EventBus/Event.cpp.o"
 
 # External object files for target Server
@@ -153,7 +153,7 @@ Server_EXTERNAL_OBJECTS =
 Server: CMakeFiles/Server.dir/Server/srcServer/main.cpp.o
 Server: CMakeFiles/Server.dir/EventBus/EventBus.cpp.o
 Server: CMakeFiles/Server.dir/Server/srcServer/Player.cpp.o
-Server: CMakeFiles/Server.dir/Server/srcServer/Model.cpp.o
+Server: CMakeFiles/Server.dir/Server/srcServer/Collision.cpp.o
 Server: CMakeFiles/Server.dir/EventBus/Event.cpp.o
 Server: CMakeFiles/Server.dir/build.make
 Server: /usr/lib/x86_64-linux-gnu/libsfml-system.so

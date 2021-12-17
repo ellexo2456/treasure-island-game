@@ -150,7 +150,7 @@ CMakeFiles/Server.dir/Server/srcServer/main.cpp.o: \
  /usr/include/SFML/Network/TcpListener.hpp \
  /usr/include/SFML/Network/IpAddress.hpp \
  /usr/include/SFML/Network/Packet.hpp \
- /home/alexey/_1_treasure_island_game/Server/includeServer/Model.h \
+ /home/alexey/_1_treasure_island_game/Server/includeServer/Collision.h \
  /usr/include/SFML/Graphics/Rect.hpp /usr/include/SFML/System/Vector2.hpp \
  /usr/include/SFML/System/Vector2.inl /usr/include/c++/9/algorithm \
  /usr/include/c++/9/utility /usr/include/c++/9/bits/stl_relops.h \

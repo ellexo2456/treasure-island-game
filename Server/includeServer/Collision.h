@@ -2,8 +2,8 @@
 // Created by alexey on 08.12.2021.
 //
 
-#ifndef ISLANDGAME_MODEL_H
-#define ISLANDGAME_MODEL_H
+#ifndef ISLANDGAME_COLLISION_H
+#define ISLANDGAME_COLLISION_H
 
 #include <SFML/Graphics/Rect.hpp>
 #include "EventBus.h"
@@ -83,4 +83,14 @@ private:
     virtual void update(Event event) override;
 };
 
-#endif //ISLANDGAME_MODEL_H
+class Collision : public Model {
+public:
+    Collision(Player (&players)[2], int player_count) : players(players), player_count(player_count) {};
+    virtual void update(Event event) override;
+
+private:
+    Player (&players)[2];
+    int player_count;
+};
+
+#endif //ISLANDGAME_COLLISION_H

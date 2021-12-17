@@ -3,9 +3,9 @@
 #include <SFML/Network/TcpListener.hpp>
 #include <SFML/Network/Packet.hpp>
 
-#include "Model.h"
+#include "Collision.h"
 
-#define PORT 3001
+#define PORT 3002
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -63,6 +63,9 @@ int main() {
     players[0].set_player_number(0);
     players[1].set_player_number(1);
 
+    Collision collision(players, 2);
+    event_bus.subscribe(&collision, is_intersect);
+
     for (auto & player : players) {
         event_bus.subscribe(&player, dir_back);
         event_bus.subscribe(&player, dir_straight);
@@ -105,34 +108,22 @@ int main() {
     clients[0].send(packet);
     clients[1].send(packet);
 
-    /*clients_data[1].x = 400;
-    clients_data[1].y = 100;
-    clients_data[1].color = "Red";
-    packet << clients_data[1].x << clients_data[1].y << clients_data[1].color;
-
-    std::cout << clients[1].getRemoteAddress() << std::endl;
-
-    clients[0].send(packet);
-    clients[1].send(packet);*/
-
     for (auto & client : clients) {
         client.setBlocking(false);
     }
 
-    for (auto & player : players) {
+    /*for (auto & player : players) {
         event_bus.subscribe(&player, is_intersect);
-    }
+    }*/
 
     Event received_event;
 
     while (true) {
-        //bool flag = false;
         for (int i = 0; i < 2; ++i) {
             packet.clear();
             if (clients[i].receive(packet) == sf::Socket::NotReady) {
                 continue;
             }
-            //flag = true;
             packet >> received_event;
             if (received_event.type != user_init) {
                 std::cout << received_event.type << std::endl;
@@ -161,9 +152,6 @@ int main() {
             packet << event_to_send;
             clients[1].send(packet);
         }
-        /*if (!flag) {
-            continue;
-        }*/
     }
     return 0;
 }
