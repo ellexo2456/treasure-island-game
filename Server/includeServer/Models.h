@@ -2,10 +2,11 @@
 // Created by alexey on 08.12.2021.
 //
 
-#ifndef ISLANDGAME_COLLISION_H
-#define ISLANDGAME_COLLISION_H
+#ifndef ISLANDGAME_MODELS_H
+#define ISLANDGAME_MODELS_H
 
-#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics.hpp>
+
 #include "EventBus.h"
 
 enum Team {
@@ -91,6 +92,30 @@ public:
 private:
     Player (&players)[2];
     int player_count;
+    static const int HEIGHT_MAP = 20; // Высота карты
+    static const int WIDTH_MAP = 20;  // Ширина карты
+    sf::String TileMap[HEIGHT_MAP] = {
+            "ssssssssssssssssssss",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "s000000000000000000s",
+            "ssssssssssssssssssss",
+    };
 };
 
-#endif //ISLANDGAME_COLLISION_H
+#endif //ISLANDGAME_MODELS_H

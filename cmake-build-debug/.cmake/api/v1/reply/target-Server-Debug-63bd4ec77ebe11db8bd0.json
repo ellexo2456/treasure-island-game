@@ -186,13 +186,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Server/srcServer/Collision.cpp",
+			"path" : "EventBus/Event.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "EventBus/Event.cpp",
+			"path" : "Server/srcServer/Collision.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -16,7 +16,8 @@ enum Types {
     dir_right,
     dir_straight,
     dir_back,
-    is_intersect,
+    is_intersect_with_player,
+    is_intersect_with_map,
     error,
 };
 

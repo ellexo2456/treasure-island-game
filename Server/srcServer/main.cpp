@@ -1,11 +1,12 @@
 #include <iostream>
+
 #include <SFML/Network/TcpSocket.hpp>
 #include <SFML/Network/TcpListener.hpp>
 #include <SFML/Network/Packet.hpp>
 
-#include "Collision.h"
+#include "Models.h"
 
-#define PORT 3002
+#define PORT 3003
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -64,7 +65,8 @@ int main() {
     players[1].set_player_number(1);
 
     Collision collision(players, 2);
-    event_bus.subscribe(&collision, is_intersect);
+    event_bus.subscribe(&collision, is_intersect_with_player);
+    event_bus.subscribe(&collision, is_intersect_with_map);
 
     for (auto & player : players) {
         event_bus.subscribe(&player, dir_back);
@@ -104,8 +106,13 @@ int main() {
     event_to_send.user_moved.sprite_coordinates[1] = {0, 0, 32,  32 };
 
     packet.clear();
+    event_to_send.client_number = 0;
     packet << event_to_send;
     clients[0].send(packet);
+
+    packet.clear();
+    event_to_send.client_number = 1;
+    packet << event_to_send;
     clients[1].send(packet);
 
     for (auto & client : clients) {
@@ -137,8 +144,10 @@ int main() {
             }
             players[i].set_direction(received_event.type);
             event_to_send.moved_player_number = i;
-            event_to_send.type = is_intersect;
-            event_bus.dispatch(is_intersect, event_to_send);
+            event_to_send.type = is_intersect_with_player;
+            event_bus.dispatch(is_intersect_with_player, event_to_send);
+            event_to_send.type = is_intersect_with_map;
+            event_bus.dispatch(is_intersect_with_map, event_to_send);
             for (int i = 0; i < 2; ++i) {
                 event_to_send.user_moved.coordinates[i] = players[i].get_coordinates();
             }

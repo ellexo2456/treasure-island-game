@@ -2,7 +2,7 @@
 // Created by alexey on 08.12.2021.
 //
 
-#include "Collision.h"
+#include "Models.h"
 
 void Player::update(Event event) {
     if ((event.type == dir_left || event.type == dir_right || event.type == dir_straight \
