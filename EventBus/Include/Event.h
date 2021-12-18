@@ -18,6 +18,7 @@ enum Types {
     dir_back,
     is_intersect_with_player,
     is_intersect_with_map,
+    got_ship_resource,
     error,
 };
 
@@ -33,11 +34,18 @@ struct UserMovedEventData {
     SpriteCoord sprite_coordinates[2];
 };
 
+struct GotShipResourceData {
+    int map_row_to_change;
+    int map_column_to_change;
+    int ship_resource_count[2];
+};
+
 struct Event {
     Types type;
     int moved_player_number;
     int client_number;
     UserMovedEventData user_moved;
+    GotShipResourceData got_ship_resource;
 };
 
 #endif //ISLANDGAME_EVENT_H

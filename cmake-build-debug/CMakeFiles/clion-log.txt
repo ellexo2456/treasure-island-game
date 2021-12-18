@@ -1,5 +1,5 @@
-/snap/clion/175/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/alexey/_1_treasure_island_game
--- Found SFML .. in /usr/include
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/Guest/Documents/_1_treasure_island_game
+-- Found SFML .. in /usr/local/include
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/alexey/_1_treasure_island_game/cmake-build-debug
+-- Build files have been written to: /Users/Guest/Documents/_1_treasure_island_game/cmake-build-debug
