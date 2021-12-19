@@ -12,7 +12,7 @@ include_directories(Client/includeClient)
 include_directories(Server/includeServer)
 include_directories(EventBus/Include)
 
-add_executable(Client Client/srcClient/main.cpp EventBus/EventBus.cpp Client/includeClient/view.h Client/includeClient/map.h Client/includeClient/camera.h Client/includeClient/Lev.h)
+add_executable(Client Client/srcClient/main.cpp EventBus/EventBus.cpp Client/includeClient/view.h Client/includeClient/map.h Client/includeClient/camera.h Client/includeClient/Lev.h Client/includeClient/resources.h)
 add_executable(Server Server/srcServer/main.cpp EventBus/EventBus.cpp Server/srcServer/Player.cpp Server/srcServer/Model.cpp EventBus/Event.cpp )
 
 target_link_libraries(Client ${SFML_LIBRARIES} ${TinyXML2_LIBRARIES} ${TinyXML2_DEPENDENCIES} ${TinyXML_LIBRARIES} ${TinyXML_DEPENDENCIES})

@@ -20,6 +20,7 @@ enum Types {
     error,
 };
 
+// Режем кусочек изображения с помощью этого
 struct SpriteCoord {
     int begin_x;
     int begin_y;

@@ -330,7 +330,9 @@ CMakeFiles/Client.dir/Client/srcClient/main.cpp.o: ../Client/srcClient/main.cpp 
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/include/c++/9/cstring \
   /usr/include/string.h \
-  /usr/include/strings.h
+  /usr/include/strings.h \
+  ../Client/includeClient/resources.h \
+  ../Client/includeClient/view.h
 
 CMakeFiles/Client.dir/EventBus/EventBus.cpp.o: ../EventBus/EventBus.cpp \
   /usr/include/stdc-predef.h \
@@ -497,6 +499,8 @@ CMakeFiles/Client.dir/EventBus/EventBus.cpp.o: ../EventBus/EventBus.cpp \
   /usr/include/SFML/System/Vector2.hpp \
   /usr/include/SFML/System/Vector2.inl
 
+
+../Client/includeClient/resources.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 

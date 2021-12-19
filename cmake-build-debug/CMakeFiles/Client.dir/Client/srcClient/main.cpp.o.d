@@ -256,4 +256,6 @@ CMakeFiles/Client.dir/Client/srcClient/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/9/cstring \
- /usr/include/string.h /usr/include/strings.h
+ /usr/include/string.h /usr/include/strings.h \
+ /home/ser/_1_treasure_island_game/Client/includeClient/resources.h \
+ /home/ser/_1_treasure_island_game/Client/includeClient/view.h

@@ -332,6 +332,8 @@ CMakeFiles/Client.dir/Client/srcClient/main.cpp.o
  /usr/include/c++/9/cstring
  /usr/include/string.h
  /usr/include/strings.h
+ /home/ser/_1_treasure_island_game/Client/includeClient/resources.h
+ /home/ser/_1_treasure_island_game/Client/includeClient/view.h
 
 CMakeFiles/Client.dir/EventBus/EventBus.cpp.o
  /home/ser/_1_treasure_island_game/EventBus/EventBus.cpp

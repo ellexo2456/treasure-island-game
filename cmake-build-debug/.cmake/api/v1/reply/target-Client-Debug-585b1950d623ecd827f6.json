@@ -173,7 +173,8 @@
 				2,
 				3,
 				4,
-				5
+				5,
+				6
 			]
 		}
 	],
@@ -209,6 +210,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "Client/includeClient/Lev.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Client/includeClient/resources.h",
 			"sourceGroupIndex" : 1
 		}
 	],

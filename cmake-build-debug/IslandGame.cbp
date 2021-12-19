@@ -147,6 +147,9 @@
 		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/map.h">
 			<Option target="Client"/>
 		</Unit>
+		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/resources.h">
+			<Option target="Client"/>
+		</Unit>
 		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/view.h">
 			<Option target="Client"/>
 		</Unit>
