@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeFiles/FindSFML.cmake"
+  "../CMakeFiles/FindTinyXML.cmake"
+  "../CMakeFiles/FindTinyXML2.cmake"
   "../CMakeLists.txt"
   "CMakeFiles/3.21.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.21.1/CMakeCXXCompiler.cmake"
@@ -26,6 +28,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-C.cmake"
   "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake"
   "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU.cmake"
+  "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake"
+  "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake"
   "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake"
   "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake"
   "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake"

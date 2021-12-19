@@ -138,6 +138,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/Lev.h">
+			<Option target="Client"/>
+		</Unit>
 		<Unit filename="/home/ser/_1_treasure_island_game/Client/includeClient/camera.h">
 			<Option target="Client"/>
 		</Unit>

@@ -113,6 +113,8 @@ Client: /usr/lib/x86_64-linux-gnu/libsfml-window.so
 Client: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 Client: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 Client: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
+Client: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
+Client: /usr/lib/x86_64-linux-gnu/libtinyxml.so
 Client: CMakeFiles/Client.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ser/_1_treasure_island_game/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Client.dir/link.txt --verbose=$(VERBOSE)

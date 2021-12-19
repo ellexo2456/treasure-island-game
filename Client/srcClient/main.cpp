@@ -4,8 +4,9 @@
 #include <SFML/Network.hpp>
 
 #include "clientPlayer.h"
-#include "map.h"
+//#include "map.h"
 #include "camera.h"
+#include "Lev.h"
 
 #define PORT 3000
 
@@ -77,9 +78,12 @@ int main() {
     Player Player2(path_to_file, received_event.user_moved.sprite_coordinates[1],
                    received_event.user_moved.coordinates[1], size_of_screen);
 
-    // Карта
+    /*// Карта
     std::string path_to_map = "../Client/srcClient/images/map.png";
-    Map MyMap(path_to_map, coord, {0,0});
+    Map MyMap(path_to_map, coord, {0,0});*/
+    std::string path_to_level = "../Client/srcClient/main_map.xml";
+    TileMap map;
+    map.load(path_to_level);
 
     Event custom_event;
 
@@ -143,7 +147,9 @@ int main() {
         window.setView(camera);
 
         window.clear();
-        MyMap.render(window);
+        // MyMap.render(window);
+
+        window.draw(map);
 
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
