@@ -10,8 +10,8 @@ include_directories(Client/includeClient)
 include_directories(Server/includeServer)
 include_directories(EventBus/Include)
 
-add_executable(Client Client/srcClient/main.cpp EventBus/EventBus.cpp Client/includeClient/view.h Client/includeClient/map.h Client/includeClient/camera.h)
-add_executable(Server Server/srcServer/main.cpp EventBus/EventBus.cpp Server/srcServer/Player.cpp EventBus/Event.cpp Server/srcServer/Collision.cpp)
+add_executable(Client Client/srcClient/main.cpp Client/srcClient/ShipResource.cpp EventBus/EventBus.cpp Client/includeClient/view.h Client/includeClient/map.h Client/includeClient/camera.h)
+add_executable(Server Server/srcServer/main.cpp EventBus/EventBus.cpp Server/srcServer/Player.cpp Server/srcServer/Collision.cpp)
 
 target_link_libraries(Client ${SFML_LIBRARIES})
 target_link_libraries(Server ${SFML_LIBRARIES})
