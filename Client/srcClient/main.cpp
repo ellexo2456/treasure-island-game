@@ -7,7 +7,7 @@
 #include "map.h"
 #include "camera.h"
 
-#define PORT 3003
+#define PORT 3001
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -66,7 +66,7 @@ int main() {
     sf::Vector2f size_of_screen = {640, 640};
 
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
-    camera.reset(sf::FloatRect(0, 0, 600, 600)); // инициализировали объект камеры
+    camera.reset(sf::FloatRect(0, 0, 500, 500)); // инициализировали объект камеры
 
     // Игроки
     std::string path_to_file = "../Client/srcClient/images/one.png";
@@ -81,6 +81,11 @@ int main() {
     std::string path_to_map = "../Client/srcClient/images/map.png";
     Map MyMap(path_to_map, coord, {0,0});
 
+    sf::Font font;
+    font.loadFromFile("../Client/srcClient/CyrilicOld.TTF");//передаем нашему шрифту файл шрифта
+    sf::Text text("", font, 40);//создаем объект текст. закидываем в объект текст строку, шрифт, размер шрифта(в пикселях);//сам объект текст (не строка)
+    text.setColor(sf::Color::Red);//покрасили текст в красный. если убрать эту строку, то по умолчанию он белый
+    text.setStyle(sf::Text::Bold | sf::Text::Underlined);
     Event custom_event;
 
     socket.setBlocking(false);
@@ -144,6 +149,10 @@ int main() {
 
         window.clear();
         MyMap.render(window);
+
+       // text.setString("Собрано камней:");//задает строку тексту
+        //text.setPosition(camera.getCenter());//задаем позицию текста, центр камеры
+        //indow.draw(text);//рисую этот текст
 
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
