@@ -10,7 +10,7 @@
 #include "Lev.h"
 #include "resources.h"
 
-#define PORT 3000
+#define PORT 3001
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -88,7 +88,7 @@ int main() {
     sf::Vector2f size_of_screen = {800, 800};
 
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
-    camera.reset(sf::FloatRect(0, 0, 700, 700)); // инициализировали объект камеры
+    camera.reset(sf::FloatRect(0, 0, 800, 800)); // инициализировали объект камеры
 
     // Игроки
     std::string path_to_file = "../Client/srcClient/images/one.png";
@@ -112,6 +112,7 @@ int main() {
     ShipResourceText ship_resource_text("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
 
     std::vector<Object> new_objects = {};
+    std::vector<Resources> new_sprites = {};
 
     std::string name_of_object_one = "res";
     struct SpriteCoord res = {0, 64, 32, 32};  // Это можно не менять
@@ -203,16 +204,22 @@ int main() {
         window.draw(map);
         window.draw(ship_resource_text.text);
         new_objects = {};
-        if (received_event.got_ship_resource.picked_item_index != -1) {
-            std::cout << vector_res[received_event.got_ship_resource.picked_item_index].rect.top
-                      << ' ' << vector_res[received_event.got_ship_resource.picked_item_index].rect.left << std::endl;
-        }
+
+        if (received_event.type == got_ship_resource) {
         for (int k = 0; k < vector_res.size(); ++k) {
             if (k != received_event.got_ship_resource.picked_item_index) {
                 new_objects.push_back(vector_res[k]);
             }
         }
-        vector_res = new_objects;
+            if (received_event.got_ship_resource.picked_item_index != -1) {
+                std::cout << vector_res[received_event.got_ship_resource.picked_item_index].rect.top
+                          << ' ' << vector_res[received_event.got_ship_resource.picked_item_index].rect.left << std::endl;
+            }
+            vector_res = new_objects;
+
+        }
+        if (received_event.got_ship_resource.picked_item_index != -1)
+            std::cout << "1" << std::endl;
         // Проходимся по элементам  вектора спрайтов и
         for(int i = 0; i < vector_res.size(); i++) {
             coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов

@@ -6,7 +6,7 @@
 
 #include "Models.h"
 
-#define PORT 3000
+#define PORT 3001
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -147,6 +147,7 @@ int main() {
     while (true) {
         for (int i = 0; i < 2; ++i) {
             collision.set_picked_item_index(-1);
+            event_to_send.got_ship_resource.picked_item_index = -1;
             collision.set_is_got(false);
             packet.clear();
             if (clients[i].receive(packet) == sf::Socket::NotReady) {
@@ -175,8 +176,8 @@ int main() {
             }
             for (int j = 0; j < 2; ++j) {
                 event_to_send.client_number = j;
-                event_to_send.got_ship_resource.picked_item_index = collision.get_picked_item_index();
-                if (event_to_send.moved_player_number == event_to_send.client_number && collision.get_is_got()) {
+                if (collision.get_is_got()) {
+                    event_to_send.got_ship_resource.picked_item_index = collision.get_picked_item_index();
                     event_to_send.type = got_ship_resource;
                 }
                 packet.clear();

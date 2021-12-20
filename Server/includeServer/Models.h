@@ -24,7 +24,7 @@ class Player : public Model {
 public:
     Player() {
         coordinates = {0,0};
-        speed = 5;
+        speed = 4;
         player_number = 0;
         player_sprite_coordinates = {.begin_x = 0, .begin_y = 0, .height = 32, .width = 32};
         ship_resource = 0;
