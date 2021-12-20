@@ -9,8 +9,9 @@
 #include "ResourceText.h"
 #include "Lev.h"
 #include "resources.h"
+#include "unistd.h"
 
-#define PORT 3001
+#define PORT 3002
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -137,6 +138,7 @@ int main() {
 
     ////////////////////////////////////////////////////////////////
 
+    WinText won("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
     Event custom_event;
 
     socket.setBlocking(false);
@@ -231,7 +233,37 @@ int main() {
 //        window.draw(resource_sprite.hero_sprite);
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
+        if (received_event.got_ship_resource.ship_resource_count[0] >= 6) {
+            if (received_event.client_number == 0) {
+                won.text_render(0, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+                sleep(3);
+                break;
+            } else {
+                won.text_render(1, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+                sleep(3);
+                break;
+            }
+        } else if (received_event.got_ship_resource.ship_resource_count[1] >= 6) {
+            if (received_event.client_number == 1) {
+                won.text_render(0, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+                sleep(3);
+                break;
+            } else {
+                won.text_render(1, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+                sleep(3);
+                break;
+            }
+        }
         window.display();
+
     }
     return 0;
 }

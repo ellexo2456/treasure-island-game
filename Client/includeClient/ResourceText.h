@@ -25,10 +25,22 @@ public:
     ShipResourceText (const std::string& path_to_font_file) {
         font.loadFromFile(path_to_font_file);
         text = {"", font, 15};
-        text.setColor(sf::Color::Red);
+        text.setFillColor(sf::Color::Red);
         text.setStyle(sf::Text::Bold | sf::Text::Underlined);
     }
     virtual void text_render(int resource_count, sf::Vector2f coordinates) override;
 };
+
+class WinText : public ResourceText {
+public:
+    WinText (const std::string& path_to_font_file) {
+        font.loadFromFile(path_to_font_file);
+        text = {"", font, 80};
+        text.setFillColor(sf::Color::Red);
+        text.setStyle(sf::Text::Bold);
+    }
+    virtual void text_render(int resource_count, sf::Vector2f coordinates) override;
+};
+
 
 #endif //ISLANDGAME_RESOURCETEXT_H

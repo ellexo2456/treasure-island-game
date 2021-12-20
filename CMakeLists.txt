@@ -13,7 +13,8 @@ include_directories(Server/includeServer)
 include_directories(EventBus/Include)
 
 add_executable(Client Client/srcClient/main.cpp Client/srcClient/ShipResourceText.cpp EventBus/EventBus.cpp
-Client/includeClient/view.h Client/includeClient/map.h Client/includeClient/camera.h Client/includeClient/Lev.h Client/includeClient/resources.h Client/srcClient/Lev.cpp)
+Client/includeClient/view.h Client/includeClient/map.h Client/includeClient/camera.h Client/includeClient/Lev.h
+        Client/includeClient/resources.h Client/srcClient/Lev.cpp Client/srcClient/WinText.cpp)
 add_executable(Server Server/srcServer/main.cpp EventBus/EventBus.cpp Server/srcServer/Player.cpp Server/srcServer/Collision.cpp Client/srcClient/Lev.cpp)
 
 target_link_libraries(Client ${SFML_LIBRARIES} ${TinyXML2_LIBRARIES} ${TinyXML2_DEPENDENCIES} ${TinyXML_LIBRARIES} ${TinyXML_DEPENDENCIES})
