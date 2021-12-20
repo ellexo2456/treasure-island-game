@@ -6,8 +6,9 @@
 #include "clientPlayer.h"
 #include "map.h"
 #include "camera.h"
+#include "Resource.h"
 
-#define PORT 3000
+#define PORT 3002
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -15,18 +16,35 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     switch(type_number) {
         case 0: {
             received_event.type = user_init;
+            break;
         }
         case 1: {
             received_event.type = dir_left;
+            break;
         }
         case 2: {
             received_event.type = dir_right;
+            break;
         }
         case 3: {
             received_event.type = dir_straight;
+            break;
         }
         case 4: {
             received_event.type = dir_back;
+            break;
+        }
+        case 5: {
+            received_event.type = is_intersect_with_player;
+            break;
+        }
+        case 6: {
+            received_event.type = is_intersect_with_map;
+            break;
+        }
+        case 7: {
+            received_event.type = got_ship_resource;
+            break;
         }
         default: {
             received_event.type = error;
@@ -34,8 +52,10 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         }
     }
     packet >> received_event.client_number;
+    packet >> received_event.got_ship_resource.map_row_to_change;
+    packet >> received_event.got_ship_resource.map_column_to_change;
     for (int i = 0; i < 2; ++i) {
-        packet >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
+        packet >> received_event.got_ship_resource.ship_resource_count[i] >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
         >> received_event.user_moved.sprite_coordinates[i].height >> received_event.user_moved.sprite_coordinates[i].width;
     }
@@ -45,8 +65,10 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
     packet << received_event.client_number;
+    packet << received_event.got_ship_resource.map_row_to_change;
+    packet << received_event.got_ship_resource.map_column_to_change;
     for (int i = 0; i < 2; ++i) {
-        packet << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
+        packet << received_event.got_ship_resource.ship_resource_count[i] << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
         << received_event.user_moved.sprite_coordinates[i].height << received_event.user_moved.sprite_coordinates[i].width;
     }
@@ -63,7 +85,7 @@ int main() {
     Event received_event;
     packet >> received_event;
 
-    sf::Vector2f size_of_screen = {640, 640};
+    sf::Vector2f size_of_screen = {900, 900};
 
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
     camera.reset(sf::FloatRect(0, 0, 600, 600)); // инициализировали объект камеры
@@ -81,12 +103,15 @@ int main() {
     std::string path_to_map = "../Client/srcClient/images/map.png";
     Map MyMap(path_to_map, coord, {0,0});
 
+    // Ресы для корабля
+    ShipResource ship_resource("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
+
     Event custom_event;
 
     socket.setBlocking(false);
 
     while (window.isOpen()) {
-        sf::Event event;
+        sf::Event event{};
 
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -100,28 +125,28 @@ int main() {
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::A)))) {
                 custom_event.type = dir_left;
             }
-                //coord.begin_y = 32; coord.begin_x = 32;};
+            //coord.begin_y = 32; coord.begin_x = 32;};
 
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::D)))) {
                 custom_event.type = dir_right;
             }
-                //coord.begin_y = 64; coord.begin_x = 32;};
+            //coord.begin_y = 64; coord.begin_x = 32;};
 
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::W)))) {
                 custom_event.type = dir_straight;
             }
-                 //coord.begin_y = 96; coord.begin_x = 32;};
+            //coord.begin_y = 96; coord.begin_x = 32;};
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Down) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::S)))) {
                 custom_event.type = dir_back;
             }
-                 //coord.begin_y = 0; coord.begin_x = 32;};
+            //coord.begin_y = 0; coord.begin_x = 32;};
         }
 
         if (custom_event.type != user_init) {
-           // std::cout << custom_event.type << std::endl;
+            // std::cout << custom_event.type << std::endl;
             packet.clear();
             packet << custom_event;
             socket.send(packet);
@@ -142,9 +167,14 @@ int main() {
         give_player_coord_to_camera(received_event.user_moved.coordinates[received_event.client_number]);
         window.setView(camera);
 
+        //if (received_event.type == got_ship_resource) {
+        ship_resource.text_render(received_event.got_ship_resource.ship_resource_count[received_event.client_number], camera.getCenter());
+        //}
+        MyMap.TileMap[received_event.got_ship_resource.map_row_to_change][received_event.got_ship_resource.map_column_to_change] = '0';
         window.clear();
         MyMap.render(window);
 
+        window.draw(ship_resource.text);
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
         window.display();
