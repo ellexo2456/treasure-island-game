@@ -126,6 +126,13 @@ int main() {
     resource_sprite.render(res, coord_obj); // обрезает картинку по данным SpriteCoord
 
     // В основном цикле есть ещё отрисовка
+    std::vector<Object> vector_res = map.getObjectsByName(name_of_object_one); // вектор объектов с указанным именем
+    std::vector<Resources> sprites_of_object(vector_res.size(), resource_sprite); // вектор спрайтов с длинной вектора объектов
+    // Цикл начальной инициализации, хз без него наверное работает, но удалять лучше не надо
+    for(int i = 0; i < vector_res.size(); i++) {
+        coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top};
+        (sprites_of_object.at(i)).render(res, coord_obj);
+    }
 
     ////////////////////////////////////////////////////////////////
 
@@ -196,9 +203,16 @@ int main() {
 
         //window.draw(ship_resource.text);
         window.draw(map);
-        //for ()
-        resource_sprite.render(res, coord_obj);  // обрезаем картинку
-        window.draw(resource_sprite.hero_sprite);
+
+        // Проходимся по элементам  вектора спрайтов и
+        for(int i = 0; i < vector_res.size(); i++) {
+            coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов
+            (sprites_of_object.at(i)).render(res, coord_obj); // задаём им координаты отрисовки по координатам вектора объектов res
+            window.draw(sprites_of_object.at(i).hero_sprite);
+        }
+
+//        resource_sprite.render(res, coord_obj);  // обрезаем картинку
+//        window.draw(resource_sprite.hero_sprite);
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
         window.display();
