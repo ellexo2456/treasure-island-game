@@ -4,9 +4,11 @@
 #include <SFML/Network.hpp>
 
 #include "clientPlayer.h"
-#include "map.h"
+//#include "map.h"
 #include "camera.h"
 #include "Resource.h"
+#include "Lev.h"
+#include "resources.h"
 
 #define PORT 3002
 
@@ -99,12 +101,33 @@ int main() {
     Player Player2(path_to_file, received_event.user_moved.sprite_coordinates[1],
                    received_event.user_moved.coordinates[1], size_of_screen);
 
-    // Карта
+    /*// Карта
     std::string path_to_map = "../Client/srcClient/images/map.png";
-    Map MyMap(path_to_map, coord, {0,0});
+    Map MyMap(path_to_map, coord, {0,0});*/
+    std::string path_to_level = "../Client/srcClient/main_map.xml";
+    TileMap map;
+    map.load(path_to_level);
 
     // Ресы для корабля
-    ShipResource ship_resource("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
+    //ShipResource ship_resource("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
+
+    ////Ресурсы///////////////////////////////////////////////////
+
+    std::string name_of_object_one = "res";
+    struct SpriteCoord res = {0, 64, 32, 32};  // Это можно не менять
+
+    Object tex = map.getObject(name_of_object_one); //
+    /*.getObject - только первый объект с заданным именем, вернёт вектор
+     * .getObjectsByName все объекты с заданным именем, вернёт вектор
+     * getAllObjects все объекты, вернёт вектор
+     */
+    sf::Vector2f coord_obj = {tex.rect.left, tex.rect.top}; // откуда начинать отрисовку, внутренние поля Object/rect
+    Resources resource_sprite("../Client/srcClient/images/map.png", res, coord_obj);
+    resource_sprite.render(res, coord_obj); // обрезает картинку по данным SpriteCoord
+
+    // В основном цикле есть ещё отрисовка
+
+    ////////////////////////////////////////////////////////////////
 
     Event custom_event;
 
@@ -167,14 +190,15 @@ int main() {
         give_player_coord_to_camera(received_event.user_moved.coordinates[received_event.client_number]);
         window.setView(camera);
 
-        //if (received_event.type == got_ship_resource) {
-        ship_resource.text_render(received_event.got_ship_resource.ship_resource_count[received_event.client_number], camera.getCenter());
-        //}
+        /*ship_resource.text_render(received_event.got_ship_resource.ship_resource_count[received_event.client_number], camera.getCenter());
         MyMap.TileMap[received_event.got_ship_resource.map_row_to_change][received_event.got_ship_resource.map_column_to_change] = '0';
-        window.clear();
-        MyMap.render(window);
+        window.clear();*/
 
-        window.draw(ship_resource.text);
+        //window.draw(ship_resource.text);
+        window.draw(map);
+        //for ()
+        resource_sprite.render(res, coord_obj);  // обрезаем картинку
+        window.draw(resource_sprite.hero_sprite);
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
         window.display();
