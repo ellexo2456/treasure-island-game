@@ -12,7 +12,7 @@ include_directories(Client/includeClient)
 include_directories(Server/includeServer)
 include_directories(EventBus/Include)
 
-add_executable(Client Client/srcClient/main.cpp Client/srcClient/ShipResource.cpp EventBus/EventBus.cpp
+add_executable(Client Client/srcClient/main.cpp Client/srcClient/ShipResourceText.cpp EventBus/EventBus.cpp
 Client/includeClient/view.h Client/includeClient/map.h Client/includeClient/camera.h Client/includeClient/Lev.h Client/includeClient/resources.h Client/srcClient/Lev.cpp)
 add_executable(Server Server/srcServer/main.cpp EventBus/EventBus.cpp Server/srcServer/Player.cpp Server/srcServer/Collision.cpp Client/srcClient/Lev.cpp)
 

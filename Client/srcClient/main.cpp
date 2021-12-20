@@ -6,11 +6,11 @@
 #include "clientPlayer.h"
 //#include "map.h"
 #include "camera.h"
-#include "Resource.h"
+#include "ResourceText.h"
 #include "Lev.h"
 #include "resources.h"
 
-#define PORT 3001
+#define PORT 3000
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -54,8 +54,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         }
     }
     packet >> received_event.client_number;
-    packet >> received_event.got_ship_resource.map_row_to_change;
-    packet >> received_event.got_ship_resource.map_column_to_change;
+    packet >> received_event.got_ship_resource.picked_item_index;
     for (int i = 0; i < 2; ++i) {
         packet >> received_event.got_ship_resource.ship_resource_count[i] >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -67,8 +66,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
     packet << received_event.client_number;
-    packet << received_event.got_ship_resource.map_row_to_change;
-    packet << received_event.got_ship_resource.map_column_to_change;
+    packet << received_event.got_ship_resource.picked_item_index;
     for (int i = 0; i < 2; ++i) {
         packet << received_event.got_ship_resource.ship_resource_count[i] << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -87,10 +85,10 @@ int main() {
     Event received_event;
     packet >> received_event;
 
-    sf::Vector2f size_of_screen = {900, 900};
+    sf::Vector2f size_of_screen = {800, 800};
 
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
-    camera.reset(sf::FloatRect(0, 0, 600, 600)); // инициализировали объект камеры
+    camera.reset(sf::FloatRect(0, 0, 700, 700)); // инициализировали объект камеры
 
     // Игроки
     std::string path_to_file = "../Client/srcClient/images/one.png";
@@ -108,10 +106,12 @@ int main() {
     TileMap map;
     map.load(path_to_level);
 
-    // Ресы для корабля
-    //ShipResource ship_resource("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
 
     ////Ресурсы///////////////////////////////////////////////////
+
+    ShipResourceText ship_resource_text("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
+
+    std::vector<Object> new_objects = {};
 
     std::string name_of_object_one = "res";
     struct SpriteCoord res = {0, 64, 32, 32};  // Это можно не менять
@@ -184,11 +184,11 @@ int main() {
 
         packet.clear();
         if (socket.receive(packet) != sf::Socket::NotReady) {
-            packet >> received_event;
-            std::cout << "x: " << received_event.user_moved.coordinates[0].x << ' ' << "y: " << received_event.user_moved.coordinates[0].y << std::endl;
-            std::cout << "x: " << received_event.user_moved.coordinates[1].x << ' ' << "y: " << received_event.user_moved.coordinates[1].y << std::endl;
-            std::cout << "w: " << received_event.user_moved.sprite_coordinates[0].width << ' ' << "h: " << received_event.user_moved.sprite_coordinates[0].height << std::endl;
-            std::cout << "w: " << received_event.user_moved.sprite_coordinates[1].width << ' ' << "h: " << received_event.user_moved.sprite_coordinates[1].height << std::endl << std::endl;
+                packet >> received_event;
+//            std::cout << "x: " << received_event.user_moved.coordinates[0].x << ' ' << "y: " << received_event.user_moved.coordinates[0].y << std::endl;
+//            std::cout << "x: " << received_event.user_moved.coordinates[1].x << ' ' << "y: " << received_event.user_moved.coordinates[1].y << std::endl;
+//            std::cout << "w: " << received_event.user_moved.sprite_coordinates[0].width << ' ' << "h: " << received_event.user_moved.sprite_coordinates[0].height << std::endl;
+//            std::cout << "w: " << received_event.user_moved.sprite_coordinates[1].width << ' ' << "h: " << received_event.user_moved.sprite_coordinates[1].height << std::endl << std::endl;
         }
 
         Player1.render(received_event.user_moved.sprite_coordinates[0], received_event.user_moved.coordinates[0]);
@@ -197,13 +197,22 @@ int main() {
         give_player_coord_to_camera(received_event.user_moved.coordinates[received_event.client_number]);
         window.setView(camera);
 
-        /*ship_resource.text_render(received_event.got_ship_resource.ship_resource_count[received_event.client_number], camera.getCenter());
-        MyMap.TileMap[received_event.got_ship_resource.map_row_to_change][received_event.got_ship_resource.map_column_to_change] = '0';
-        window.clear();*/
+        ship_resource_text.text_render(received_event.got_ship_resource.ship_resource_count[received_event.client_number], camera.getCenter());
+        window.clear();
 
-        //window.draw(ship_resource.text);
         window.draw(map);
-
+        window.draw(ship_resource_text.text);
+        new_objects = {};
+        if (received_event.got_ship_resource.picked_item_index != -1) {
+            std::cout << vector_res[received_event.got_ship_resource.picked_item_index].rect.top
+                      << ' ' << vector_res[received_event.got_ship_resource.picked_item_index].rect.left << std::endl;
+        }
+        for (int k = 0; k < vector_res.size(); ++k) {
+            if (k != received_event.got_ship_resource.picked_item_index) {
+                new_objects.push_back(vector_res[k]);
+            }
+        }
+        vector_res = new_objects;
         // Проходимся по элементам  вектора спрайтов и
         for(int i = 0; i < vector_res.size(); i++) {
             coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов

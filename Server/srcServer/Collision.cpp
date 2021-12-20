@@ -22,7 +22,8 @@ void Collision::update(Event event) {
                                 break;
                             }
                             case 2: {
-                                players[i].set_coordinates({event.user_moved.coordinates[j].x - players[i].get_player_sprite_coordinates().width, \
+                                players[i].set_coordinates({event.user_moved.coordinates[j].x -
+                                                            players[i].get_player_sprite_coordinates().width, \
                                 players[i].get_coordinates().y});
                                 break;
                             }
@@ -52,7 +53,7 @@ void Collision::update(Event event) {
             if (event.moved_player_number != players[i].get_player_number()) {
                 continue;
             }
-            for (auto object_solid : objects_solid) {
+            for (auto object_solid: objects_solid) {
                 if (players[i].get_sprite_rect().intersects(object_solid.rect)) {
                     switch (players[i].get_direction()) {
                         case 1: {
@@ -60,8 +61,9 @@ void Collision::update(Event event) {
                                                         players[i].get_coordinates().y});
                             break;
                         }
-                            case 2: {
-                            players[i].set_coordinates({object_solid.rect.left - players[i].get_player_sprite_coordinates().width, \
+                        case 2: {
+                            players[i].set_coordinates(
+                                    {object_solid.rect.left - players[i].get_player_sprite_coordinates().width, \
                                 players[i].get_coordinates().y});
                             break;
                         }
@@ -76,22 +78,30 @@ void Collision::update(Event event) {
                             break;
                         }
                         default: {
-                            players[i].set_coordinates({object_solid.rect.left - players[i].get_player_sprite_coordinates().width, \
+                            players[i].set_coordinates(
+                                    {object_solid.rect.left - players[i].get_player_sprite_coordinates().width, \
                                 object_solid.rect.top - players[i].get_player_sprite_coordinates().height});
                             break;
                         }
                     }
                 }
             }
-//                    if (TileMap[k][l] == 'k') {
-//                        players[i].set_ship_resource(players[i].get_ship_resource() + 1);
-//                        TileMap[k][l] = '0';
-//                        is_got = true;
-//                        map_row_to_change = k;
-//                        map_column_to_change = l;
-//                    }
+            for (int j = 0; j < objects_res.size(); ++j) {
+                if (players[i].get_sprite_rect().intersects(objects_res[j].rect)) {
+                    players[i].set_ship_resource(players[i].get_ship_resource() + 1);
+                    is_got = true;
+                    picked_item_index = j;
+                    std::cout << objects_res[picked_item_index].rect.top
+                              << ' ' << objects_res[picked_item_index].rect.left << std::endl;
+                    std::vector<Object> new_objects = {};
+                    for (int k = 0; k < objects_res.size(); ++k) {
+                        if (k != picked_item_index) {
+                            new_objects.push_back(objects_res[k]);
+                        }
+                    }
+                    objects_res = new_objects;
                 }
-          //  }
-        //}
+            }
+        }
     }
 }

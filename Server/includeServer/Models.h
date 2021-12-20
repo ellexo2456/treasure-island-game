@@ -24,7 +24,7 @@ class Player : public Model {
 public:
     Player() {
         coordinates = {0,0};
-        speed = 8;
+        speed = 5;
         player_number = 0;
         player_sprite_coordinates = {.begin_x = 0, .begin_y = 0, .height = 32, .width = 32};
         ship_resource = 0;
@@ -108,13 +108,18 @@ public:
         return is_got;
     }
 
-    int get_map_row_to_change() {
-        return map_row_to_change;
+    void set_is_got(bool is) {
+        is_got = is;
     }
 
-    int get_map_column_to_change() {
-        return map_column_to_change;
+    int get_picked_item_index() {
+        return picked_item_index;
     }
+
+    void set_picked_item_index(int new_picked_item_index) {
+        picked_item_index = new_picked_item_index;
+    }
+
 
 private:
     Player (&players)[2];
@@ -146,8 +151,7 @@ private:
     TileMap map;
     std::vector<Object> objects_res;
     std::vector<Object> objects_solid;
-    int map_row_to_change;
-    int map_column_to_change;
+    int picked_item_index;
     bool is_got;
 };
 

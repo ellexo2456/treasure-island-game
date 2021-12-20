@@ -2,15 +2,15 @@
 // Created by alexey on 18.12.2021.
 //
 
-#ifndef ISLANDGAME_RESOURCE_H
-#define ISLANDGAME_RESOURCE_H
+#ifndef ISLANDGAME_RESOURCETEXT_H
+#define ISLANDGAME_RESOURCETEXT_H
 
 #include <SFML/Graphics.hpp>
 
 #include <sstream>
 #include <string>
 
-class Resource {
+class ResourceText {
 public:
     sf::Font font;
     sf::Text text;
@@ -20,9 +20,9 @@ public:
     virtual void text_render(int resource_count, sf::Vector2f coordinates) = 0;
 };
 
-class ShipResource : public Resource {
+class ShipResourceText : public ResourceText {
 public:
-    ShipResource (const std::string& path_to_font_file) {
+    ShipResourceText (const std::string& path_to_font_file) {
         font.loadFromFile(path_to_font_file);
         text = {"", font, 15};
         text.setColor(sf::Color::Red);
@@ -31,4 +31,4 @@ public:
     virtual void text_render(int resource_count, sf::Vector2f coordinates) override;
 };
 
-#endif //ISLANDGAME_RESOURCE_H
+#endif //ISLANDGAME_RESOURCETEXT_H

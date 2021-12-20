@@ -6,7 +6,7 @@
 
 #include "Models.h"
 
-#define PORT 3001
+#define PORT 3000
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -50,8 +50,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         }
     }
     packet >> received_event.client_number;
-    packet >> received_event.got_ship_resource.map_row_to_change;
-    packet >> received_event.got_ship_resource.map_column_to_change;
+    packet >> received_event.got_ship_resource.picked_item_index;
     for (int i = 0; i < 2; ++i) {
         packet >> received_event.got_ship_resource.ship_resource_count[i] >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -63,8 +62,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
     packet << received_event.client_number;
-    packet << received_event.got_ship_resource.map_row_to_change;
-    packet << received_event.got_ship_resource.map_column_to_change;
+    packet << received_event.got_ship_resource.picked_item_index;
     for (int i = 0; i < 2; ++i) {
         packet << received_event.got_ship_resource.ship_resource_count[i] << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
@@ -108,8 +106,7 @@ int main() {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 
-    event_to_send.got_ship_resource.map_row_to_change = 3;
-    event_to_send.got_ship_resource.map_column_to_change = 3;
+    event_to_send.got_ship_resource.picked_item_index = -1;
 
     event_to_send.type = user_init;
     players[0].set_coordinates({300, 300});
@@ -149,6 +146,8 @@ int main() {
 
     while (true) {
         for (int i = 0; i < 2; ++i) {
+            collision.set_picked_item_index(-1);
+            collision.set_is_got(false);
             packet.clear();
             if (clients[i].receive(packet) == sf::Socket::NotReady) {
                 continue;
@@ -176,9 +175,8 @@ int main() {
             }
             for (int j = 0; j < 2; ++j) {
                 event_to_send.client_number = j;
+                event_to_send.got_ship_resource.picked_item_index = collision.get_picked_item_index();
                 if (event_to_send.moved_player_number == event_to_send.client_number && collision.get_is_got()) {
-                    event_to_send.got_ship_resource.map_row_to_change = collision.get_map_row_to_change();
-                    event_to_send.got_ship_resource.map_column_to_change = collision.get_map_column_to_change();
                     event_to_send.type = got_ship_resource;
                 }
                 packet.clear();

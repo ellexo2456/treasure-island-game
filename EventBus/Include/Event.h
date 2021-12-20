@@ -36,8 +36,7 @@ struct UserMovedEventData {
 };
 
 struct GotShipResourceData {
-    int map_row_to_change;
-    int map_column_to_change;
+    int picked_item_index;
     int ship_resource_count[2];
 };
 
