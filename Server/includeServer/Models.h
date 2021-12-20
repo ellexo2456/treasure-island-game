@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "EventBus.h"
+#include "Lev.h"
 
 enum Team {
     first,
@@ -23,7 +24,7 @@ class Player : public Model {
 public:
     Player() {
         coordinates = {0,0};
-        speed = 2;
+        speed = 8;
         player_number = 0;
         player_sprite_coordinates = {.begin_x = 0, .begin_y = 0, .height = 32, .width = 32};
         ship_resource = 0;
@@ -96,7 +97,11 @@ private:
 
 class Collision : public Model {
 public:
-    Collision(Player (&players)[2], int player_count) : players(players), player_count(player_count), is_got(false) {};
+    Collision(Player (&players)[2], int player_count) : players(players), player_count(player_count), is_got(false) {
+        map.load("../Client/srcClient/main_map.xml");
+        objects_res = map.getObjectsByName("res");
+        objects_solid = map.getObjectsByName("Solid");
+    };
     virtual void update(Event event) override;
 
     bool get_is_got() {
@@ -114,30 +119,33 @@ public:
 private:
     Player (&players)[2];
     int player_count;
-    static const int HEIGHT_MAP = 20; // Высота карты
-    static const int WIDTH_MAP = 20;  // Ширина карты
-    sf::String TileMap[HEIGHT_MAP] = {
-            "ssssssssssssssssssss",
-            "s000000000000000000s",
-            "s000000000000k00000s",
-            "s00000k000000000000s",
-            "s000000000000000000s",
-            "s000000000000000000s",
-            "s000000000000000000s",
-            "s000000000k00000000s",
-            "s000000000000000000s",
-            "s000000000000000000s",
-            "s000000000000000000s",
-            "s000000000000000000s",
-            "s000000000000000000s",
-            "s000000000000000000s",
-            "s00000k000000000000s",
-            "s000000000000000000s",
-            "s000000000000k00000s",
-            "s000000000000000000s",
-            "s000000000000000000s",
-            "ssssssssssssssssssss",
-    };
+//    static const int HEIGHT_MAP = 20; // Высота карты
+//    static const int WIDTH_MAP = 20;  // Ширина карты
+//    sf::String TileMap[HEIGHT_MAP] = {
+//            "ssssssssssssssssssss",
+//            "s000000000000000000s",
+//            "s000000000000k00000s",
+//            "s00000k000000000000s",
+//            "s000000000000000000s",
+//            "s000000000000000000s",
+//            "s000000000000000000s",
+//            "s000000000k00000000s",
+//            "s000000000000000000s",
+//            "s000000000000000000s",
+//            "s000000000000000000s",
+//            "s000000000000000000s",
+//            "s000000000000000000s",
+//            "s000000000000000000s",
+//            "s00000k000000000000s",
+//            "s000000000000000000s",
+//            "s000000000000k00000s",
+//            "s000000000000000000s",
+//            "s000000000000000000s",
+//            "ssssssssssssssssssss",
+//    };
+    TileMap map;
+    std::vector<Object> objects_res;
+    std::vector<Object> objects_solid;
     int map_row_to_change;
     int map_column_to_change;
     bool is_got;

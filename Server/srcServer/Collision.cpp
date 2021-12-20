@@ -52,50 +52,46 @@ void Collision::update(Event event) {
             if (event.moved_player_number != players[i].get_player_number()) {
                 continue;
             }
-            for (int k = players[i].get_coordinates().y / 32;
-                 k < (players[i].get_coordinates().y + players[i].get_player_sprite_coordinates().height) / 32; ++k) {
-                for (int l = players[i].get_coordinates().x / 32; l < (players[i].get_coordinates().x +
-                                                                       players[i].get_player_sprite_coordinates().width) /
-                                                                      32; ++l) {
-                    if (TileMap[k][l] == 's') {
-                        switch (players[i].get_direction()) {
-                            case 1: {
-                                players[i].set_coordinates({static_cast<float>(32*l + \
-                                    players[i].get_player_sprite_coordinates().width), players[i].get_coordinates().y});
-                                break;
-                            }
-                            case 2: {
-                                players[i].set_coordinates({static_cast<float>(32*l -
-                                                                               players[i].get_player_sprite_coordinates().width), \
-                                players[i].get_coordinates().y});
-                                break;
-                            }
-                            case 3: {
-                                players[i].set_coordinates({players[i].get_coordinates().x, \
-                                static_cast<float>(32*k + players[i].get_player_sprite_coordinates().height)});
-                                break;
-                            }
-                            case 4: {
-                                players[i].set_coordinates({players[i].get_coordinates().x, \
-                                static_cast<float>(32*k - players[i].get_player_sprite_coordinates().height)});
-                                break;
-                            }
-                            default: {
-                                players[i].set_coordinates({players[i].get_coordinates().x + players[i].get_speed(), \
-                                players[i].get_coordinates().y + players[i].get_speed()});
-                                break;
-                            }
+            for (auto object_solid : objects_solid) {
+                if (players[i].get_sprite_rect().intersects(object_solid.rect)) {
+                    switch (players[i].get_direction()) {
+                        case 1: {
+                            players[i].set_coordinates({object_solid.rect.left + object_solid.rect.width,
+                                                        players[i].get_coordinates().y});
+                            break;
                         }
-                    }
-                    if (TileMap[k][l] == 'k') {
-                        players[i].set_ship_resource(players[i].get_ship_resource() + 1);
-                        TileMap[k][l] = '0';
-                        is_got = true;
-                        map_row_to_change = k;
-                        map_column_to_change = l;
+                            case 2: {
+                            players[i].set_coordinates({object_solid.rect.left - players[i].get_player_sprite_coordinates().width, \
+                                players[i].get_coordinates().y});
+                            break;
+                        }
+                        case 3: {
+                            players[i].set_coordinates({players[i].get_coordinates().x, \
+                                    object_solid.rect.top + object_solid.rect.height});
+                            break;
+                        }
+                        case 4: {
+                            players[i].set_coordinates({players[i].get_coordinates().x, \
+                                object_solid.rect.top - players[i].get_player_sprite_coordinates().height});
+                            break;
+                        }
+                        default: {
+                            players[i].set_coordinates({object_solid.rect.left - players[i].get_player_sprite_coordinates().width, \
+                                object_solid.rect.top - players[i].get_player_sprite_coordinates().height});
+                            break;
+                        }
                     }
                 }
             }
-        }
+//                    if (TileMap[k][l] == 'k') {
+//                        players[i].set_ship_resource(players[i].get_ship_resource() + 1);
+//                        TileMap[k][l] = '0';
+//                        is_got = true;
+//                        map_row_to_change = k;
+//                        map_column_to_change = l;
+//                    }
+                }
+          //  }
+        //}
     }
 }

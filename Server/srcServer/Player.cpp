@@ -1,7 +1,6 @@
 //
 // Created by alexey on 08.12.2021.
 //
-
 #include "Models.h"
 
 void Player::update(Event event) {
