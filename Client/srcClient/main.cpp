@@ -6,8 +6,10 @@
 #include "clientPlayer.h"
 //#include "map.h"
 #include "camera.h"
+#include "ResourceText.h"
 #include "Lev.h"
 #include "resources.h"
+#include "unistd.h"
 
 #define PORT 3002
 
@@ -17,18 +19,35 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     switch(type_number) {
         case 0: {
             received_event.type = user_init;
+            break;
         }
         case 1: {
             received_event.type = dir_left;
+            break;
         }
         case 2: {
             received_event.type = dir_right;
+            break;
         }
         case 3: {
             received_event.type = dir_straight;
+            break;
         }
         case 4: {
             received_event.type = dir_back;
+            break;
+        }
+        case 5: {
+            received_event.type = is_intersect_with_player;
+            break;
+        }
+        case 6: {
+            received_event.type = is_intersect_with_map;
+            break;
+        }
+        case 7: {
+            received_event.type = got_ship_resource;
+            break;
         }
         default: {
             received_event.type = error;
@@ -36,8 +55,9 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         }
     }
     packet >> received_event.client_number;
+    packet >> received_event.got_ship_resource.picked_item_index;
     for (int i = 0; i < 2; ++i) {
-        packet >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
+        packet >> received_event.got_ship_resource.ship_resource_count[i] >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
         >> received_event.user_moved.sprite_coordinates[i].height >> received_event.user_moved.sprite_coordinates[i].width;
     }
@@ -47,8 +67,9 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
     packet << received_event.client_number;
+    packet << received_event.got_ship_resource.picked_item_index;
     for (int i = 0; i < 2; ++i) {
-        packet << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
+        packet << received_event.got_ship_resource.ship_resource_count[i] << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
         << received_event.user_moved.sprite_coordinates[i].height << received_event.user_moved.sprite_coordinates[i].width;
     }
@@ -65,10 +86,10 @@ int main() {
     Event received_event;
     packet >> received_event;
 
-    sf::Vector2f size_of_screen = {640, 640};
+    sf::Vector2f size_of_screen = {800, 800};
 
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
-    camera.reset(sf::FloatRect(0, 0, 600, 600)); // инициализировали объект камеры
+    camera.reset(sf::FloatRect(0, 0, 800, 800)); // инициализировали объект камеры
 
     // Игроки
     std::string path_to_file = "../Client/srcClient/images/one.png";
@@ -86,7 +107,13 @@ int main() {
     TileMap map;
     map.load(path_to_level);
 
+
     ////Ресурсы///////////////////////////////////////////////////
+
+    ShipResourceText ship_resource_text("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
+
+    std::vector<Object> new_objects = {};
+    std::vector<Resources> new_sprites = {};
 
     std::string name_of_object_one = "res";
     struct SpriteCoord res = {0, 64, 32, 32};  // Это можно не менять
@@ -111,11 +138,13 @@ int main() {
 
     ////////////////////////////////////////////////////////////////
 
+    WinText won("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
     Event custom_event;
+
     socket.setBlocking(false);
 
     while (window.isOpen()) {
-        sf::Event event;
+        sf::Event event{};
 
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -129,28 +158,28 @@ int main() {
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::A)))) {
                 custom_event.type = dir_left;
             }
-                //coord.begin_y = 32; coord.begin_x = 32;};
+            //coord.begin_y = 32; coord.begin_x = 32;};
 
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::D)))) {
                 custom_event.type = dir_right;
             }
-                //coord.begin_y = 64; coord.begin_x = 32;};
+            //coord.begin_y = 64; coord.begin_x = 32;};
 
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::W)))) {
                 custom_event.type = dir_straight;
             }
-                 //coord.begin_y = 96; coord.begin_x = 32;};
+            //coord.begin_y = 96; coord.begin_x = 32;};
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Down) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::S)))) {
                 custom_event.type = dir_back;
             }
-                 //coord.begin_y = 0; coord.begin_x = 32;};
+            //coord.begin_y = 0; coord.begin_x = 32;};
         }
 
         if (custom_event.type != user_init) {
-           // std::cout << custom_event.type << std::endl;
+            // std::cout << custom_event.type << std::endl;
             packet.clear();
             packet << custom_event;
             socket.send(packet);
@@ -158,11 +187,11 @@ int main() {
 
         packet.clear();
         if (socket.receive(packet) != sf::Socket::NotReady) {
-            packet >> received_event;
-            std::cout << "x: " << received_event.user_moved.coordinates[0].x << ' ' << "y: " << received_event.user_moved.coordinates[0].y << std::endl;
-            std::cout << "x: " << received_event.user_moved.coordinates[1].x << ' ' << "y: " << received_event.user_moved.coordinates[1].y << std::endl;
-            std::cout << "w: " << received_event.user_moved.sprite_coordinates[0].width << ' ' << "h: " << received_event.user_moved.sprite_coordinates[0].height << std::endl;
-            std::cout << "w: " << received_event.user_moved.sprite_coordinates[1].width << ' ' << "h: " << received_event.user_moved.sprite_coordinates[1].height << std::endl << std::endl;
+                packet >> received_event;
+//            std::cout << "x: " << received_event.user_moved.coordinates[0].x << ' ' << "y: " << received_event.user_moved.coordinates[0].y << std::endl;
+//            std::cout << "x: " << received_event.user_moved.coordinates[1].x << ' ' << "y: " << received_event.user_moved.coordinates[1].y << std::endl;
+//            std::cout << "w: " << received_event.user_moved.sprite_coordinates[0].width << ' ' << "h: " << received_event.user_moved.sprite_coordinates[0].height << std::endl;
+//            std::cout << "w: " << received_event.user_moved.sprite_coordinates[1].width << ' ' << "h: " << received_event.user_moved.sprite_coordinates[1].height << std::endl << std::endl;
         }
 
         Player1.render(received_event.user_moved.sprite_coordinates[0], received_event.user_moved.coordinates[0]);
@@ -171,11 +200,28 @@ int main() {
         give_player_coord_to_camera(received_event.user_moved.coordinates[received_event.client_number]);
         window.setView(camera);
 
+        ship_resource_text.text_render(received_event.got_ship_resource.ship_resource_count[received_event.client_number], camera.getCenter());
         window.clear();
-        // MyMap.render(window);
 
         window.draw(map);
+        window.draw(ship_resource_text.text);
+        new_objects = {};
 
+        if (received_event.type == got_ship_resource) {
+        for (int k = 0; k < vector_res.size(); ++k) {
+            if (k != received_event.got_ship_resource.picked_item_index) {
+                new_objects.push_back(vector_res[k]);
+            }
+        }
+            if (received_event.got_ship_resource.picked_item_index != -1) {
+                std::cout << vector_res[received_event.got_ship_resource.picked_item_index].rect.top
+                          << ' ' << vector_res[received_event.got_ship_resource.picked_item_index].rect.left << std::endl;
+            }
+            vector_res = new_objects;
+
+        }
+        if (received_event.got_ship_resource.picked_item_index != -1)
+            std::cout << "1" << std::endl;
         // Проходимся по элементам  вектора спрайтов и
         for(int i = 0; i < vector_res.size(); i++) {
             coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов
@@ -187,7 +233,37 @@ int main() {
 //        window.draw(resource_sprite.hero_sprite);
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
+        if (received_event.got_ship_resource.ship_resource_count[0] >= 6) {
+            if (received_event.client_number == 0) {
+                won.text_render(0, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+                sleep(3);
+                break;
+            } else {
+                won.text_render(1, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+                sleep(3);
+                break;
+            }
+        } else if (received_event.got_ship_resource.ship_resource_count[1] >= 6) {
+            if (received_event.client_number == 1) {
+                won.text_render(0, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+                sleep(3);
+                break;
+            } else {
+                won.text_render(1, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+                sleep(3);
+                break;
+            }
+        }
         window.display();
+
     }
     return 0;
 }
