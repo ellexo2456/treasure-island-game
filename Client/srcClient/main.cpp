@@ -11,7 +11,7 @@
 #include "resources.h"
 #include "unistd.h"
 
-#define PORT 3002
+#define PORT 3003
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -86,10 +86,10 @@ int main() {
     Event received_event;
     packet >> received_event;
 
-    sf::Vector2f size_of_screen = {800, 800};
+    sf::Vector2f size_of_screen = {900, 900};
 
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
-    camera.reset(sf::FloatRect(0, 0, 800, 800)); // инициализировали объект камеры
+    camera.reset(sf::FloatRect(0, 0, 700, 700)); // инициализировали объект камеры
 
     // Игроки
     std::string path_to_file = "../Client/srcClient/images/one.png";
@@ -101,7 +101,7 @@ int main() {
                    received_event.user_moved.coordinates[1], size_of_screen);
 
     /*// Карта
-    std::string path_to_map = "../Client/srcClient/images/map.png";
+    std::string path_to_map = "../Client/srcClient/images/map.adwpng";
     Map MyMap(path_to_map, coord, {0,0});*/
     std::string path_to_level = "../Client/srcClient/main_map.xml";
     TileMap map;
@@ -145,6 +145,8 @@ int main() {
 
     while (window.isOpen()) {
         sf::Event event{};
+        received_event.got_ship_resource.picked_item_index = -1;
+        received_event.type = user_init;
 
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -214,16 +216,17 @@ int main() {
             }
         }
             if (received_event.got_ship_resource.picked_item_index != -1) {
-                std::cout << vector_res[received_event.got_ship_resource.picked_item_index].rect.top
-                          << ' ' << vector_res[received_event.got_ship_resource.picked_item_index].rect.left << std::endl;
+                std::cout << "Y: " << vector_res[received_event.got_ship_resource.picked_item_index].rect.top
+                          << " X: " << vector_res[received_event.got_ship_resource.picked_item_index].rect.left << '\t' << "pckd itm ind: "
+                          << received_event.got_ship_resource.picked_item_index << std::endl;
             }
             vector_res = new_objects;
 
         }
-        if (received_event.got_ship_resource.picked_item_index != -1)
-            std::cout << "1" << std::endl;
-        // Проходимся по элементам  вектора спрайтов и
+          // Проходимся по элементам  вектора спрайтов и
         for(int i = 0; i < vector_res.size(); i++) {
+            if (received_event.got_ship_resource.picked_item_index != -1)
+                std::cout << "el nmb: " << i << '\t' << vector_res[i].rect.top << '\t' << vector_res[i].rect.left << std::endl;
             coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов
             (sprites_of_object.at(i)).render(res, coord_obj); // задаём им координаты отрисовки по координатам вектора объектов res
             window.draw(sprites_of_object.at(i).hero_sprite);

@@ -6,7 +6,7 @@
 
 #include "Models.h"
 
-#define PORT 3002
+#define PORT 3003
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -154,9 +154,9 @@ int main() {
                 continue;
             }
             packet >> received_event;
-            if (received_event.type != user_init) {
+            /*if (received_event.type != user_init) {
                 std::cout << received_event.type << std::endl;
-            }
+            }*/
             received_event.moved_player_number = i;
             event_bus.dispatch(received_event.type, received_event);
 
