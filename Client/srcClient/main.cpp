@@ -91,6 +91,9 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
     camera.reset(sf::FloatRect(0, 0, 700, 700)); // инициализировали объект камеры
 
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+
     // Игроки
     std::string path_to_file = "../Client/srcClient/images/one.png";
     struct SpriteCoord coord = {0, 0, 32,  32 };
@@ -106,6 +109,7 @@ int main() {
     std::string path_to_level = "../Client/srcClient/main_map.xml";
     TileMap map;
     map.load(path_to_level);
+
 
 
     ////Ресурсы///////////////////////////////////////////////////
@@ -203,9 +207,16 @@ int main() {
         window.setView(camera);
 
         ship_resource_text.text_render(received_event.got_ship_resource.ship_resource_count[received_event.client_number], camera.getCenter());
+
+        sf::RectangleShape frontend_rectangle(sf::Vector2f(180, 25));
+        frontend_rectangle.setFillColor(sf::Color(0, 0, 0,120));
+        frontend_rectangle.move(camera.getCenter().x + 103, camera.getCenter().y - 293);
+
+
         window.clear();
 
         window.draw(map);
+        window.draw(frontend_rectangle);
         window.draw(ship_resource_text.text);
         new_objects = {};
 
