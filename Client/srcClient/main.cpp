@@ -12,6 +12,7 @@
 #include "unistd.h"
 
 #define PORT 3003
+#define QUANTITY_RES 10
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -133,13 +134,17 @@ int main() {
 
     // В основном цикле есть ещё отрисовка
     std::vector<Object> vector_res = map.getObjectsByName(name_of_object_one); // вектор объектов с указанным именем
-    std::vector<Resources> sprites_of_object(vector_res.size(), resource_sprite); // вектор спрайтов с длинной вектора объектов
-    // Цикл начальной инициализации, хз без него наверное работает, но удалять лучше не надо
-    for(int i = 0; i < vector_res.size(); i++) {
-        coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top};
-        (sprites_of_object.at(i)).render(res, coord_obj);
-    }
+    std::vector<Resources> sprites_of_object(QUANTITY_RES, resource_sprite); // вектор спрайтов с длинной вектора объектов
 
+    // Рандомизация появления ресурсов
+    sf::Vector2f shift[QUANTITY_RES];
+
+    for(int i = 0; i < vector_res.size(); i++ ) {
+        for (int j = 0; j < QUANTITY_RES; j++) { //( rand() % 100 + 1 )) => 1 *32
+            shift[j].x = (rand() % (int)(vector_res.at(i).rect.width/32) + 1) * 32;
+            shift[j].y = (rand() % (int)(vector_res.at(i).rect.height/32) + 1) * 32;
+        }
+    }
     ////////////////////////////////////////////////////////////////
 
     WinText won("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
@@ -238,9 +243,15 @@ int main() {
         for(int i = 0; i < vector_res.size(); i++) {
             if (received_event.got_ship_resource.picked_item_index != -1)
                 std::cout << "el nmb: " << i << '\t' << vector_res[i].rect.top << '\t' << vector_res[i].rect.left << std::endl;
-            coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов
-            (sprites_of_object.at(i)).render(res, coord_obj); // задаём им координаты отрисовки по координатам вектора объектов res
-            window.draw(sprites_of_object.at(i).hero_sprite);
+                coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов
+
+                for (int j = 0; j < QUANTITY_RES; j++) {
+                    coord_obj = {(vector_res.at(i)).rect.left + shift[j].x,
+                                 (vector_res.at(i)).rect.top + shift[j].y};
+                    (sprites_of_object.at(j)).render(res,
+                                                     coord_obj); // задаём им координаты отрисовки по координатам вектора объектов res
+                    window.draw(sprites_of_object.at(j).hero_sprite);
+                }
         }
 
 //        resource_sprite.render(res, coord_obj);  // обрезаем картинку
