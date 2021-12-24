@@ -98,20 +98,22 @@ class Collision : public Model {
 public:
     Collision(Player (&players)[2], int player_count) : players(players), player_count(player_count), is_got(false) {
         map.load("../Client/srcClient/main_map.xml");
-        objects_res = map.getObjectsByName("res");
+        resource_spawn_areas = map.getObjectsByName("res");
         objects_solid = map.getObjectsByName("Solid");
-        for(int i = 0; i < objects_res.size(); i++ ) {
+        for(int i = 0; i < resource_spawn_areas.size(); i++ ) {
             for (int j = 0; j < QUANTITY_RES; j++) { //( rand() % 100 + 1 )) => 1 *32
 //                shifts[i][j].x = (rand() % (int)(objects_res.at(i).rect.width/32) + 1) * 32;
 //                shifts[i][j].y = (rand() % (int)(objects_res.at(i).rect.height/32) + 1) * 32;
-                shifts[i].push_back({(rand() % (int)(objects_res.at(i).rect.width/32) + 1) * 32.f,
-                                     (rand() % (int)(objects_res.at(i).rect.height/32) + 1) * 32.f});
+                resource_positions[i].push_back({resource_spawn_areas[i].rect.left + ((rand() % (int)(resource_spawn_areas.at(i).rect.width / 32) + 1) * 32.f),
+                                                 (resource_spawn_areas[i].rect.top + (rand() % (int)(resource_spawn_areas.at(i).rect.height / 32) + 1) * 32.f)});
             }
         }
+        resource_sprite_width = 32;
+        resource_sprite_height = 32;
     };
     virtual void update(Event event) override;
 
-    bool get_is_got() {
+    bool get_is_got() const {
         return is_got;
     }
 
@@ -119,30 +121,36 @@ public:
         is_got = is;
     }
 
-    int get_picked_item_index() {
-        return picked_item_index;
+    int get_picked_item_index() const {
+        return picked_item_area;
     }
 
+    int get_picked_item_area() const {
+        return picked_item_area;
+    }
     void set_picked_item_index(int new_picked_item_index) {
-        picked_item_index = new_picked_item_index;
+        picked_item_area = new_picked_item_index;
     }
 
-    std::vector<sf::Vector2f>* get_shifts() {
-        return shifts;
+    std::vector<sf::Vector2f>* get_resource_positions() {
+        return resource_positions;
     }
 
-    std::vector<Object> get_objects_res() {
-        return objects_res;
+    std::vector<Object> get_resource_spawn_areas() {
+        return resource_spawn_areas;
     }
 
 private:
     Player (&players)[2];
     int player_count;
     TileMap map;
-    std::vector<sf::Vector2f> shifts[RESOURCE_SPAWN_ZONE_COUNT];
-    std::vector<Object> objects_res;
-    std::vector<Object> objects_solid;
+    std::vector<sf::Vector2f> resource_positions[RESOURCE_SPAWN_ZONE_COUNT];
+    float resource_sprite_width;
+    float resource_sprite_height;
     int picked_item_index;
+    int picked_item_area;
+    std::vector<Object> resource_spawn_areas;
+    std::vector<Object> objects_solid;
     bool is_got;
 };
 

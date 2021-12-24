@@ -49,16 +49,22 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         }
     }
     packet >> received_event.client_number;
-    packet >> received_event.got_ship_resource.picked_item_index;
+    packet >> received_event.resources_data.picked_item_area;
+    packet >> received_event.resources_data.picked_item_index;
     for (int i = 0; i < 2; ++i) {
-        packet >> received_event.got_ship_resource.ship_resource_count[i] >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
-        >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
+        packet >> received_event.resources_data.ship_resource_count[i] >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
+ >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
         >> received_event.user_moved.sprite_coordinates[i].height >> received_event.user_moved.sprite_coordinates[i].width;
     }
     for (int i = 0; i < 2; ++i) {
-        packet >> received_event.resource_data.objects_res[i].rect.left >> received_event.resource_data.objects_res[i].rect.top;
-        for (int j = 0; j < QUANTITY_RES; ++j) {
-            packet >> received_event.resource_data.received_shifts[i][j].x >> received_event.resource_data.received_shifts[i][j].y;
+        packet >> received_event.resources_data.resource_spawn_areas[i].rect.left >> received_event.resources_data.resource_spawn_areas[i].rect.top;
+        if (!received_event.resources_data.resource_positions_to_send) {
+            continue;
+        }
+        int size;
+        packet >> size;
+        for (int j = 0; j < size; ++j) {
+            packet >> received_event.resources_data.received_resource_positions[i][j].x >> received_event.resources_data.received_resource_positions[i][j].y;
         }
     }
     return packet;
@@ -67,16 +73,21 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
 sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
     packet << received_event.type;
     packet << received_event.client_number;
-    packet << received_event.got_ship_resource.picked_item_index;
+    packet << received_event.resources_data.picked_item_area;
+    packet << received_event.resources_data.picked_item_index;
     for (int i = 0; i < 2; ++i) {
-        packet << received_event.got_ship_resource.ship_resource_count[i] << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
-        << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
+        packet << received_event.resources_data.ship_resource_count[i] << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
+ << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
         << received_event.user_moved.sprite_coordinates[i].height << received_event.user_moved.sprite_coordinates[i].width;
     }
     for (int i = 0; i < 2; ++i) {
-        packet << received_event.resource_data.objects_res[i].rect.left << received_event.resource_data.objects_res[i].rect.top;
-        for (int j = 0; j < QUANTITY_RES; ++j) {
-            packet << received_event.resource_data.shifts_to_send[i][j].x << received_event.resource_data.shifts_to_send[i][j].y;
+        packet << received_event.resources_data.resource_spawn_areas[i].rect.left << received_event.resources_data.resource_spawn_areas[i].rect.top;
+        if (!received_event.resources_data.resource_positions_to_send) {
+            continue;
+        }
+        packet << (int)received_event.resources_data.resource_positions_to_send[i].size();
+        for (int j = 0; j < received_event.resources_data.resource_positions_to_send[i].size(); ++j) {
+            packet << received_event.resources_data.resource_positions_to_send[i][j].x << received_event.resources_data.resource_positions_to_send[i][j].y;
         }
     }
     return packet;
@@ -117,15 +128,16 @@ int main() {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 
-    event_to_send.got_ship_resource.picked_item_index = -1;
-    event_to_send.resource_data.objects_res = collision.get_objects_res();
-    event_to_send.resource_data.shifts_to_send = collision.get_shifts();
+    event_to_send.resources_data.picked_item_index = -1;
+    event_to_send.resources_data.picked_item_area = -1;
+    event_to_send.resources_data.resource_spawn_areas = collision.get_resource_spawn_areas();
+    event_to_send.resources_data.resource_positions_to_send = collision.get_resource_positions();
 
     event_to_send.type = user_init;
     players[0].set_coordinates({300, 300});
     event_to_send.user_moved.coordinates[0] = players[0].get_coordinates();
     event_to_send.user_moved.sprite_coordinates[0] = {0, 0, 32,  32 };
-    event_to_send.got_ship_resource.ship_resource_count[0] = 0;
+    event_to_send.resources_data.ship_resource_count[0] = 0;
 
 
     if (listener.accept(clients[1]) != sf::Socket::Done) {
@@ -135,7 +147,7 @@ int main() {
     players[1].set_coordinates({500, 500});
     event_to_send.user_moved.coordinates[1] = players[1].get_coordinates();
     event_to_send.user_moved.sprite_coordinates[1] = {0, 0, 32,  32 };
-    event_to_send.got_ship_resource.ship_resource_count[1] = 0;
+    event_to_send.resources_data.ship_resource_count[1] = 0;
 
     packet.clear();
     event_to_send.client_number = 0;
@@ -160,7 +172,8 @@ int main() {
     while (true) {
         for (int i = 0; i < 2; ++i) {
             collision.set_picked_item_index(-1);
-            event_to_send.got_ship_resource.picked_item_index = -1;
+            event_to_send.resources_data.picked_item_area = -1;
+            event_to_send.resources_data.picked_item_index = -1;
             collision.set_is_got(false);
             packet.clear();
             if (clients[i].receive(packet) == sf::Socket::NotReady) {
@@ -185,12 +198,13 @@ int main() {
             event_bus.dispatch(is_intersect_with_map, event_to_send);
             for (int j = 0; j < 2; ++j) {
                 event_to_send.user_moved.coordinates[j] = players[j].get_coordinates();
-                event_to_send.got_ship_resource.ship_resource_count[j] = players[j].get_ship_resource();
+                event_to_send.resources_data.ship_resource_count[j] = players[j].get_ship_resource();
             }
             for (int j = 0; j < 2; ++j) {
                 event_to_send.client_number = j;
                 if (collision.get_is_got()) {
-                    event_to_send.got_ship_resource.picked_item_index = collision.get_picked_item_index();
+                    event_to_send.resources_data.picked_item_index = collision.get_picked_item_index();
+                    event_to_send.resources_data.picked_item_area = collision.get_picked_item_area();
                     event_to_send.type = got_ship_resource;
                 }
                 packet.clear();

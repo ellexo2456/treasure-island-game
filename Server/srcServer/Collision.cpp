@@ -86,23 +86,26 @@ void Collision::update(Event event) {
                     }
                 }
             }
-            for (int j = 0; j < objects_res.size(); ++j) {
-                if (players[i].get_sprite_rect().intersects(objects_res[j].rect)) {
-                    players[i].set_ship_resource(players[i].get_ship_resource() + 1);
-                    is_got = true;
-                    picked_item_index = j;
-                    std::cout << "Y:" << objects_res[picked_item_index].rect.top
-                              << " X: " << objects_res[picked_item_index].rect.left << '\t' << "pckd itm ind: " << picked_item_index << std::endl;
-                    std::vector<Object> new_objects = {};
-                    for (int k = 0; k < objects_res.size(); ++k) {
-                        if (k != picked_item_index) {
-                            new_objects.push_back(objects_res[k]);
+            for (int j = 0; j < resource_spawn_areas.size(); ++j) {
+                for (int k = 0; k < resource_positions[j].size(); ++k) {
+                    if (players[i].get_sprite_rect().intersects(sf::FloatRect(resource_positions[j][k].x,
+                    resource_positions[j][k].y, resource_sprite_width, resource_sprite_height))) {
+                        players[i].set_ship_resource(players[i].get_ship_resource() + 1);
+                        is_got = true;
+                        picked_item_area = j;
+                        picked_item_index = k;
+                        std::cout << '\t' << "pckd itm area: " << picked_item_area << '\t' << "pckd itm ind: " << picked_item_index
+                        << "\t X: "<< resource_positions[j][k].x << "\t Y: " << resource_positions[j][k].y<< std::endl;
+//                        for (int k = 0; k < resource_spawn_areas.size(); ++k) {
+//                            if (k != picked_item_area) {
+//                                new_objects.push_back(resource_spawn_areas[k]);
+//                            }
+//                        }
+//                        resource_spawn_areas = new_objects;
+                        resource_positions[j].erase(resource_positions[j].begin() + k);
+                        for (int l = 0; l < resource_positions[j].size(); ++l) {
+                            std::cout << "el nmb: " << l << "\t X: "<< resource_positions[j][l].x << "\t Y: " << resource_positions[j][l].y<< std::endl;
                         }
-                    }
-                    objects_res = new_objects;
-                    for(int i = 0; i < objects_res.size(); i++) {
-                        std::cout << "el nmb: " << i << '\t' << objects_res[i].rect.top << '\t' << objects_res[i].rect.left
-                                  << std::endl;
                     }
                 }
             }

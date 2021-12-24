@@ -7,7 +7,7 @@
 
 #define RESOURCE_SPAWN_ZONE_COUNT 2
 #define QUANTITY_RES 10
-#define PORT 3003
+#define PORT 3000
 
 
 #include <vector>
@@ -43,22 +43,20 @@ struct UserMovedEventData {
     SpriteCoord sprite_coordinates[2];
 };
 
-struct GotShipResourceData {
-    int picked_item_index;
-    int ship_resource_count[2];
-};
-
 struct ResourcesData {
-    std::vector<sf::Vector2f> *shifts_to_send;
-    std::vector<sf::Vector2f> received_shifts[RESOURCE_SPAWN_ZONE_COUNT];
-    std::vector<Object> objects_res;
+    int picked_item_index;
+    int picked_item_area;
+    int ship_resource_count[2];
+    std::vector<sf::Vector2f> *resource_positions_to_send;
+    std::vector<sf::Vector2f> received_resource_positions[RESOURCE_SPAWN_ZONE_COUNT];
+    std::vector<Object> resource_spawn_areas;
 };
 
 struct Event {
     Event() {
         Object a = Object();
-        resource_data.objects_res = {a, a};
-        for (auto & received_shift : resource_data.received_shifts) {
+        resources_data.resource_spawn_areas = {a, a};
+        for (auto & received_shift : resources_data.received_resource_positions) {
             for (int j = 0; j < 10; ++j) {
                 received_shift.emplace_back(0, 0);
             }
@@ -69,8 +67,7 @@ struct Event {
     int moved_player_number;
     int client_number;
     UserMovedEventData user_moved;
-    GotShipResourceData got_ship_resource;
-    ResourcesData resource_data;
+    ResourcesData resources_data;
 };
 
 #endif //ISLANDGAME_EVENT_H
