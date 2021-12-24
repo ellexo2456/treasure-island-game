@@ -91,8 +91,8 @@ void Collision::update(Event event) {
                     players[i].set_ship_resource(players[i].get_ship_resource() + 1);
                     is_got = true;
                     picked_item_index = j;
-                    std::cout << objects_res[picked_item_index].rect.top
-                              << ' ' << objects_res[picked_item_index].rect.left << std::endl;
+                    std::cout << "Y:" << objects_res[picked_item_index].rect.top
+                              << " X: " << objects_res[picked_item_index].rect.left << '\t' << "pckd itm ind: " << picked_item_index << std::endl;
                     std::vector<Object> new_objects = {};
                     for (int k = 0; k < objects_res.size(); ++k) {
                         if (k != picked_item_index) {
@@ -100,6 +100,10 @@ void Collision::update(Event event) {
                         }
                     }
                     objects_res = new_objects;
+                    for(int i = 0; i < objects_res.size(); i++) {
+                        std::cout << "el nmb: " << i << '\t' << objects_res[i].rect.top << '\t' << objects_res[i].rect.left
+                                  << std::endl;
+                    }
                 }
             }
         }
