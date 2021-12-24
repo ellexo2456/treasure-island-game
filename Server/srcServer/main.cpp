@@ -6,7 +6,6 @@
 
 #include "Models.h"
 
-#define PORT 3003
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -56,6 +55,12 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
         >> received_event.user_moved.sprite_coordinates[i].height >> received_event.user_moved.sprite_coordinates[i].width;
     }
+    for (int i = 0; i < 2; ++i) {
+        packet >> received_event.resource_data.objects_res[i].rect.left >> received_event.resource_data.objects_res[i].rect.top;
+        for (int j = 0; j < QUANTITY_RES; ++j) {
+            packet >> received_event.resource_data.received_shifts[i][j].x >> received_event.resource_data.received_shifts[i][j].y;
+        }
+    }
     return packet;
 }
 
@@ -67,6 +72,12 @@ sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
         packet << received_event.got_ship_resource.ship_resource_count[i] << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
         << received_event.user_moved.sprite_coordinates[i].height << received_event.user_moved.sprite_coordinates[i].width;
+    }
+    for (int i = 0; i < 2; ++i) {
+        packet << received_event.resource_data.objects_res[i].rect.left << received_event.resource_data.objects_res[i].rect.top;
+        for (int j = 0; j < QUANTITY_RES; ++j) {
+            packet << received_event.resource_data.shifts_to_send[i][j].x << received_event.resource_data.shifts_to_send[i][j].y;
+        }
     }
     return packet;
 }
@@ -107,6 +118,8 @@ int main() {
     }
 
     event_to_send.got_ship_resource.picked_item_index = -1;
+    event_to_send.resource_data.objects_res = collision.get_objects_res();
+    event_to_send.resource_data.shifts_to_send = collision.get_shifts();
 
     event_to_send.type = user_init;
     players[0].set_coordinates({300, 300});

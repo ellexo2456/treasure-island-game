@@ -15,6 +15,7 @@ public:
     {
 
     }
+    Object() = default;
 
     int         GetPropertyInt(const std::string& name);
     float       GetPropertyFloat(const std::string& name);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="27" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="67">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="27" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="70">
  <tileset firstgid="1" tilecount="784" columns="28" source="One.tsx"/>
- <image source="../_1_treasure_island_game/Client/srcClient/images/map.png" width="896" height="896"/>
+ <image source="images/map.png" width="896" height="896"/>
  <layer id="1" name="Слой тайлов 1" width="50" height="27">
   <data encoding="csv">
 113,113,114,115,116,117,118,119,120,113,113,113,113,113,114,115,116,117,118,141,141,141,113,113,113,113,114,115,116,117,118,119,141,113,114,115,116,117,118,119,141,141,141,113,114,115,116,117,118,119,
@@ -36,7 +36,6 @@
  <objectgroup id="2" name="Слой объектов 1">
   <object id="1" name="Solid" x="1078" y="215" width="86" height="87"/>
   <object id="3" name="Solid" x="1209" y="149.5" width="86" height="87"/>
-  <object id="4" name="res" x="1334" y="309" width="32" height="32"/>
   <object id="16" name="Solid" x="232" y="10" width="212" height="20"/>
   <object id="17" name="Solid" x="445.333" y="32" width="68" height="31.3333"/>
   <object id="18" name="Solid" x="154.667" y="31" width="68" height="66"/>
@@ -74,15 +73,7 @@
   <object id="54" name="Solid" x="90" y="97.6667" width="68" height="58"/>
   <object id="55" name="Solid" x="58" y="161.667" width="68" height="31.3333"/>
   <object id="56" name="Solid" x="26" y="196.333" width="68" height="87.3333"/>
-  <object id="57" name="res" x="1310.67" y="430.667" width="32" height="32"/>
-  <object id="58" name="res" x="1197.33" y="550.667" width="32" height="32"/>
-  <object id="59" name="res" x="1160" y="376" width="32" height="32"/>
-  <object id="60" name="res" x="1078.67" y="486.667" width="32" height="32"/>
-  <object id="61" name="res" x="977.333" y="318.667" width="32" height="32"/>
-  <object id="62" name="res" x="926.667" y="506.667" width="32" height="32"/>
-  <object id="63" name="res" x="833.333" y="310.667" width="32" height="32"/>
-  <object id="64" name="res" x="706.667" y="505.333" width="32" height="32"/>
-  <object id="65" name="res" x="654.667" y="294.667" width="32" height="32"/>
-  <object id="66" name="res" x="606.667" y="480" width="32" height="32"/>
+  <object id="67" name="res" x="700" y="305" width="584" height="260"/>
+  <object id="69" name="res" x="1345.33" y="312" width="82.6667" height="70.6667"/>
  </objectgroup>
 </map>

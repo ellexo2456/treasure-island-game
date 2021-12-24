@@ -11,7 +11,7 @@
 #include "resources.h"
 #include "unistd.h"
 
-#define PORT 3003
+#define QUANTITY_RES 10
 
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
@@ -61,6 +61,12 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
         >> received_event.user_moved.sprite_coordinates[i].height >> received_event.user_moved.sprite_coordinates[i].width;
     }
+    for (int i = 0; i < 2; ++i) {
+        packet >> received_event.resource_data.objects_res[i].rect.left >> received_event.resource_data.objects_res[i].rect.top;
+        for (int j = 0; j < QUANTITY_RES; ++j) {
+            packet >> received_event.resource_data.received_shifts[i][j].x >> received_event.resource_data.received_shifts[i][j].y;
+        }
+    }
     return packet;
 }
 
@@ -73,6 +79,12 @@ sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
         << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
         << received_event.user_moved.sprite_coordinates[i].height << received_event.user_moved.sprite_coordinates[i].width;
     }
+//    for (int i = 0; i < 2; ++i) {
+//        packet << received_event.resource_data.objects_res[i].rect.left << received_event.resource_data.objects_res[i].rect.top;
+//        for (int j = 0; j < QUANTITY_RES; ++j) {
+//            packet << received_event.resource_data.shifts_to_send[i][j].x << received_event.resource_data.shifts_to_send[i][j].y;
+//        }
+//    }
     return packet;
 }
 
@@ -106,8 +118,8 @@ int main() {
     /*// Карта
     std::string path_to_map = "../Client/srcClient/images/map.adwpng";
     Map MyMap(path_to_map, coord, {0,0});*/
-    std::string path_to_level = "../Client/srcClient/main_map.xml";
     TileMap map;
+    std::string path_to_level = "../Client/srcClient/main_map.xml";
     map.load(path_to_level);
 
 
@@ -132,19 +144,23 @@ int main() {
     resource_sprite.render(res, coord_obj); // обрезает картинку по данным SpriteCoord
 
     // В основном цикле есть ещё отрисовка
-    std::vector<Object> vector_res = map.getObjectsByName(name_of_object_one); // вектор объектов с указанным именем
-    std::vector<Resources> sprites_of_object(vector_res.size(), resource_sprite); // вектор спрайтов с длинной вектора объектов
-    // Цикл начальной инициализации, хз без него наверное работает, но удалять лучше не надо
-    for(int i = 0; i < vector_res.size(); i++) {
-        coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top};
-        (sprites_of_object.at(i)).render(res, coord_obj);
-    }
+    std::vector<Object> vector_res = received_event.resource_data.objects_res; // вектор объектов с указанным именем
+    std::vector<Resources> sprites_of_object(QUANTITY_RES, resource_sprite); // вектор спрайтов с длинной вектора объектов
 
+    // Рандомизация появления ресурсов
+    std::vector<sf::Vector2f> shifts[RESOURCE_SPAWN_ZONE_COUNT];
+
+//    for(int i = 0; i < vector_res.size(); i++ ) {
+//        for (int j = 0; j < QUANTITY_RES; j++) { //( rand() % 100 + 1 )) => 1 *32
+//            shift[j].x = (rand() % (int)(vector_res.at(i).rect.width/32) + 1) * 32;
+//            shift[j].y = (rand() % (int)(vector_res.at(i).rect.height/32) + 1) * 32;
+//        }
+//    }
     ////////////////////////////////////////////////////////////////
 
     WinText won("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
     Event custom_event;
-
+    custom_event.resource_data.shifts_to_send = received_event.resource_data.shifts_to_send;
     socket.setBlocking(false);
 
     while (window.isOpen()) {
@@ -218,29 +234,35 @@ int main() {
         window.draw(map);
         window.draw(frontend_rectangle);
         window.draw(ship_resource_text.text);
-        new_objects = {};
-
+//        new_objects = {};
         if (received_event.type == got_ship_resource) {
-        for (int k = 0; k < vector_res.size(); ++k) {
-            if (k != received_event.got_ship_resource.picked_item_index) {
-                new_objects.push_back(vector_res[k]);
-            }
-        }
-            if (received_event.got_ship_resource.picked_item_index != -1) {
-                std::cout << "Y: " << vector_res[received_event.got_ship_resource.picked_item_index].rect.top
-                          << " X: " << vector_res[received_event.got_ship_resource.picked_item_index].rect.left << '\t' << "pckd itm ind: "
-                          << received_event.got_ship_resource.picked_item_index << std::endl;
-            }
-            vector_res = new_objects;
+//        for (int k = 0; k < vector_res.size(); ++k) {
+            vector_res.erase(vector_res.begin() + received_event.got_ship_resource.picked_item_index);
+//            if (k != received_event.got_ship_resource.picked_item_index) {
+//                new_objects.push_back(vector_res[k]);
+//            }
+//        }
+//            if (received_event.got_ship_resource.picked_item_index != -1) {
+//                std::cout << "Y: " << vector_res[received_event.got_ship_resource.picked_item_index].rect.top
+//                          << " X: " << vector_res[received_event.got_ship_resource.picked_item_index].rect.left << '\t' << "pckd itm ind: "
+//                          << received_event.got_ship_resource.picked_item_index << std::endl;
+//            }
+//            vector_res = new_objects;
 
         }
-          // Проходимся по элементам  вектора спрайтов и
+        // Проходимся по элементам  вектора спрайтов и
         for(int i = 0; i < vector_res.size(); i++) {
             if (received_event.got_ship_resource.picked_item_index != -1)
                 std::cout << "el nmb: " << i << '\t' << vector_res[i].rect.top << '\t' << vector_res[i].rect.left << std::endl;
-            coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов
-            (sprites_of_object.at(i)).render(res, coord_obj); // задаём им координаты отрисовки по координатам вектора объектов res
-            window.draw(sprites_of_object.at(i).hero_sprite);
+                coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов
+
+                for (int j = 0; j < QUANTITY_RES; j++) {
+                    coord_obj = {(vector_res.at(i)).rect.left + received_event.resource_data.received_shifts[i][j].x,
+                                 (vector_res.at(i)).rect.top + received_event.resource_data.received_shifts[i][j].y};
+                    (sprites_of_object.at(j)).render(res,
+                                                     coord_obj); // задаём им координаты отрисовки по координатам вектора объектов res
+                    window.draw(sprites_of_object.at(j).hero_sprite);
+                }
         }
 
 //        resource_sprite.render(res, coord_obj);  // обрезаем картинку

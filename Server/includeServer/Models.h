@@ -8,7 +8,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "EventBus.h"
-#include "Lev.h"
 
 enum Team {
     first,
@@ -101,6 +100,14 @@ public:
         map.load("../Client/srcClient/main_map.xml");
         objects_res = map.getObjectsByName("res");
         objects_solid = map.getObjectsByName("Solid");
+        for(int i = 0; i < objects_res.size(); i++ ) {
+            for (int j = 0; j < QUANTITY_RES; j++) { //( rand() % 100 + 1 )) => 1 *32
+//                shifts[i][j].x = (rand() % (int)(objects_res.at(i).rect.width/32) + 1) * 32;
+//                shifts[i][j].y = (rand() % (int)(objects_res.at(i).rect.height/32) + 1) * 32;
+                shifts[i].push_back({(rand() % (int)(objects_res.at(i).rect.width/32) + 1) * 32.f,
+                                     (rand() % (int)(objects_res.at(i).rect.height/32) + 1) * 32.f});
+            }
+        }
     };
     virtual void update(Event event) override;
 
@@ -120,35 +127,19 @@ public:
         picked_item_index = new_picked_item_index;
     }
 
+    std::vector<sf::Vector2f>* get_shifts() {
+        return shifts;
+    }
+
+    std::vector<Object> get_objects_res() {
+        return objects_res;
+    }
 
 private:
     Player (&players)[2];
     int player_count;
-//    static const int HEIGHT_MAP = 20; // Высота карты
-//    static const int WIDTH_MAP = 20;  // Ширина карты
-//    sf::String TileMap[HEIGHT_MAP] = {
-//            "ssssssssssssssssssss",
-//            "s000000000000000000s",
-//            "s000000000000k00000s",
-//            "s00000k000000000000s",
-//            "s000000000000000000s",
-//            "s000000000000000000s",
-//            "s000000000000000000s",
-//            "s000000000k00000000s",
-//            "s000000000000000000s",
-//            "s000000000000000000s",
-//            "s000000000000000000s",
-//            "s000000000000000000s",
-//            "s000000000000000000s",
-//            "s000000000000000000s",
-//            "s00000k000000000000s",
-//            "s000000000000000000s",
-//            "s000000000000k00000s",
-//            "s000000000000000000s",
-//            "s000000000000000000s",
-//            "ssssssssssssssssssss",
-//    };
     TileMap map;
+    std::vector<sf::Vector2f> shifts[RESOURCE_SPAWN_ZONE_COUNT];
     std::vector<Object> objects_res;
     std::vector<Object> objects_solid;
     int picked_item_index;
