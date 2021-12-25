@@ -133,8 +133,8 @@ int main() {
     /*// Карта
     std::string path_to_map = "../Client/srcClient/images/map.adwpng";
     Map MyMap(path_to_map, coord, {0,0});*/
+    std::string path_to_level = "../Client/srcClient/main_map_two.xml";
     TileMap map;
-    std::string path_to_level = "../Client/srcClient/main_map.xml";
     map.load(path_to_level);
 
 

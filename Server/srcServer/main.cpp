@@ -138,7 +138,7 @@ int main() {
     event_to_send.resources_data.resource_positions_to_send = collision.get_resource_positions();
 
     event_to_send.type = user_init;
-    players[0].set_coordinates({300, 300});
+    players[0].set_coordinates({300, 800});
     event_to_send.user_moved.coordinates[0] = players[0].get_coordinates();
     event_to_send.user_moved.sprite_coordinates[0] = {0, 0, 32,  32 };
     event_to_send.resources_data.ship_resource_count[0] = 0;
@@ -148,7 +148,7 @@ int main() {
         std::cout << "ERROR OF NETWORK" << std::endl;
     }
 
-    players[1].set_coordinates({500, 500});
+    players[1].set_coordinates({500, 1200});
     event_to_send.user_moved.coordinates[1] = players[1].get_coordinates();
     event_to_send.user_moved.sprite_coordinates[1] = {0, 0, 32,  32 };
     event_to_send.resources_data.ship_resource_count[1] = 0;
