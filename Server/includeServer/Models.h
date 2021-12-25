@@ -5,6 +5,8 @@
 #ifndef ISLANDGAME_MODELS_H
 #define ISLANDGAME_MODELS_H
 
+#include <time.h>
+
 #include <SFML/Graphics.hpp>
 
 #include "EventBus.h"
@@ -97,6 +99,7 @@ private:
 class Collision : public Model {
 public:
     Collision(Player (&players)[2], int player_count) : players(players), player_count(player_count), is_got(false) {
+        srand((unsigned int) time(NULL));
         map.load("../Client/srcClient/main_map_two.xml");
         resource_spawn_areas = map.getObjectsByName("res");
         objects_solid = map.getObjectsByName("Solid");

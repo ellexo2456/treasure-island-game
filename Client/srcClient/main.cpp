@@ -111,10 +111,10 @@ int main() {
     Event received_event;
     packet >> received_event;
 
-    sf::Vector2f size_of_screen = {600, 600};
+    sf::Vector2f size_of_screen = {1000, 1000};
 
     sf::RenderWindow window(sf::VideoMode(size_of_screen.x, size_of_screen.y), "Treasure island");
-    camera.reset(sf::FloatRect(0, 0, 600, 600)); // инициализировали объект камеры
+    camera.reset(sf::FloatRect(0, 0, 1000, 1000)); // инициализировали объект камеры
 
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
@@ -291,7 +291,7 @@ int main() {
 //        window.draw(resource_sprite.hero_sprite);
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
-        if (received_event.resources_data.ship_resource_count[0] >= 6) {
+        if (received_event.resources_data.ship_resource_count[0] >= 15) {
             if (received_event.client_number == 0) {
                 won.text_render(0, camera.getCenter());
                 window.draw(won.text);
@@ -305,7 +305,7 @@ int main() {
                 sleep(3);
                 break;
             }
-        } else if (received_event.resources_data.ship_resource_count[1] >= 6) {
+        } else if (received_event.resources_data.ship_resource_count[1] >= 15) {
             if (received_event.client_number == 1) {
                 won.text_render(0, camera.getCenter());
                 window.draw(won.text);

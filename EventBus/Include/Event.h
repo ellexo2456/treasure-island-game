@@ -55,7 +55,7 @@ struct ResourcesData {
 struct Event {
     Event() {
         Object a = Object();
-        resources_data.resource_spawn_areas = {a, a};
+        resources_data.resource_spawn_areas = {a, a, a};
         for (auto & received_shift : resources_data.received_resource_positions) {
             for (int j = 0; j < QUANTITY_RES; ++j) {
                 received_shift.emplace_back(0, 0);
