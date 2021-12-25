@@ -241,14 +241,13 @@ int main() {
 
         sf::RectangleShape frontend_rectangle(sf::Vector2f(180, 25));
         frontend_rectangle.setFillColor(sf::Color(0, 0, 0,120));
-        frontend_rectangle.move(camera.getCenter().x + 103, camera.getCenter().y - 293);
+        frontend_rectangle.move(camera.getCenter().x -458, camera.getCenter().y - 363);
 
 
         window.clear();
 
         window.draw(map);
-        window.draw(frontend_rectangle);
-        window.draw(ship_resource_text.text);
+
 //        new_objects = {};
 //        if (received_event.type == got_ship_resource) {
 //        for (int k = 0; k < vector_res.size(); ++k) {
@@ -289,6 +288,9 @@ int main() {
 
 //        resource_sprite.render(res, coord_obj);  // обрезаем картинку
 //        window.draw(resource_sprite.hero_sprite);
+        window.draw(frontend_rectangle);
+        window.draw(ship_resource_text.text);
+
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
         if (received_event.resources_data.ship_resource_count[0] >= 15) {
