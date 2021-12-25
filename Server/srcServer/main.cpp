@@ -61,10 +61,14 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         if (!received_event.resources_data.resource_positions_to_send) {
             continue;
         }
+        received_event.resources_data.received_resource_positions[i].clear();
         int size;
         packet >> size;
         for (int j = 0; j < size; ++j) {
-            packet >> received_event.resources_data.received_resource_positions[i][j].x >> received_event.resources_data.received_resource_positions[i][j].y;
+            //packet >> received_event.resources_data.received_resource_positions[i][j].x >> received_event.resources_data.received_resource_positions[i][j].y;
+            float x, y;
+            packet >> x >> y;
+            received_event.resources_data.received_resource_positions[i].push_back({x,y});
         }
     }
     return packet;
