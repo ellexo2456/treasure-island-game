@@ -97,7 +97,7 @@ private:
 class Collision : public Model {
 public:
     Collision(Player (&players)[2], int player_count) : players(players), player_count(player_count), is_got(false) {
-        map.load("../Client/srcClient/main_map.xml");
+        map.load("../Client/srcClient/main_map_two.xml");
         resource_spawn_areas = map.getObjectsByName("res");
         objects_solid = map.getObjectsByName("Solid");
         for(int i = 0; i < resource_spawn_areas.size(); i++ ) {

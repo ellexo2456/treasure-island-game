@@ -5,7 +5,7 @@
 #ifndef ISLANDGAME_EVENT_H
 #define ISLANDGAME_EVENT_H
 
-#define RESOURCE_SPAWN_ZONE_COUNT 2
+#define RESOURCE_SPAWN_ZONE_COUNT 3
 #define QUANTITY_RES 10
 #define PORT 3000
 
@@ -57,7 +57,7 @@ struct Event {
         Object a = Object();
         resources_data.resource_spawn_areas = {a, a};
         for (auto & received_shift : resources_data.received_resource_positions) {
-            for (int j = 0; j < 10; ++j) {
+            for (int j = 0; j < QUANTITY_RES; ++j) {
                 received_shift.emplace_back(0, 0);
             }
         }

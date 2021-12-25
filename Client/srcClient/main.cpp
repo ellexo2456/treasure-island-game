@@ -11,8 +11,6 @@
 #include "resources.h"
 #include "unistd.h"
 
-#define QUANTITY_RES 10
-
 sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     int type_number;
     packet >> type_number;
@@ -62,7 +60,7 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
  >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
         >> received_event.user_moved.sprite_coordinates[i].height >> received_event.user_moved.sprite_coordinates[i].width;
     }
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < RESOURCE_SPAWN_ZONE_COUNT; ++i) {
         packet >> received_event.resources_data.resource_spawn_areas[i].rect.left >> received_event.resources_data.resource_spawn_areas[i].rect.top;
         if (!received_event.resources_data.resource_positions_to_send) {
             continue;
@@ -90,7 +88,7 @@ sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
  << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
         << received_event.user_moved.sprite_coordinates[i].height << received_event.user_moved.sprite_coordinates[i].width;
     }
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < RESOURCE_SPAWN_ZONE_COUNT; ++i) {
         packet << received_event.resources_data.resource_spawn_areas[i].rect.left << received_event.resources_data.resource_spawn_areas[i].rect.top;
         if (!received_event.resources_data.resource_positions_to_send) {
             continue;
