@@ -85,6 +85,8 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         a.rect.top = y;
         received_event.maze_data.maze_zones.emplace_back(a);
         packet >> x >> y;
+        if (!x && y) {++y;}
+        if (x && !y) {++x;}
         received_event.maze_data.maze_walls.emplace_back(x, y);
     }
     return packet;
@@ -172,7 +174,7 @@ int main() {
 
     std::vector<Resources> sprites_of_object(QUANTITY_RES, resource_sprite);
 
-    struct SpriteCoord maze_wall_brick = {32*9, 32*12, 32, 32};
+    struct SpriteCoord maze_wall_brick = {32*9, 32*11, 32, 32};
     Maze maze_sprite_initialise("../Client/srcClient/images/map.png", maze_wall_brick,
                                 {received_event.maze_data.maze_zones[0].rect.left, received_event.maze_data.maze_zones[0].rect.top});
     maze_sprite_initialise.render(maze_wall_brick,

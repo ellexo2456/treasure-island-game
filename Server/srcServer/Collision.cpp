@@ -89,11 +89,11 @@ void Collision::update(Event event) {
             for (int j = 0; j < maze_zones.size(); ++j) {
                 if (players[i].get_sprite_rect().intersects(
                         sf::FloatRect(maze_zones[j].rect.left, maze_zones[j].rect.top,
-                                      32 * (1 + maze_walls[i].x), 32 * (1 + maze_walls[i].y)))) {
+                                      32 * (1 + maze_walls[j].x), 32 * (1 + maze_walls[j].y)))) {
 
                     switch (players[i].get_direction()) {
                         case 1: {
-                            players[i].set_coordinates({maze_zones[j].rect.left + 32 * (1 + maze_walls[i].x),
+                            players[i].set_coordinates({maze_zones[j].rect.left + 32 * (1 + maze_walls[j].x),
                                                         players[i].get_coordinates().y});
                             break;
                         }
@@ -105,7 +105,7 @@ void Collision::update(Event event) {
                         }
                         case 3: {
                             players[i].set_coordinates({players[i].get_coordinates().x, \
-                                    maze_zones[j].rect.top + 32 * (1 + maze_walls[i].y)});
+                                    maze_zones[j].rect.top + 32 * (1 + maze_walls[j].y)});
                             break;
                         }
                         case 4: {
