@@ -36,7 +36,7 @@ public:
     WinText (const std::string& path_to_font_file) {
         font.loadFromFile(path_to_font_file);
         text = {"", font, 80};
-        text.setFillColor(sf::Color::Red);
+        text.setFillColor(sf::Color(230, 78, 64));
         text.setStyle(sf::Text::Bold);
     }
     virtual void text_render(int resource_count, sf::Vector2f coordinates) override;

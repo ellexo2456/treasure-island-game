@@ -312,13 +312,13 @@ int main() {
                 won.text_render(0, camera.getCenter());
                 window.draw(won.text);
                 window.display();
-                sleep(3);
+                sleep(20);
                 break;
             } else {
                 won.text_render(1, camera.getCenter());
                 window.draw(won.text);
                 window.display();
-                sleep(3);
+                sleep(20);
                 break;
             }
         }
