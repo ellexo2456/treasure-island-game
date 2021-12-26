@@ -52,6 +52,11 @@ struct ResourcesData {
     std::vector<Object> resource_spawn_areas;
 };
 
+struct MazeData {
+    std::vector<sf::Vector2f> maze_walls;
+    std::vector<Object> maze_zones;
+};
+
 struct Event {
     Event() {
         Object a = Object();
@@ -68,6 +73,7 @@ struct Event {
     int client_number;
     UserMovedEventData user_moved;
     ResourcesData resources_data;
+    MazeData maze_data;
 };
 
 #endif //ISLANDGAME_EVENT_H

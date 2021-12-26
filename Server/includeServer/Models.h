@@ -103,13 +103,15 @@ public:
         map.load("../Client/srcClient/main_map_two.xml");
         resource_spawn_areas = map.getObjectsByName("res");
         objects_solid = map.getObjectsByName("Solid");
-        for(int i = 0; i < resource_spawn_areas.size(); i++ ) {
+        maze_zones = map.getObjectsByName("maze");
+        for (int i = 0; i < resource_spawn_areas.size(); i++ ) {
             for (int j = 0; j < QUANTITY_RES; j++) { //( rand() % 100 + 1 )) => 1 *32
-//                shifts[i][j].x = (rand() % (int)(objects_res.at(i).rect.width/32) + 1) * 32;
-//                shifts[i][j].y = (rand() % (int)(objects_res.at(i).rect.height/32) + 1) * 32;
-                resource_positions[i].push_back({resource_spawn_areas[i].rect.left + ((rand() % (int)(resource_spawn_areas.at(i).rect.width / 32) + 1) * 32.f),
-                                                 (resource_spawn_areas[i].rect.top + (rand() % (int)(resource_spawn_areas.at(i).rect.height / 32) + 1) * 32.f)});
+                resource_positions[i].emplace_back(resource_spawn_areas[i].rect.left + ((rand() % (int)(resource_spawn_areas.at(i).rect.width / 32) + 1) * 32.f),
+                                                 (resource_spawn_areas[i].rect.top + (rand() % (int)(resource_spawn_areas.at(i).rect.height / 32) + 1) * 32.f));
             }
+        }
+        for (auto & maze_zone : maze_zones) {
+            maze_walls.emplace_back((rand() % (int)(maze_zone.rect.width / 32)), (rand() % (int)(maze_zone.rect.height / 32)));
         }
         resource_sprite_width = 32;
         resource_sprite_height = 32;
@@ -143,6 +145,14 @@ public:
         return resource_spawn_areas;
     }
 
+    std::vector<Object> get_maze_zones() {
+        return maze_zones;
+    }
+
+    std::vector<sf::Vector2f> get_maze_walls() {
+        return maze_walls;
+    }
+
 private:
     Player (&players)[2];
     int player_count;
@@ -152,6 +162,8 @@ private:
     float resource_sprite_height;
     int picked_item_index;
     int picked_item_area;
+    std::vector<sf::Vector2f> maze_walls;
+    std::vector<Object> maze_zones;
     std::vector<Object> resource_spawn_areas;
     std::vector<Object> objects_solid;
     bool is_got;

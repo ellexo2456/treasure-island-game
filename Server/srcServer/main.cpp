@@ -65,11 +65,14 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         int size;
         packet >> size;
         for (int j = 0; j < size; ++j) {
-            //packet >> received_event.resources_data.received_resource_positions[i][j].x >> received_event.resources_data.received_resource_positions[i][j].y;
             float x, y;
             packet >> x >> y;
             received_event.resources_data.received_resource_positions[i].push_back({x,y});
         }
+    }
+    for (int i = 0; i < received_event.maze_data.maze_zones.size(); ++i) {
+        packet >> received_event.maze_data.maze_zones[i].rect.left << received_event.maze_data.maze_zones[i].rect.top;
+        packet >> received_event.maze_data.maze_walls[i].x << received_event.maze_data.maze_walls[i].y;
     }
     return packet;
 }
@@ -93,6 +96,10 @@ sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
         for (int j = 0; j < received_event.resources_data.resource_positions_to_send[i].size(); ++j) {
             packet << received_event.resources_data.resource_positions_to_send[i][j].x << received_event.resources_data.resource_positions_to_send[i][j].y;
         }
+    }
+    for (int i = 0; i < received_event.maze_data.maze_zones.size(); ++i) {
+        packet << received_event.maze_data.maze_zones[i].rect.left << received_event.maze_data.maze_zones[i].rect.top;
+        packet << received_event.maze_data.maze_walls[i].x << received_event.maze_data.maze_walls[i].y;
     }
     return packet;
 }
@@ -136,6 +143,8 @@ int main() {
     event_to_send.resources_data.picked_item_area = -1;
     event_to_send.resources_data.resource_spawn_areas = collision.get_resource_spawn_areas();
     event_to_send.resources_data.resource_positions_to_send = collision.get_resource_positions();
+    event_to_send.maze_data.maze_walls = collision.get_maze_walls();
+    event_to_send.maze_data.maze_zones = collision.get_maze_zones();
 
     event_to_send.type = user_init;
     players[0].set_coordinates({300, 1500});

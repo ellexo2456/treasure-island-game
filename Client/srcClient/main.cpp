@@ -69,34 +69,14 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         int size;
         packet >> size;
         for (int j = 0; j < size; ++j) {
-            //packet >> received_event.resources_data.received_resource_positions[i][j].x >> received_event.resources_data.received_resource_positions[i][j].y;
             float x, y;
             packet >> x >> y;
             received_event.resources_data.received_resource_positions[i].push_back({x,y});
         }
     }
-    return packet;
-}
-
-sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
-    packet << received_event.type;
-    packet << received_event.client_number;
-    packet << received_event.resources_data.picked_item_area;
-    packet << received_event.resources_data.picked_item_index;
-    for (int i = 0; i < 2; ++i) {
-        packet << received_event.resources_data.ship_resource_count[i] << received_event.user_moved.coordinates[i].x << received_event.user_moved.coordinates[i].y \
- << received_event.user_moved.sprite_coordinates[i].begin_x << received_event.user_moved.sprite_coordinates[i].begin_y \
-        << received_event.user_moved.sprite_coordinates[i].height << received_event.user_moved.sprite_coordinates[i].width;
-    }
-    for (int i = 0; i < RESOURCE_SPAWN_ZONE_COUNT; ++i) {
-        packet << received_event.resources_data.resource_spawn_areas[i].rect.left << received_event.resources_data.resource_spawn_areas[i].rect.top;
-        if (!received_event.resources_data.resource_positions_to_send) {
-            continue;
-        }
-        packet << (int)received_event.resources_data.resource_positions_to_send[i].size();
-        for (int j = 0; j < received_event.resources_data.resource_positions_to_send[i].size(); ++j) {
-            packet << received_event.resources_data.resource_positions_to_send[i][j].x << received_event.resources_data.resource_positions_to_send[i][j].y;
-        }
+    for (int i = 0; i < received_event.maze_data.maze_zones.size(); ++i) {
+        packet >> received_event.maze_data.maze_zones[i].rect.left << received_event.maze_data.maze_zones[i].rect.top;
+        packet >> received_event.maze_data.maze_walls[i].x << received_event.maze_data.maze_walls[i].y;
     }
     return packet;
 }
@@ -128,9 +108,6 @@ int main() {
     Player Player2(path_to_file, received_event.user_moved.sprite_coordinates[1],
                    received_event.user_moved.coordinates[1], size_of_screen);
 
-    /*// Карта
-    std::string path_to_map = "../Client/srcClient/images/map.adwpng";
-    Map MyMap(path_to_map, coord, {0,0});*/
     std::string path_to_level = "../Client/srcClient/main_map_two.xml";
     TileMap map;
     map.load(path_to_level);
@@ -156,21 +133,9 @@ int main() {
     Resources resource_sprite("../Client/srcClient/images/map.png", res, coord_obj);
     resource_sprite.render(res, coord_obj); // обрезает картинку по данным SpriteCoord
 
-    // В основном цикле есть ещё отрисовка
-//    std::vector<Object> vector_res = received_event.resources_data.resource_spawn_areas; // вектор объектов с указанным именем
-    std::vector<Resources> sprites_of_object(QUANTITY_RES, resource_sprite); // вектор спрайтов с длинной вектора объектов
+    std::vector<Resources> sprites_of_object(QUANTITY_RES, resource_sprite);
 
-    // Рандомизация появления ресурсов
-//    std::vector<sf::Vector2f> shifts[RESOURCE_SPAWN_ZONE_COUNT];
-
-//    for(int i = 0; i < vector_res.size(); i++ ) {
-//        for (int j = 0; j < QUANTITY_RES; j++) { //( rand() % 100 + 1 )) => 1 *32
-//            shift[j].x = (rand() % (int)(vector_res.at(i).rect.width/32) + 1) * 32;
-//            shift[j].y = (rand() % (int)(vector_res.at(i).rect.height/32) + 1) * 32;
-//        }
-//    }
-    ////////////////////////////////////////////////////////////////                          << std::endl;
-
+    
     WinText won("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
 
     Event custom_event;
@@ -195,28 +160,21 @@ int main() {
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::A)))) {
                 custom_event.type = dir_left;
             }
-            //coord.begin_y = 32; coord.begin_x = 32;};
-
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::D)))) {
                 custom_event.type = dir_right;
             }
-            //coord.begin_y = 64; coord.begin_x = 32;};
-
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Up) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::W)))) {
                 custom_event.type = dir_straight;
             }
-            //coord.begin_y = 96; coord.begin_x = 32;};
             if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Down) ||
                  (sf::Keyboard::isKeyPressed(sf::Keyboard::S)))) {
                 custom_event.type = dir_back;
             }
-            //coord.begin_y = 0; coord.begin_x = 32;};
         }
 
         if (custom_event.type != user_init) {
-            // std::cout << custom_event.type << std::endl;
             packet.clear();
             packet << custom_event;
             socket.send(packet);
@@ -248,23 +206,6 @@ int main() {
 
         window.draw(map);
 
-//        new_objects = {};
-//        if (received_event.type == got_ship_resource) {
-//        for (int k = 0; k < vector_res.size(); ++k) {
-//            vector_res.erase(vector_res.begin() + received_event.resources_data.picked_item_index);
-//            if (k != received_event.got_ship_resource.picked_item_index) {
-//                new_objects.push_back(vector_res[k]);
-//            }
-//        }
-//            if (received_event.got_ship_resource.picked_item_index != -1) {
-//                std::cout << "Y: " << vector_res[received_event.got_ship_resource.picked_item_index].rect.top
-//                          << " X: " << vector_res[received_event.got_ship_resource.picked_item_index].rect.left << '\t' << "pckd itm ind: "
-//                          << received_event.got_ship_resource.picked_item_index << std::endl;
-//            }
-//            vector_res = new_objects;
-
-//        }
-        // Проходимся по элементам  вектора спрайтов и
         for (int i = 0; i < received_event.resources_data.resource_spawn_areas.size(); i++) {
 //            if (received_event.resources_data.picked_item_area != -1)
 //                std::cout << '\t' << "pckd itm area: " << received_event.resources_data.picked_item_area

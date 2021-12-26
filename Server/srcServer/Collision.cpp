@@ -86,25 +86,60 @@ void Collision::update(Event event) {
                     }
                 }
             }
+            for (int j = 0; j < maze_zones.size(); ++j) {
+                if (players[i].get_sprite_rect().intersects(
+                        sf::FloatRect(maze_zones[j].rect.left, maze_zones[j].rect.top,
+                                      32 * (1 + maze_walls[i].x), 32 * (1 + maze_walls[i].y)))) {
+
+                    switch (players[i].get_direction()) {
+                        case 1: {
+                            players[i].set_coordinates({maze_zones[j].rect.left + 32 * (1 + maze_walls[i].x),
+                                                        players[i].get_coordinates().y});
+                            break;
+                        }
+                        case 2: {
+                            players[i].set_coordinates(
+                                    {maze_zones[j].rect.left - players[i].get_player_sprite_coordinates().width, \
+                                players[i].get_coordinates().y});
+                            break;
+                        }
+                        case 3: {
+                            players[i].set_coordinates({players[i].get_coordinates().x, \
+                                    maze_zones[j].rect.top + 32 * (1 + maze_walls[i].y)});
+                            break;
+                        }
+                        case 4: {
+                            players[i].set_coordinates({players[i].get_coordinates().x, \
+                                maze_zones[j].rect.top - players[i].get_player_sprite_coordinates().height});
+                            break;
+                        }
+                        default: {
+                            players[i].set_coordinates(
+                                    {maze_zones[j].rect.left - players[i].get_player_sprite_coordinates().width, \
+                                maze_zones[j].rect.top - players[i].get_player_sprite_coordinates().height});
+                            break;
+                        }
+                    }
+                }
+            }
             for (int j = 0; j < resource_spawn_areas.size(); ++j) {
                 for (int k = 0; k < resource_positions[j].size(); ++k) {
                     if (players[i].get_sprite_rect().intersects(sf::FloatRect(resource_positions[j][k].x,
-                    resource_positions[j][k].y, resource_sprite_width, resource_sprite_height))) {
+                                                                              resource_positions[j][k].y,
+                                                                              resource_sprite_width,
+                                                                              resource_sprite_height))) {
                         players[i].set_ship_resource(players[i].get_ship_resource() + 1);
                         is_got = true;
                         picked_item_area = j;
                         picked_item_index = k;
-                        std::cout << '\t' << "pckd itm area: " << picked_item_area << '\t' << "pckd itm ind: " << picked_item_index
-                        << "\t X: "<< resource_positions[j][k].x << "\t Y: " << resource_positions[j][k].y<< std::endl;
-//                        for (int k = 0; k < resource_spawn_areas.size(); ++k) {
-//                            if (k != picked_item_area) {
-//                                new_objects.push_back(resource_spawn_areas[k]);
-//                            }
-//                        }
-//                        resource_spawn_areas = new_objects;
+                        std::cout << '\t' << "pckd itm area: " << picked_item_area << '\t' << "pckd itm ind: "
+                                  << picked_item_index
+                                  << "\t X: " << resource_positions[j][k].x << "\t Y: "
+                                  << resource_positions[j][k].y << std::endl;
                         resource_positions[j].erase(resource_positions[j].begin() + k);
                         for (int l = 0; l < resource_positions[j].size(); ++l) {
-                            std::cout << "el nmb: " << l << "\t X: "<< resource_positions[j][l].x << "\t Y: " << resource_positions[j][l].y<< std::endl;
+                            std::cout << "el nmb: " << l << "\t X: " << resource_positions[j][l].x << "\t Y: "
+                                      << resource_positions[j][l].y << std::endl;
                         }
                     }
                 }
