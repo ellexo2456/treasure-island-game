@@ -7,7 +7,7 @@
 
 #define RESOURCE_SPAWN_ZONE_COUNT 3
 #define QUANTITY_RES 10
-#define PORT 3009
+#define PORT 3002
 
 
 #include <vector>
@@ -66,6 +66,7 @@ struct Event {
                 received_shift.emplace_back(0, 0);
             }
         }
+
     }
 
     Types type;

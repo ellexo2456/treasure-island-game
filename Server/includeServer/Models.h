@@ -110,12 +110,13 @@ public:
                                                  (resource_spawn_areas[i].rect.top + (rand() % (int)(resource_spawn_areas.at(i).rect.height / 32) + 1) * 32.f));
             }
         }
-        for (auto & maze_zone : maze_zones) {
-            maze_walls.emplace_back((rand() % (int)(maze_zone.rect.width / 32)), (rand() % (int)(maze_zone.rect.height / 32)));
-        }
         resource_sprite_width = 32;
         resource_sprite_height = 32;
+        for (auto & maze_zone : maze_zones) {
+            maze_walls.emplace_back(rand() % (int)(maze_zone.rect.width / 32), rand() % (int)(maze_zone.rect.height / 32));
+        }
     };
+
     virtual void update(Event event) override;
 
     bool get_is_got() const {

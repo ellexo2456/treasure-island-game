@@ -53,26 +53,34 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
     packet >> received_event.resources_data.picked_item_index;
     for (int i = 0; i < 2; ++i) {
         packet >> received_event.resources_data.ship_resource_count[i] >> received_event.user_moved.coordinates[i].x >> received_event.user_moved.coordinates[i].y \
- >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
+        >> received_event.user_moved.sprite_coordinates[i].begin_x >> received_event.user_moved.sprite_coordinates[i].begin_y \
         >> received_event.user_moved.sprite_coordinates[i].height >> received_event.user_moved.sprite_coordinates[i].width;
     }
+    int size;
+    float x, y;
     for (int i = 0; i < RESOURCE_SPAWN_ZONE_COUNT; ++i) {
         packet >> received_event.resources_data.resource_spawn_areas[i].rect.left >> received_event.resources_data.resource_spawn_areas[i].rect.top;
         if (!received_event.resources_data.resource_positions_to_send) {
             continue;
         }
         received_event.resources_data.received_resource_positions[i].clear();
-        int size;
         packet >> size;
         for (int j = 0; j < size; ++j) {
-            float x, y;
             packet >> x >> y;
             received_event.resources_data.received_resource_positions[i].push_back({x,y});
         }
     }
-    for (int i = 0; i < received_event.maze_data.maze_zones.size(); ++i) {
-        packet >> received_event.maze_data.maze_zones[i].rect.left << received_event.maze_data.maze_zones[i].rect.top;
-        packet >> received_event.maze_data.maze_walls[i].x << received_event.maze_data.maze_walls[i].y;
+    packet >> size;
+    received_event.maze_data.maze_zones.clear();
+    received_event.maze_data.maze_walls.clear();
+    for (int i = 0; i < size; ++i) {
+        packet >> x >> y;
+        Object a;
+        a.rect.left = x;
+        a.rect.top = y;
+        received_event.maze_data.maze_zones.emplace_back(a);
+        packet >> x >> y;
+        received_event.maze_data.maze_walls.emplace_back(x, y);
     }
     return packet;
 }
@@ -97,6 +105,7 @@ sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
             packet << received_event.resources_data.resource_positions_to_send[i][j].x << received_event.resources_data.resource_positions_to_send[i][j].y;
         }
     }
+    packet << (int)received_event.maze_data.maze_zones.size();
     for (int i = 0; i < received_event.maze_data.maze_zones.size(); ++i) {
         packet << received_event.maze_data.maze_zones[i].rect.left << received_event.maze_data.maze_zones[i].rect.top;
         packet << received_event.maze_data.maze_walls[i].x << received_event.maze_data.maze_walls[i].y;
