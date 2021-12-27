@@ -105,7 +105,7 @@ public:
         objects_solid = map.getObjectsByName("Solid");
         maze_zones = map.getObjectsByName("maze");
         for (int i = 0; i < resource_spawn_areas.size(); i++ ) {
-            for (int j = 0; j < QUANTITY_RES; j++) { //( rand() % 100 + 1 )) => 1 *32
+            for (int j = 0; j < QUANTITY_RES; j++) {
                 resource_positions[i].emplace_back(resource_spawn_areas[i].rect.left + ((rand() % (int)(resource_spawn_areas.at(i).rect.width / 32) + 1) * 32.f),
                                                  (resource_spawn_areas[i].rect.top + (rand() % (int)(resource_spawn_areas.at(i).rect.height / 32) + 1) * 32.f));
             }
