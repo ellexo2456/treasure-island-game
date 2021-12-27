@@ -159,8 +159,10 @@ int main() {
 
     event_to_send.type = user_init;
     players[0].set_coordinates({300, 1500});
+    SpriteCoord player_initialise = {0, 0, 32,  32 };
+    players[0].set_player_sprite_coordinates(player_initialise);
     event_to_send.user_moved.coordinates[0] = players[0].get_coordinates();
-    event_to_send.user_moved.sprite_coordinates[0] = {0, 0, 32,  32 };
+    event_to_send.user_moved.sprite_coordinates[0] = players[0].get_player_sprite_coordinates();
     event_to_send.resources_data.ship_resource_count[0] = 0;
 
 
@@ -169,8 +171,10 @@ int main() {
     }
 
     players[1].set_coordinates({500, 1200});
+    player_initialise = {0, 4*32, 32,  32 };
+    players[1].set_player_sprite_coordinates(player_initialise);
     event_to_send.user_moved.coordinates[1] = players[1].get_coordinates();
-    event_to_send.user_moved.sprite_coordinates[1] = {0, 0, 32,  32 };
+    event_to_send.user_moved.sprite_coordinates[1] = players[1].get_player_sprite_coordinates();
     event_to_send.resources_data.ship_resource_count[1] = 0;
 
     packet.clear();

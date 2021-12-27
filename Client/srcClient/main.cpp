@@ -139,6 +139,7 @@ int main() {
     settings.antialiasingLevel = 8;
 
     // Игроки
+
     std::string path_to_file = "../Client/srcClient/images/one.png";
     struct SpriteCoord coord = {0, 0, 32,  32 };
     struct SpriteCoord coord1 = {0, 128, 32,  32 };
@@ -313,13 +314,13 @@ int main() {
                 won.text_render(0, camera.getCenter());
                 window.draw(won.text);
                 window.display();
-                sleep(20);
+                sleep(4);
                 break;
             } else {
                 won.text_render(1, camera.getCenter());
                 window.draw(won.text);
                 window.display();
-                sleep(20);
+                sleep(4);
                 break;
             }
         }
