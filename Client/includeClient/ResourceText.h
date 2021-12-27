@@ -24,7 +24,7 @@ class ShipResourceText : public ResourceText {
 public:
     ShipResourceText (const std::string& path_to_font_file) {
         font.loadFromFile(path_to_font_file);
-        text = {"", font, 15};
+        text = {"", font, 18};
         text.setFillColor(sf::Color::White);
         text.setStyle(sf::Text::Bold | sf::Text::Underlined);
     }
@@ -35,7 +35,7 @@ class WinText : public ResourceText {
 public:
     WinText (const std::string& path_to_font_file) {
         font.loadFromFile(path_to_font_file);
-        text = {"", font, 80};
+        text = {"", font, 100};
         text.setFillColor(sf::Color(230, 78, 64));
         text.setStyle(sf::Text::Bold);
     }

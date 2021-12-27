@@ -156,13 +156,13 @@ int main() {
 
     ////Ресурсы///////////////////////////////////////////////////
 
-    ShipResourceText ship_resource_text("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
+    ShipResourceText ship_resource_text("../Client/srcClient/Roboto-Regular.ttf");
 
     std::vector<Object> new_objects = {};
     std::vector<Resources> new_sprites = {};
 
     std::string name_of_object_one = "res";
-    struct SpriteCoord res = {0, 64, 32, 32};  // Это можно не менять
+    struct SpriteCoord res = {49*32, 3*32, 32, 32};  // Это можно не менять
 
     Object tex = map.getObject(name_of_object_one); //
     /*.getObject - только первый объект с заданным именем, вернёт вектор
@@ -170,7 +170,7 @@ int main() {
      * getAllObjects все объекты, вернёт вектор
      */
     sf::Vector2f coord_obj = {tex.rect.left, tex.rect.top}; // откуда начинать отрисовку, внутренние поля Object/rect
-    Resources resource_sprite("../Client/srcClient/images/map.png", res, coord_obj);
+    Resources resource_sprite("../Client/srcClient/images/ship_res.png", res, coord_obj);
     resource_sprite.render(res, coord_obj); // обрезает картинку по данным SpriteCoord
 
     std::vector<Resources> sprites_of_object(QUANTITY_RES, resource_sprite);
@@ -182,7 +182,7 @@ int main() {
                                   {received_event.maze_data.maze_zones[0].rect.left, received_event.maze_data.maze_zones[0].rect.top});
     std::vector<Maze> sprites_of_maze_bricks(received_event.maze_data.maze_zones.size(), maze_sprite_initialise);
 
-    WinText won("../Client/srcClient/MesloLGS_NF_Bold_Italic.ttf");
+    WinText won("../Client/srcClient/Roboto-Regular.ttf");
 
     Event custom_event;
     custom_event.resources_data.resource_positions_to_send = nullptr;
@@ -245,9 +245,9 @@ int main() {
 
         ship_resource_text.text_render(received_event.resources_data.ship_resource_count[received_event.client_number], camera.getCenter());
 
-        sf::RectangleShape frontend_rectangle(sf::Vector2f(180, 25));
+        sf::RectangleShape frontend_rectangle(sf::Vector2f(185, 29));
         frontend_rectangle.setFillColor(sf::Color(0, 0, 0,120));
-        frontend_rectangle.move(camera.getCenter().x -458, camera.getCenter().y - 363);
+        frontend_rectangle.move(camera.getCenter().x -464, camera.getCenter().y - 361);
 
 
         window.clear();
