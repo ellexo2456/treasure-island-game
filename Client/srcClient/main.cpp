@@ -248,12 +248,9 @@ int main() {
         window.draw(map);
 
         for (int i = 0; i < received_event.resources_data.resource_spawn_areas.size(); i++) {
-//            if (received_event.resources_data.picked_item_area != -1)
-//                std::cout << '\t' << "pckd itm area: " << received_event.resources_data.picked_item_area
-//                        << '\t' << "pckd itm ind: " << received_event.resources_data.picked_item_index
-//                        << "\t X: " << received_event.resources_data.ship_resource_count[i][received_event.<< std::endl;
-//                coord_obj = {(vector_res.at(i)).rect.left, (vector_res.at(i)).rect.top}; // принимаем координаты каждого следующего объекта ресурсов
-
+            if (i == 0) {res = {11*32, 0, 32, 32};}
+            if (i == 1) {res = {3*32, 0, 32, 32};}
+            if (i == 2) {res = {12*32, 6*32, 32, 32};}
             for (int j = 0; j < received_event.resources_data.received_resource_positions[i].size(); j++) {
                 if (received_event.resources_data.picked_item_index != -1) {
                     std::cout << "el nmbr: " << j << "\t X: "
@@ -261,8 +258,6 @@ int main() {
                               << "\t X: " << received_event.resources_data.received_resource_positions[i][j].y
                               << std::endl;
                 }
-//                    coord_obj = {(vector_res.at(i)).rect.left + received_event.resources_data.received_resource_positions[i][j].x,
-//                                 (vector_res.at(i)).rect.top + received_event.resources_data.received_resource_positions[i][j].y};
                 (sprites_of_object.at(j)).render(res,received_event.resources_data.received_resource_positions[i][j]);
                 window.draw(sprites_of_object.at(j).hero_sprite);
             }
