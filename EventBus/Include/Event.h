@@ -5,9 +5,10 @@
 #ifndef ISLANDGAME_EVENT_H
 #define ISLANDGAME_EVENT_H
 
+#define MAZE_SPAWN_ZONE_COUNT 12
 #define RESOURCE_SPAWN_ZONE_COUNT 3
 #define QUANTITY_RES 10
-#define PORT 3006
+#define PORT 3009
 
 
 #include <vector>
@@ -65,6 +66,10 @@ struct Event {
             for (int j = 0; j < QUANTITY_RES; ++j) {
                 received_shift.emplace_back(0, 0);
             }
+        }
+        for (int i = 0; i < MAZE_SPAWN_ZONE_COUNT; ++i) {
+            maze_data.maze_zones.emplace_back(a);
+            maze_data.maze_walls.emplace_back(0, 0);
         }
 
     }

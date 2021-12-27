@@ -67,22 +67,16 @@ sf::Packet operator>> (sf::Packet &packet, Event &received_event) {
         packet >> size;
         for (int j = 0; j < size; ++j) {
             packet >> x >> y;
-            received_event.resources_data.received_resource_positions[i].push_back({x,y});
+            received_event.resources_data.received_resource_positions[i].emplace_back(x,y);
         }
     }
-    packet >> size;
-    received_event.maze_data.maze_zones.clear();
-    received_event.maze_data.maze_walls.clear();
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < MAZE_SPAWN_ZONE_COUNT; ++i) {
+        packet >> received_event.maze_data.maze_zones[i].rect.left >> received_event.maze_data.maze_zones[i].rect.top;
         packet >> x >> y;
-        Object a;
-        a.rect.left = x;
-        a.rect.top = y;
-        received_event.maze_data.maze_zones.emplace_back(a);
-        packet >> x >> y;
-        if (!x && y) {++y;}
-        if (x && !y) {++x;}
-        received_event.maze_data.maze_walls.emplace_back(x, y);
+        if (x == 0 && y != 0) {++y;}
+        if (x != 0 && y == 0) {++x;}
+        received_event.maze_data.maze_walls[i].x = x;
+        received_event.maze_data.maze_walls[i].y = y;
     }
     return packet;
 }
@@ -103,12 +97,11 @@ sf::Packet operator<< (sf::Packet &packet, Event &received_event) {
             continue;
         }
         packet << (int)received_event.resources_data.resource_positions_to_send[i].size();
-        for (int j = 0; j < received_event.resources_data.resource_positions_to_send[i].size(); ++j) {
-            packet << received_event.resources_data.resource_positions_to_send[i][j].x << received_event.resources_data.resource_positions_to_send[i][j].y;
+        for (auto & j : received_event.resources_data.resource_positions_to_send[i]) {
+            packet << j.x << j.y;
         }
     }
-    packet << (int)received_event.maze_data.maze_zones.size();
-    for (int i = 0; i < received_event.maze_data.maze_zones.size(); ++i) {
+    for (int i = 0; i < MAZE_SPAWN_ZONE_COUNT; ++i) {
         packet << received_event.maze_data.maze_zones[i].rect.left << received_event.maze_data.maze_zones[i].rect.top;
         packet << received_event.maze_data.maze_walls[i].x << received_event.maze_data.maze_walls[i].y;
     }
