@@ -8,7 +8,7 @@
 #define MAZE_SPAWN_ZONE_COUNT 12
 #define RESOURCE_SPAWN_ZONE_COUNT 3
 #define QUANTITY_RES 10
-#define PORT 3009
+#define PORT 3002
 
 
 #include <vector>
@@ -17,7 +17,6 @@
 #include <SFML/System/Vector2.hpp>
 
 #include "Lev.h"
-
 
 enum Types {
     user_init,

@@ -155,7 +155,7 @@ int main() {
     std::vector<Resources> new_sprites = {};
 
     std::string name_of_object_one = "res";
-    struct SpriteCoord res = {49*32, 3*32, 32, 32};  // Это можно не менять
+    struct SpriteCoord res = {11*32, 0*32, 32, 32};  // Это можно не менять
 
     Object tex = map.getObject(name_of_object_one); //
     /*.getObject - только первый объект с заданным именем, вернёт вектор
@@ -163,7 +163,7 @@ int main() {
      * getAllObjects все объекты, вернёт вектор
      */
     sf::Vector2f coord_obj = {tex.rect.left, tex.rect.top}; // откуда начинать отрисовку, внутренние поля Object/rect
-    Resources resource_sprite("../Client/srcClient/images/ship_res.png", res, coord_obj);
+    Resources resource_sprite("../Client/srcClient/images/ship_res_thrd.png", res, coord_obj);
     resource_sprite.render(res, coord_obj); // обрезает картинку по данным SpriteCoord
 
     std::vector<Resources> sprites_of_object(QUANTITY_RES, resource_sprite);
