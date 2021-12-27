@@ -8,7 +8,7 @@
 #define MAZE_SPAWN_ZONE_COUNT 12
 #define RESOURCE_SPAWN_ZONE_COUNT 3
 #define QUANTITY_RES 10
-#define PORT 3003
+#define PORT 3004
 
 
 #include <vector>

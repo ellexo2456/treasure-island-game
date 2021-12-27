@@ -136,7 +136,7 @@ int main() {
     music.openFromFile("../Client/srcClient/music.ogg");
     music.play();
     music.setLoop(true);
-    music.setVolume(10);
+    music.setVolume(13);
 
     sf::SoundBuffer pick_buffer;
     pick_buffer.loadFromFile("../Client/srcClient/sound.ogg");
