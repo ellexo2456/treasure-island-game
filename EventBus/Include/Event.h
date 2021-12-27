@@ -7,7 +7,7 @@
 
 #define RESOURCE_SPAWN_ZONE_COUNT 3
 #define QUANTITY_RES 10
-#define PORT 3005
+#define PORT 3006
 
 
 #include <vector>
