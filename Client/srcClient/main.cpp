@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>
+#include <SFML/Audio.hpp>
 
 #include "clientPlayer.h"
 //#include "map.h"
@@ -131,6 +132,22 @@ int main() {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
 
+    sf::Music music;
+    music.openFromFile("../Client/srcClient/music.ogg");
+    music.play();
+    music.setLoop(true);
+    music.setVolume(10);
+
+    sf::SoundBuffer pick_buffer;
+    pick_buffer.loadFromFile("../Client/srcClient/sound.ogg");
+    sf::Sound pick(pick_buffer);
+
+    sf::SoundBuffer win_buffer;
+    win_buffer.loadFromFile("../Client/srcClient/win_sound.ogg");
+    sf::Sound win_sound(win_buffer);
+
+//    win_buffer.loadFromFile("../Client/srcClient/lost_sound.ogg");
+//    sf::Sound lost_sound(win_buffer);
     // Игроки
 
     std::string path_to_file = "../Client/srcClient/images/one.png";
@@ -262,6 +279,9 @@ int main() {
                 window.draw(sprites_of_object.at(j).hero_sprite);
             }
         }
+        if (received_event.type == got_ship_resource) {
+            pick.play();
+        }
 
         for (int i = 0; i < received_event.maze_data.maze_zones.size(); ++i) {
             int k = 0;
@@ -284,30 +304,36 @@ int main() {
         window.draw(Player2.hero_sprite);
         window.draw(Player1.hero_sprite);
         if (received_event.resources_data.ship_resource_count[0] >= 15) {
+            music.stop();
             if (received_event.client_number == 0) {
                 won.text_render(0, camera.getCenter());
                 window.draw(won.text);
                 window.display();
-                sleep(3);
-                break;
-            } else {
-                won.text_render(1, camera.getCenter());
-                window.draw(won.text);
-                window.display();
-                sleep(3);
-                break;
-            }
-        } else if (received_event.resources_data.ship_resource_count[1] >= 15) {
-            if (received_event.client_number == 1) {
-                won.text_render(0, camera.getCenter());
-                window.draw(won.text);
-                window.display();
+                win_sound.play();
                 sleep(4);
                 break;
             } else {
                 won.text_render(1, camera.getCenter());
                 window.draw(won.text);
                 window.display();
+//                lost_sound.play();
+                sleep(4);
+                break;
+            }
+        } else if (received_event.resources_data.ship_resource_count[1] >= 15) {
+            music.stop();
+            if (received_event.client_number == 1) {
+                won.text_render(0, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+                win_sound.play();
+                sleep(4);
+                break;
+            } else {
+                won.text_render(1, camera.getCenter());
+                window.draw(won.text);
+                window.display();
+//                lost_sound.play();
                 sleep(4);
                 break;
             }
